@@ -18,13 +18,9 @@ let Config =
 
     Tiles : {
     "Ground" : 0,
+	"Wall" :1,
+	"Hole" : 2,
+	"Ice" : 3,
+	"Spike":
     },
-
-    TilesWalkable(tile)
-    {
-        switch(tile) {
-            default:
-                return false;
-        }
-    }
 }
