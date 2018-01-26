@@ -16,15 +16,6 @@ let Config =
 
     TileSize  : 32,
 
-    Tiles : {
-    "Ground" : 0,
-    },
-
-    TilesWalkable(tile)
-    {
-        switch(tile) {
-            default:
-                return false;
-        }
-    }
+    MapWith : 42,
+    MapHeight : 42,
 }

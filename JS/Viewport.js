@@ -1,3 +1,6 @@
+/**
+ * Le viewport permettant d'afficher l'écran en split screen
+ */
 class Viewport 
 {
     /**
@@ -11,12 +14,9 @@ class Viewport
      * @param {number} worldw largeur de la portion de la map à afficher 
      * @param {number} worldh hauteur de la portion de la map à afficher
      */
-    constructor(x, y, width, height, worldx, worldy, worldw, worldh)
+    constructor(player, x, y, width, height, map)
     {
-        this.x = worldx;
-        this.y = worldy;
-        this.width = worldw;
-        this.height = worldh;
+        this.player = player;
 
         this.container = new PIXI.container();
 
@@ -25,6 +25,8 @@ class Viewport
         this.container.width = width;
         this.container.height = height;
 
+        this.map = map;
+
         this.blur = null;
         this.weird = null;
     }
@@ -32,6 +34,8 @@ class Viewport
     update()
     {
         //TODO: mettre à jour position de la même
+        this.map.container.x = this.player.sprite.x - this.container.width / 2;
+        this.map.container.y = this.player.sprite.y - this.container.height / 2;
     }
 
     addChild(child)
