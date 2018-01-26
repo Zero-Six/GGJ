@@ -18,7 +18,6 @@ class Viewport
         this.width = worldw;
         this.height = worldh;
 
-
         this.container = new PIXI.container();
 
         this.container.x = x;
@@ -27,6 +26,7 @@ class Viewport
         this.container.height = height;
 
         this.blur = null;
+        this.weird = null;
     }
 
     addChild(child)
@@ -37,6 +37,22 @@ class Viewport
     removeChild(child)
     {
         this.container.removeChild(child);
+    }
+
+    weird(sprite)
+    {
+        if(this.weird != null)
+            return;
+        this.weird = PIXI.filters.DisplacementFilter(sprite);
+        this.container.filters.push(this.weird);
+    }
+
+    unweird()
+    {
+        if(this.weird == null)
+            return;
+        if(this.removeFilter(this.weird))
+            this.weird = null;
     }
 
     blur()
