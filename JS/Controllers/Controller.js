@@ -5,10 +5,10 @@ class Controller
         this.player = player;
     }
 
-    left();
-    right();
-    up();
-    down();
-    action();
-    cancel();
+    left(){}
+    right(){}
+    up(){}
+    down(){}
+    action(){}
+    cancel(){}
 }

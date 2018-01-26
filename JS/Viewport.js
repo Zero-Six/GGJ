@@ -18,7 +18,7 @@ class Viewport
     {
         this.player = player;
 
-        this.container = new PIXI.container();
+        this.container = new PIXI.Container();
 
         this.container.x = x;
         this.container.y = y;

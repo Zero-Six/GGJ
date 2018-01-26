@@ -2,6 +2,7 @@ class SceneGame extends Scene
 {
     constructor()
     {
+        super();
         this.viewport1 = null;
         this.viewport2 = null;
         this.player1 = null;
@@ -16,6 +17,9 @@ class SceneGame extends Scene
 
     init() 
     {
+        this.controllers.push(new XboxController(null));
+        this.controllers.push(new XboxController(null));
+
         let grid = null; //TODO: générer la grid
         this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
         this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);

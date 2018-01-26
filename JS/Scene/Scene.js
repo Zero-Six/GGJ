@@ -1,5 +1,10 @@
 class Scene
 {
+
+    constructor()
+    {
+        
+    }
     /**
      * Méthode appelée lors de l'entrée dans la scene 
      */
