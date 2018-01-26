@@ -25,6 +25,8 @@ class Viewport
         this.container.y = y;
         this.container.width = width;
         this.container.height = height;
+
+        this.blur = null;
     }
 
     addChild(child)
@@ -35,5 +37,34 @@ class Viewport
     removeChild(child)
     {
         this.container.removeChild(child);
+    }
+
+    blur()
+    {
+        if(this.blur != null)
+            return;
+        this.blur = new PIXI.filters.BlurFilter();
+        this.container.filters.push(this.blur);
+    }
+
+    unblur()
+    {
+        if(this.blur == null)
+            return;
+        if(this.removeFilter(this.blur))
+            this.blur = null;
+    }
+
+    removeFilter(filter)
+    {
+        for(let i = 0; i < this.container.filters.length;)
+        {
+            if(this.container.filters[i] == filter)
+            {
+                this.container.filters.splice(i, 1);
+                return true;
+            }
+        }
+        return false;
     }
 }
