@@ -29,6 +29,11 @@ class Viewport
         this.weird = null;
     }
 
+    update()
+    {
+        //TODO: mettre à jour position de la même
+    }
+
     addChild(child)
     {
         this.container.addChild(child);
