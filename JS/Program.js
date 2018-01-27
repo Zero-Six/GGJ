@@ -1,3 +1,5 @@
+let Program_Instance = null;
+
 class Program
 {
     // EntryPoint
@@ -8,15 +10,15 @@ class Program
 
     static Initialize()
     {
-        if(Program.Instance == null)
-            Program.Instance = new Program();
+        if(Program_Instance == null)
+            Program_Instance = new Program();
     }
 
     static GetInstance()
     {
-        if(Program.Instance == null)
+        if(Program_Instance == null)
             throw new Error("Instance must be initialized.");
-        return Program.Instance;
+        return Program_Instance;
     }
 
 
