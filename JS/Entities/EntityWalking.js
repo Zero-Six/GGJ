@@ -90,7 +90,7 @@ class EntityWalking extends Entity {
             }
         }
 
-        if(this.vx < 0)
+        else if(this.vx < 0)
         {
             if(this.sprite1.currentFrame < 32 || this.sprite1.currentFrame > 39)
             {
@@ -99,7 +99,7 @@ class EntityWalking extends Entity {
             }
         }
 
-        if(this.vy > 0)
+        else if(this.vy > 0)
         {
             if(this.sprite1.currentFrame < 28 || this.sprite1.currentFrame > 33)
             {
@@ -108,7 +108,7 @@ class EntityWalking extends Entity {
             }
         }
 
-        if(this.vy < 0)
+        else if(this.vy < 0)
         {
             if(this.sprite1.currentFrame < 21 || this.sprite1.currentFrame > 27)
             {

@@ -44,6 +44,7 @@ class EntityPlayer extends EntityWalking {
 
 	reset() 
 	{
+		console.log("ok");
 		this.canMove = false;
 
 		let death = [];
@@ -52,7 +53,12 @@ class EntityPlayer extends EntityWalking {
 			death.push(PIXI.Texture.fromFrame(this.file+"_"+i+".png"));
 		}
 
-		//this.switchSprite(death);
+		this.switchSprite(death);
+
+		this.sprite1.play();
+		this.sprite2.play();
+		this.sprite1.loop = false;
+		this.sprite2.loop = false;
 
 		this.solid = false;
 
@@ -61,7 +67,16 @@ class EntityPlayer extends EntityWalking {
 			this.canMove = true;
 			this.solid = true;
 
-			//this.switchSprite(this.frames);
+			this.switchSprite(this.frames);
+
+			this.sprite1.play();
+			this.sprite2.play();
+
+			this.sprite1.loop = true;
+			this.sprite2.loop = true;
+
+			this.sprite1.x = this.initialX;
+			this.sprite1.y = this.initialY;
 
 			this.scene.viewport1.addChild(this.sprite1);
 			this.scene.viewport2.addChild(this.sprite2);
@@ -110,6 +125,7 @@ class EntityPlayer extends EntityWalking {
 		this.nextAction.push(function(){
 		if(this.canCombo)
 		{
+			this.reset();
 			this.addCombo(1);
 		}});
 	}
@@ -139,7 +155,7 @@ class EntityPlayer extends EntityWalking {
 		{
 			this.combo.push(c);
 			
-			if(combo.length == 3)//combo atteint
+			if(this.combo.length == 3)//combo atteint
 			{
 				
 			}

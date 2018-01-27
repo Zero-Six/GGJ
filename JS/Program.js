@@ -56,6 +56,7 @@ class Program
         });
         PIXI.loader.add("Assets/J1.json")
                     .add("Assets/J2.json")
+                    .add("Assets/wall.json")
                     .add("Assets/Tileset.json")
                     .load(() => { this.setup(); });
     }
