@@ -32,12 +32,29 @@ class XboxController extends Controller
     {
         if(this.gamepad == null)
             return;
-        this.gamepad.buttons.forEach(button => {
-            if(button.pressed)
+    
+        for(let i = 0; i < this.gamepad.buttons.length; i++)
+        {
+            if(this.gamepad.buttons[i].pressed)
             {
+                switch(i)
+                {
+                    case 6:
+                    case 0:
+                    case 4:
+                    case 2:
+                        this.button1();
+                    break;
+                    case 7:
+                    case 1:
+                    case 5:
+                    case 3:
+                        this.button2();
+                    break;
 
+                }
             }
-        });
+        }
 
         if(this.gamepad.axes[0] < -0.5 || this.gamepad.axes[2] < -0.5)
         {
@@ -58,39 +75,30 @@ class XboxController extends Controller
         }
     }
 
+    left() {
+        this.player.moveLeft();
+    }
+
+    right() {
+        this.player.moveRight();        
+    }
+
+    up() {
+        this.player.moveUp();        
+    }
+
+    down() {
+        this.player.moveDown();                
+    }
+
     button1()
     {
-        console.log("button1");
+        this.player.button1();                
     }
 
     button2()
     {
-        console.log("button2");
-    }
-
-    left()
-    {
-        console.log("left");
-    }
-
-    right()
-    {
-        console.log("right");
-    }
-
-    up()
-    {
-        console.log("up");
-    }
-
-    down()
-    {
-        console.log("down");
-    }
-
-    action()
-    {
-
+        this.player.button2();                
     }
 
     cancel()

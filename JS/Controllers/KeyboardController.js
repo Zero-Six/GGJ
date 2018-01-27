@@ -112,29 +112,29 @@ class KeyboardController extends Controller {
     }
 
     left() {
-        console.log("left");
+        this.player.moveLeft();
     }
 
     right() {
-        console.log("right");
+        this.player.moveRight();        
     }
 
     up() {
-        console.log("up");
+        this.player.moveUp();        
     }
 
     down() {
-        console.log("down");
+        this.player.moveDown();                
     }
 
     button1()
     {
-        console.log("button1");
+        this.player.button1();                
     }
 
     button2()
     {
-        console.log("button2");
+        this.player.button2();                
     }
 
     cancel()
