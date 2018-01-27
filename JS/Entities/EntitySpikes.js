@@ -1,4 +1,4 @@
-class EntityTrap extends Entity 
+class EntitySpikes extends Entity 
 {
     constructor(scene, x, y)
     {
