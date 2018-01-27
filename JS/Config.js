@@ -16,6 +16,11 @@ let Config =
 
     TileSize  : 32,
 
-    MapWith : 42,
-    MapHeight : 42,
+    MapRooms : 3,
+
+    MapWith : 0,
+    MapHeight : 0,
 }
+
+Config.MapWidth = Config.MapRooms*11;
+Config.MapHeight = Config.MapRooms*11;

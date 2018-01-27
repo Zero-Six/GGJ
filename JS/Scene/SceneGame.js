@@ -35,14 +35,20 @@ class SceneGame extends Scene
         this.controllers.push(new KeyboardController(this.player1, 90, 83, 81, 68, 65, 69));
         this.controllers.push(new KeyboardController(this.player2, 38, 40, 37, 39, 96, 110));
 
-        
-       // let grid = lavender_gen(LAVENDER_ALGORITHM_BACKTRACKING, Date.now(), Config.MapWith, Config.MapHeight);
-        
-        let grid = [
-            [1,0,0,1], 
-            [1,0,1, 1],
-            [1,0,1, 1]
-        ];
+
+        let lavenderCtx = lavender_new(Date.now(), "Assets/maps.json");
+        let rooms = lavender_gen(lavenderCtx, LAVENDER_ALGORITHM_BACKTRACKING, Config.MapRooms, Config.MapRooms); 
+        let origingrid = lavender_conv(lavenderCtx, rooms, Config.MapRooms, Config.MapRooms);
+        let grid = [];
+        for(let i = 0; origingrid.length; i++)
+        {
+            let u = Math.floor(i/Config.MapWidth);
+            if(grid[u] == null)
+                grid[u] = [];
+            grid[u][i] = origingrid[i];
+        }
+        console.log(grid);
+
         this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
         this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
 
