@@ -52,7 +52,7 @@ class EntityPlayer extends EntityWalking {
 		}
 	}
 	
-	left()
+	right()
 	{
 		if(this.canWalk)
 		{
@@ -60,7 +60,7 @@ class EntityPlayer extends EntityWalking {
 		}
 	}
 	
-	action1()
+	button1()
 	{
 		if(this.canCombo)
 		{
@@ -68,7 +68,7 @@ class EntityPlayer extends EntityWalking {
 		}
 	}
 	
-	action2()
+	button2()
 	{
 		this.addCombo(2);
 	}
