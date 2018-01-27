@@ -68,7 +68,40 @@ class HelperEntity {
     static checkCollisionWithMap(map, entity) {
         let results = [];
         let rectangle1 = new Rectangle(entity.sprite1.x + Config.AirDensity * entity.Vx(), entity.sprite1.y + Config.AirDensity * entity.Vy(), entity.sprite1.width, entity.sprite1.height);
-        let points = [];
+      
+        let x = 0;
+        let y = 0;
+
+        if(entity.vx > 0)
+        {
+            x = Math.floor((rectangle1.x + rectangle1.width) / Config.TileSize);
+        }
+        else if(entity.vx < 0)
+        {
+            x = Math.floor((rectangle1.x) / Config.TileSize); 
+        }
+
+        if(entity.vy > 0)
+        {
+            y = Math.floor((rectangle1.y + rectangle1.height) / Config.TileSize);
+        }
+        else if(entity.vy < 0)
+        {
+            y = Math.floor((rectangle1.y) / Config.TileSize);
+        }
+
+
+        if (Tiles[map.grid[x][y]].solid == false) {
+         return null;
+        }
+
+        let rectangle2 = new Rectangle(Math.floor(x / Config.TileSize) * Config.TileSize, Math.floor(y / Config.TileSize) * Config.TileSize, Config.TileSize, Config.TileSize);
+        
+        let result = HelperEntity.checkCollision(rectangle1, rectangle2);
+        //console.log(result);
+        return result;
+
+        /*let points = [];
 
         let topleft = new Vector2(entity.sprite1.x, entity.sprite1.y);
         let bottomright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height)
@@ -94,6 +127,7 @@ class HelperEntity {
         points.push(topright);
         points.push(bottomleft);
         for (let i = 0; i < points.length; i++) {
+            //console.log(points);
             let point = points[i];
             if (Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]].solid == false) {
                 continue;
@@ -106,7 +140,9 @@ class HelperEntity {
         if (results.length <= 0)
             return null;
         let result = new Vector2(0, 0);
+        //console.log("res");
         results.forEach((r) => {
+            //console.log(r);
             result = result.add(r);
         });
         if (result.x != 0 && Math.abs(result.x) < 1) {
@@ -121,7 +157,10 @@ class HelperEntity {
             if (result.y > 0)
                 result.y = 1;
         }
-        return result;
+        
+        //cc;
+        //console.log(result);
+        return result;*/
     }
 
     static checkOverlap(entity1, entity2) {
@@ -171,7 +210,9 @@ class HelperEntity {
 
         let rectangle2 = new Rectangle(topleft.x + Config.AirDensity * entity2.Vx(), topleft.y + Config.AirDensity * entity2.Vy(), bottomright.x - topleft.x , bottomright.y - topleft.y);
         
-        return this.checkCollision(rectangle1, rectangle2);
+        let n = this.checkCollision(rectangle1, rectangle2);
+        //console.log(n);
+        return n;
     }
     static checkCollision(rectangle1, rectangle2) {
         let intersection = rectangle1.intersect(rectangle2);

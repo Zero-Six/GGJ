@@ -25,6 +25,9 @@ class EntityPlayer extends EntityWalking {
 		
 		this.switchSprite(this.frames);
 
+		this.sprite1.hitarea = new Rectangle(7,18,7,0);
+		this.sprite2.hitarea = new Rectangle(7,18,7,0);
+
 		this.sprite1.x = x;
 		this.sprite2.y = y;
 
@@ -125,7 +128,6 @@ class EntityPlayer extends EntityWalking {
 		this.nextAction.push(function(){
 		if(this.canCombo)
 		{
-			this.reset();
 			this.addCombo(1);
 		}});
 	}

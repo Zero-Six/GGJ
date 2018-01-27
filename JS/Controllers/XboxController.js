@@ -103,7 +103,7 @@ class XboxController extends Controller
 
     cancel()
     {
-        clearInterval(this.timer);
-        this.timer = null;
+        //clearInterval(this.timer);
+        //this.timer = null;
     }
 }
