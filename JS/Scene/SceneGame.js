@@ -19,9 +19,7 @@ class SceneGame extends Scene
     {
 		this.populate();
 
-        Program.GetInstance().App().ticker.add((delta) => {
-            this.update(delta)
-        });
+        
     }
 
     populate()
@@ -38,26 +36,34 @@ class SceneGame extends Scene
 
         let lavenderCtx = lavender_new(Date.now(), "Assets/maps.json");
         let rooms = lavender_gen(lavenderCtx, LAVENDER_ALGORITHM_BACKTRACKING, Config.MapRooms, Config.MapRooms); 
-        let origingrid = lavender_conv(lavenderCtx, rooms, Config.MapRooms, Config.MapRooms);
-        let grid = [];
-        for(let i = 0; origingrid.length; i++)
-        {
-            let u = Math.floor(i/Config.MapWidth);
-            if(grid[u] == null)
-                grid[u] = [];
-            grid[u][i] = origingrid[i];
-        }
-        console.log(grid);
-
-        this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
-        this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
-
-        this.viewport1 = new Viewport(this.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, this.map1);
-        this.viewport2 = new Viewport(this.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, this.map2);
-
-        this.entities = [];
-        this.addEntity(this.player1);
-        this.addEntity(this.player2);
+        lavender_conv(lavenderCtx, rooms, Config.MapRooms, Config.MapRooms).then((origingrid) => {
+            let grid = [];
+            for(let i = 0; origingrid.length; i++)
+            {
+                let u = Math.floor(i/Config.MapWidth);
+                if(grid[u] == null)
+                    grid[u] = [];
+                grid[u][i] = origingrid[i];
+            }
+            console.log(grid);
+            alert("ok");
+            return;
+    
+            this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
+            this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
+    
+            this.viewport1 = new Viewport(this.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, this.map1);
+            this.viewport2 = new Viewport(this.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, this.map2);
+    
+            this.entities = [];
+            this.addEntity(this.player1);
+            this.addEntity(this.player2);
+            
+            Program.GetInstance().App().ticker.add((delta) => {
+                this.update(delta)
+            });
+        });
+        
     }
 
     update(delta)

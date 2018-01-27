@@ -67,7 +67,11 @@ function lavender_conv(context, array, width, height) {
 	function(resolve, reject) {
 	    let res = [];
 	    let it = process();
-	    
+		
+		
+
+
+		it.next();
 	    function *process() {
 		for (var y = 0; y < (height * 11); y++) {
 		    for (var x = 0; x < (width * 11); x++) {
@@ -109,12 +113,12 @@ function lavender_conv(context, array, width, height) {
 			    let map = context.maps[id];
 			    res.push(map.content[(local_y - 1) * 9 + (local_x - 1)]);
 			}
-
 			yield lavender_wait(it, 5);
+			console.log("o");
 		    }
 		}
 
-		resolve(res)
+		resolve(res);
 	    }
 	}
     );

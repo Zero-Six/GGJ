@@ -1,6 +1,7 @@
 class EntitySpikes extends Entity 
 {
     constructor(scene, x, y)
+    {
     // {
         super(scene);
         //TODO: ajouter l'animation
