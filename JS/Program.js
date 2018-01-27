@@ -33,13 +33,23 @@ class Program
         
         this.app.renderer.autoResize = true;
         this.app.renderer.resize(Math.floor(window.innerWidth/Config.TileSize)*Config.TileSize, Math.floor(window.innerHeight/Config.TileSize)*Config.TileSize);
-        this.load();
+        this.loadSounds();
+    }
+
+    loadSounds()
+    {
+        console.log("Loading sounds...")
+        /*createjs.Sound.on("fileload", this.loadSprites.bind(this), this);
+        createjs.Sound.registerSound("sample", "sample");*/
+        //createjs.Sound.play(sample);
+        this.loadSprites();
+        
     }
 
 
-    load()
+    loadSprites()
     {
-        console.log("Loading...");
+        console.log("Loading Sprites...");
         PIXI.loader.onError.add(function(error)
         {
             console.log(error);
