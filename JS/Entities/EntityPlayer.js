@@ -6,9 +6,9 @@ class EntityPlayer extends EntityWalking {
 		this.battery = 3;
 		this.nextAction = null;
 		this.canMove = true;
-		this.sprite = PIXI.Texture.fromFrame("j1_1.png");
+		this.sprite = PIXI.Texture.fromFrame("hero1.png");
 		
-		Program.App().stage.addChild(this.sprite);
+		Program.GetInstance().App().stage.addChild(this.sprite);
 		
 	}
 
