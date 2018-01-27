@@ -11,18 +11,21 @@ class HelperPlayer
         let x = Math.floor((entity.sprite1.x + entity.sprite1.width / 2) / Config.TileSize);
         let y = Math.floor((entity.sprite1.y + entity.sprite1.height) / Config.TileSize);
 
-        HelperPlayer.CheckTrap(map, entity, x, y);
+        HelperPlayer.CheckSpikes(map, entity, x, y);
+		
         HelperPlayer.CheckIce(map, entity, x, y);
+		
+        HelperPlayer.CheckGround(map, entity, x, y);
 
     }
 
-    static CheckTrap(map, entity,x,y)
+    static CheckSpikes(map, entity,x,y)
     {
         if(map.grid[x] == null || map.grid[x][y] == null)
             return;
-        if(Tiles[map.grid[x][y]].name != "trap" && Tiles[map.grid[x][y]].activated == false)
+        if(Tiles[map.grid[x][y]].name != "spikes" && Tiles[map.grid[x][y]].activated == false)
             return;
-        let trap = new EntityTrap(entity.scene, x * Config.TileSize, y * Config.TileSize);
+        let spikes = new EntitySpikes(entity.scene, x * Config.TileSize, y * Config.TileSize);
         entity.reset();
     }
 	
@@ -32,11 +35,16 @@ class HelperPlayer
             return;
         if(Tiles[map.grid[x][y]].name != "ice")
             return;
-       
-	   //Changer la densité de l'air
-        
-		
-		
+       entity.mass = Config.MassIce;
+    }
+	
+	static CheckGround(map, entity,x,y)
+    {
+        if(map.grid[x] == null || map.grid[x][y] == null)
+            return;
+        if(Tiles[map.grid[x][y]].name != "ground")
+            return;
+       entity.mass = Config.MassGround;
     }
 	
 }
