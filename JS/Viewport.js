@@ -44,9 +44,11 @@ class Viewport
 
         this.viewport.addChild(this.container);
         var circle = new PIXI.Graphics();
+        circle.beginFill(0xFFFFFF);
         circle.lineStyle(2, 0xFFFFFF);
         circle.drawRect(0, 0, width, height);
         this.viewport.addChild(circle);
+        this.viewport.mask = circle;
         Program.GetInstance().App().stage.addChild(this.viewport);
 
         this.map = map;
