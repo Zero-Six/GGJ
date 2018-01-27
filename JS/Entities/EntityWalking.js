@@ -40,7 +40,7 @@ class EntityWalking extends Entity {
 
     update(delta)
     {
-
+        super.update(delta);
         this.vx = this.vx > 50 ? 50 : this.vx ;
         this.vy = this.vy > 50 ? 50 : this.vy ;
         
@@ -51,13 +51,14 @@ class EntityWalking extends Entity {
 
         this.vx = (this.mass) * this.vx;
         this.vy = (this.mass) * this.vy;
+        this.setFrame();
+
 
         if (Math.round(this.vx) == 0)
             this.vx = 0;
         if (Math.round(this.vy) == 0)
             this.vy = 0;
 
-        this.setFrame();
     }
 
     bump()
@@ -79,6 +80,44 @@ class EntityWalking extends Entity {
             this.sprite1.play();
             this.sprite2.play();
         }
+
+        if(this.vx > 0)
+        {
+            if(this.sprite1.currentFrame < 6 || this.sprite1.currentFrame>11)
+            {
+                this.sprite1.gotoAndPlay(6);
+                this.sprite2.gotoAndPlay(6);
+            }
+        }
+
+        if(this.vx < 0)
+        {
+            if(this.sprite1.currentFrame < 32 || this.sprite1.currentFrame > 39)
+            {
+                this.sprite1.gotoAndPlay(34);
+                this.sprite2.gotoAndPlay(34);
+            }
+        }
+
+        if(this.vy > 0)
+        {
+            if(this.sprite1.currentFrame < 28 || this.sprite1.currentFrame > 33)
+            {
+                this.sprite1.gotoAndPlay(28);
+                this.sprite2.gotoAndPlay(28);
+            }
+        }
+
+        if(this.vy < 0)
+        {
+            if(this.sprite1.currentFrame < 21 || this.sprite1.currentFrame > 27)
+            {
+                this.sprite1.gotoAndPlay(22);
+                this.sprite2.gotoAndPlay(22);
+            }
+        }
+
+        /*
         if (this.vy > 0) {
             if ((this.sprite1.currentFrame < 28 || this.sprite1.currentFrame > 33))
             {
@@ -109,7 +148,7 @@ class EntityWalking extends Entity {
                 this.sprite1.gotoAndPlay(1);
                 this.sprite2.gotoAndPlay(1);
             }
-        }
+        }*/
 
     }
 

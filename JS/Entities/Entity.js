@@ -37,7 +37,11 @@ class Entity
 	}
 		update(delta)
 		{
-			
+			if(this.sprite1 != null && this.sprite2 != null)
+			{
+				this.sprite2.x = this.sprite1.x;
+				this.sprite2.y = this.sprite1.y;
+			}
 		}
 		
 		destroy()
@@ -49,6 +53,45 @@ class Entity
 		{
 			
 			
+		}
+
+		switchSprite(frames)
+		{
+			if(this.scene.viewport1 != null && this.scene.viewport2 != null)
+			{
+				this.scene.viewport1.removeChild(this.sprite1);
+				this.scene.viewport2.removeChild(this.sprite2);
+			}
+
+			let x = 0;
+			let y = 0;
+			let hitarea = new Rectangle(0,0,0,0);
+			let animationSpeed = 0.3;
+			if(this.sprite1 != null)
+			{
+				x = this.sprite1.x;
+				y = this.sprite1.y;
+				hitarea = this.sprite1.hitarea;
+				animationSpeed = this.sprite1.animationSpeed;
+			}
+			this.sprite1 = new PIXI.extras.AnimatedSprite(frames);
+			this.sprite2 = new PIXI.extras.AnimatedSprite(frames);
+			this.sprite1.animationSpeed = animationSpeed;
+			this.sprite2.animationSpeed = animationSpeed;
+			this.sprite1.hitarea = hitarea;
+			this.sprite2.hitarea = hitarea;
+			this.sprite1.x = x;
+			this.sprite1.y = y;
+			this.sprite2.x = x;
+			this.sprite2.y = y;
+			this.sprite1.play();
+			this.sprite2.play();
+
+			if(this.scene.viewport1 != null && this.scene.viewport2 != null)
+			{			
+				this.scene.viewport1.addChild(this.sprite1);
+				this.scene.viewport2.addChild(this.sprite2);
+			}
 		}
 		
 		reset()
