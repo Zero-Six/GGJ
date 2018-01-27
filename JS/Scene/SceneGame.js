@@ -51,6 +51,7 @@ class SceneGame extends Scene
                     grid[u][i] = origingrid[i];
                     yield lavender_wait(doer, 5);
                 }
+                //console.log(grid);
                 self.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
                 self.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
         
