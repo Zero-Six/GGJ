@@ -20,7 +20,14 @@ class GameMap
                 let tile = (Tiles[this.grid[i][u]]);
                 if(tile == null)
                     continue;
-                sprite = PIXI.Sprite.fromFrame("tile_"+(tile.sprite)+".png");
+				if(tile.spriteGen)
+				{
+					sprite = PIXI.Sprite.fromFrame(tile.name+"_"+(tile.spriteGen(u,i,this.grid))+".png");
+				}
+				else // à revoir un peu pour les anims
+				{
+					sprite = PIXI.Sprite.fromFrame(tile.name+"_"+(tile.sprite)+".png");
+				}
                 sprite.x = i * Config.TileSize;
                 sprite.y = u * Config.TileSize;
                 this.container.addChild(sprite);
