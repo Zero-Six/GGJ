@@ -27,7 +27,7 @@ class Program
         this.scene = null;
         this.ready = false;
 
-        this.app = new PIXI.Application(Config.Width, Config.Height, {backgroundColor : 0x282d44});
+        this.app = new PIXI.Application(608, 608, {backgroundColor : 0x282d44});
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         document.getElementById("touch").appendChild(this.app.view);
         
@@ -45,6 +45,8 @@ class Program
             console.log(error);
         });
         PIXI.loader.add("Assets/J1.json")
+                    .add("Assets/J2.json")
+                    .add("Assets/Tileset.json")
                     .load(() => { this.setup(); });
     }
 

@@ -16,26 +16,55 @@ class Viewport
      */
     constructor(player, x, y, width, height, map)
     {
+        this.map = map;
         this.player = player;
 
+        this.width = width;
+        this.height = height;
+
+        this.viewport = new PIXI.Container();
+        this.viewport.x = x;
+        this.viewport.y = y;
+        this.viewport.width = width;
+        this.viewport.height = height;   
+        
         this.container = new PIXI.Container();
 
-        this.container.x = x;
-        this.container.y = y;
+        this.container.x = width / 2;
+        this.container.y = width / 2;
         this.container.width = width;
         this.container.height = height;
+
+
+       // if(DEBUG)
+
+        //}
+
+        this.container.addChild(this.map.container);
+
+        this.viewport.addChild(this.container);
+        var circle = new PIXI.Graphics();
+        circle.lineStyle(2, 0xFFFFFF);
+        circle.drawRect(0, 0, width, height);
+        this.viewport.addChild(circle);
+        Program.GetInstance().App().stage.addChild(this.viewport);
 
         this.map = map;
 
         this.blur = null;
         this.weird = null;
+
+       
+
+        
     }
 
     update()
     {
-        //TODO: mettre à jour position de la même
-        this.map.container.x = this.player.sprite.x - this.container.width / 2;
-        this.map.container.y = this.player.sprite.y - this.container.height / 2;
+        this.container.x = this.width/2 -this.player.sprite1.x;
+        this.container.y = this.height/2-this.player.sprite1.y;
+        //console.log(this.container.x);
+        
     }
 
     addChild(child)

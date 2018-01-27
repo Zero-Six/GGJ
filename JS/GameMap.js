@@ -17,8 +17,10 @@ class GameMap
             let row = [];
             for(let u = 0; u < this.height; u++)
             {
-                let tile = (this.grid[i][u]);
-                sprite = PIXI.Sprite.fromFrame("tile"+(tile+1)+".png");
+                let tile = (Tiles[this.grid[i][u]]);
+                if(tile == null)
+                    continue;
+                sprite = PIXI.Sprite.fromFrame("tile_"+(tile.sprite)+".png");
                 sprite.x = i * Config.TileSize;
                 sprite.y = u * Config.TileSize;
                 this.container.addChild(sprite);

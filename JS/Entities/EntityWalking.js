@@ -40,8 +40,10 @@ class EntityWalking extends Entity {
     {
         this.vx = this.vx > 50 ? 50 : this.vx ;
         this.vy = this.vy > 50 ? 50 : this.vy ;
-        this.sprite.x += Config.AirDensity * this.vx;
-        this.sprite.y += Config.AirDensity * this.vy;
+        this.sprite1.x += Config.AirDensity * this.vx;
+        this.sprite1.y += Config.AirDensity * this.vy;
+        this.sprite2.x += Config.AirDensity * this.vx;
+        this.sprite2.y += Config.AirDensity * this.vy;
 
         this.vx = (this.mass) * this.vx;
         this.vy = (this.mass) * this.vy;
@@ -51,7 +53,7 @@ class EntityWalking extends Entity {
         if (Math.round(this.vy) == 0)
             this.vy = 0;
 
-        //this.setFrame();
+        this.setFrame();
     }
 
     bump()
@@ -62,26 +64,46 @@ class EntityWalking extends Entity {
     setFrame()
     {
         if (this.vy == 0 && this.vx == 0) {
-            this.sprite.stop();
+            this.sprite1.stop();
+            this.sprite2.stop();
             return;
         }
         else
-            this.sprite.play();
+        {
+            this.sprite1.play();
+            this.sprite2.play();
+        }
         if (this.vy > 0) {
-            if ((this.sprite.currentFrame > 3))
-                this.sprite.gotoAndPlay(0);
+            if ((this.sprite1.currentFrame < 24 || this.sprite1.currentFrame > 25))
+            {
+                this.sprite1.gotoAndPlay(24);
+                this.sprite2.gotoAndPlay(24);
+            }
         }
         else if (this.vy < 0) {
-            if ((this.sprite.currentFrame < 12))
-                this.sprite.gotoAndPlay(12);
+            if ((this.sprite1.currentFrame < 22 || this.sprite1.currentFrame > 23))
+            {
+                this.sprite1.gotoAndPlay(22);
+                this.sprite2.gotoAndPlay(22);
+            }
         }
         else if (this.vx > 0) {
-            if ((this.sprite.currentFrame < 4 || this.sprite.currentFrame > 7))
-                this.sprite.gotoAndPlay(4);
+            this.sprite1.scale.x = 1;
+            this.sprite2.scale.x = 1;
+            if ((this.sprite1.currentFrame < 7 || this.sprite1.currentFrame > 12))
+            {
+                this.sprite1.gotoAndPlay(7);
+                this.sprite2.gotoAndPlay(7);
+            }
         }
         else if (this.vx < 0) {
-            if ((this.sprite.currentFrame < 8 || this.sprite.currentFrame > 11))
-                this.sprite.gotoAndPlay(8);
+            this.sprite1.scale.x = -1;
+            this.sprite2.scale.x = -1;
+            if ((this.sprite1.currentFrame < 7 || this.sprite1.currentFrame > 12))
+            {
+                this.sprite1.gotoAndPlay(7);
+                this.sprite2.gotoAndPlay(7);
+            }
         }
 
     }

@@ -14,7 +14,7 @@ class XboxController extends Controller
             self.gamepad = navigator.getGamepads()[e.gamepad.index];
             self.timer = setInterval(function(){
                 self.update();
-            }, 100);
+            }, 20);
 
         });
 

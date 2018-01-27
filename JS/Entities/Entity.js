@@ -5,7 +5,8 @@ class Entity
 		/**
 		 * Pixi sprite 
 		 */
-		this.sprite = null;;
+		this.sprite1 = null;;
+		this.sprite2 = null;;
 
 		/**
 		 * Masse (pris en compte dans la gestion des collisions)

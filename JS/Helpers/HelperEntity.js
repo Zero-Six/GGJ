@@ -67,12 +67,12 @@ class HelperEntity {
      */
     static checkCollisionWithMap(map, entity) {
         let results = [];
-        let rectangle1 = new Rectangle(entity.sprite.x + Config.AirDensity * entity.Vx(), entity.sprite.y + Config.AirDensity * entity.Vy(), entity.sprite.width, entity.sprite.height);
+        let rectangle1 = new Rectangle(entity.sprite1.x + Config.AirDensity * entity.Vx(), entity.sprite1.y + Config.AirDensity * entity.Vy(), entity.sprite1.width, entity.sprite1.height);
         let points = [];
-        points.push(new Vector2(entity.sprite.x, entity.sprite.y));
-        points.push(new Vector2(entity.sprite.x + entity.sprite.width, entity.sprite.y + entity.sprite.height));
-        points.push(new Vector2(entity.sprite.x + entity.sprite.width, entity.sprite.y));
-        points.push(new Vector2(entity.sprite.x, entity.sprite.y + entity.sprite.height));
+        points.push(new Vector2(entity.sprite1.x, entity.sprite1.y));
+        points.push(new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height));
+        points.push(new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y));
+        points.push(new Vector2(entity.sprite1.x, entity.sprite1.y + entity.sprite1.height));
         for (let i = 0; i < points.length; i++) {
             let point = points[i];
             if (Config.TilesWalkable(map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)])) {
@@ -104,8 +104,8 @@ class HelperEntity {
         return result;
     }
     static checkCollisionWithEntity(entity1, entity2) {
-        let rectangle1 = new Rectangle(entity1.sprite.x + Config.AirDensity * entity1.Vx(), entity1.sprite.y + Config.AirDensity * entity1.Vy(), entity1.sprite.width, entity1.sprite.height);
-        let rectangle2 = new Rectangle(entity2.sprite.x + Config.AirDensity * entity2.Vx(), entity2.sprite.y + Config.AirDensity * entity2.Vy(), entity2.sprite.width, entity2.sprite.height);
+        let rectangle1 = new Rectangle(entity1.sprite1.x + Config.AirDensity * entity1.Vx(), entity1.sprite1.y + Config.AirDensity * entity1.Vy(), entity1.sprite1.width, entity1.sprite1.height);
+        let rectangle2 = new Rectangle(entity2.sprite1.x + Config.AirDensity * entity2.Vx(), entity2.sprite1.y + Config.AirDensity * entity2.Vy(), entity2.sprite1.width, entity2.sprite1.height);
         return this.checkCollision(rectangle1, rectangle2);
     }
     static checkCollision(rectangle1, rectangle2) {

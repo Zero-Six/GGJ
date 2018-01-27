@@ -8,8 +8,8 @@ class HelperPlayer
         if(entity instanceof EntityPlayer == false)
             return;
         let player = entity;
-        let x = Math.floor((entity.sprite.x + entity.sprite.width / 2) / Config.TileSize);
-        let y = Math.floor((entity.sprite.y + entity.sprite.height) / Config.TileSize);
+        let x = Math.floor((entity.sprite1.x + entity.sprite1.width / 2) / Config.TileSize);
+        let y = Math.floor((entity.sprite1.y + entity.sprite1.height) / Config.TileSize);
         /*if(map.grid[x][y] == Config.Tiles.Lava)
             player.setOnFire(true);
         else if(map.grid[x][y] == Config.Tiles.Water)
