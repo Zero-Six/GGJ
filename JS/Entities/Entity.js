@@ -1,44 +1,82 @@
 class Entity
 {
-    /**
-     * Pixi sprite 
-     */
-    sprite;
+	constructor()
+	{
+		/**
+		 * Pixi sprite 
+		 */
+		this.sprite;
 
-    /**
-     * Masse (pris en compte dans la gestion des collisions)
-     */
-    mass;
+		/**
+		 * Masse (pris en compte dans la gestion des collisions)
+		 */
+		this.mass;
 
-    /**
-     * Géré par le système de collision ?
-     */
-    solid;
+		/**
+		 * Géré par le système de collision ?
+		 */
+		this.solid;
 
-    /**
-     * Scene dans laquelle apparait cette entité 
-     */
-    scene;
+		/**
+		 * Scene dans laquelle apparait cette entité 
+		 */
+		this.scene;
 
-    /**
-     * Vélocité x
-     */
-    vx;
+		/**
+		 * Vélocité x
+		 */
+		this.vx;
 
-    /**
-     * Vélocité y
-     */
-    vy;
+		/**
+		 * Vélocité y
+		 */
+		this.vy;
+	}
+		update(delta)
+		{
+			
+		}
+		
+		destroy()
+		{
+			
+		}
 
-    update(delta) ;
-    destroy() ;
+		hit(other)
+		{
+			
+			
+		}
+		
+		reset()
+		{
+			
+		}
+		
+		
+		bump()
+		{
+			
+		}
 
-    hit(other) ;
-    reset() ;
-    bump() ;
+		Vx()
+		{
+			
+		}
+		
+		Vy()
+		{
+			
+		}
+		
+		setVx(vx )
+		{
+			
+		}
+		
+		setVy(vy )
+		{
+			
+		}
 
-    Vx() ;
-    Vy() ;
-    setVx(vx );
-    setVy(vy );
 }

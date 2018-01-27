@@ -39,7 +39,7 @@ class Program
 
     load()
     {
-        PIXI.loader.add("assets/animations/Hero.json")
+        PIXI.loader.add("Assets/J1.json")
                     .load(() => { this.setup(); });
     }
 

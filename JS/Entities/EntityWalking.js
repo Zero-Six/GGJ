@@ -1,17 +1,9 @@
 class EntityWalking extends Entity {
 
-    sprite;
-
-    solid ;
-    scene ;
-    vx;
-    vy;
-
-    mass ;
-
-
     constructor() {
 
+		super();
+	
     }
 
     reset() 
