@@ -1,7 +1,7 @@
 class EntitySpikes extends Entity 
 {
     constructor(scene, x, y)
-    // {
+    {
         super(scene);
         //TODO: ajouter l'animation
         /*this.sprite1 = new PIXI.extras.AnimatedSprite();
