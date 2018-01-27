@@ -65,16 +65,12 @@ function lavender_conv(context, array, width, height) {
 	function(resolve, reject) {
 	    let res = [];
 	    let it = process();
-<<<<<<< HEAD
 		
 		
 
 
 		it.next();
-=======
-	    it.next();
-	    
->>>>>>> 79cb1952cc05febee8272e21b90d99216906f501
+
 	    function *process() {
 		for (var y = 0; y < (height * 11); y++) {
 		    for (var x = 0; x < (width * 11); x++) {
@@ -116,7 +112,6 @@ function lavender_conv(context, array, width, height) {
 			    let map = context.maps[id];
 			    res.push(map.content[(local_y - 1) * 9 + (local_x - 1)]);
 			}
->>>>>>> 79cb1952cc05febee8272e21b90d99216906f501
 		    }
 		    console.log("ok");
 		    yield lavender_wait(it, 5);
