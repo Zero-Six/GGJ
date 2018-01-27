@@ -1,8 +1,8 @@
 class EntityPlayer extends EntityWalking {
 
-	constructor(file)
+	constructor(scene, file)
 	{
-		super();
+		super(scene);
 		this.mass = 0.3;
 		this.nextAction = [];
 		this.battery = 3;
@@ -19,7 +19,8 @@ class EntityPlayer extends EntityWalking {
 		this.sprite1 = new PIXI.extras.AnimatedSprite(frames);
 		this.sprite1.x = 0;
 		this.sprite1.y = 0;
-		this.sprite1.anchor.set(0.5);
+		this.sprite1.hitarea = new Rectangle(7,16,7,0);
+		//this.sprite1.anchor.set(0.5);
 
 		this.sprite1.animationSpeed = 0.3;
         //this.sprite.scale.set(1.5,1.5);
@@ -28,7 +29,7 @@ class EntityPlayer extends EntityWalking {
 		this.sprite2 = new PIXI.extras.AnimatedSprite(frames);
 		this.sprite2.x = 0;
 		this.sprite2.y = 0;
-		this.sprite2.anchor.set(0.5);
+		this.sprite2.hitarea = new Rectangle(7,16,7,0);
 
 		this.sprite2.animationSpeed = 0.3;
         //this.sprite.scale.set(1.5,1.5);
@@ -51,47 +52,56 @@ class EntityPlayer extends EntityWalking {
 	
 	moveUp()
 	{
+		this.nextAction.push(function(){
 		if(this.canMove)
 		{
 			this.vy = -Config.PlayerSpeed;
-		}
+		}});
 	}
 	
 	moveDown()
 	{
+		this.nextAction.push(function(){
 		if(this.canMove)
 		{
 			this.vy = +Config.PlayerSpeed;
-		}
+		}});
 	}
 	
 	moveLeft()
 	{
+		this.nextAction.push(function(){
 		if(this.canMove)
 		{
 			this.vx = -Config.PlayerSpeed;
-		}
+		}});
 	}
 	
 	moveRight()
 	{
+		this.nextAction.push(function(){
 		if(this.canMove)
 		{
 			this.vx = +Config.PlayerSpeed;
-		}
+		}});
 	}
 	
 	button1()
 	{
+		this.nextAction.push(function(){
 		if(this.canCombo)
 		{
 			this.addCombo(1);
-		}
+		}});
 	}
 	
 	button2()
 	{
-		this.addCombo(2);
+		this.nextAction.push(function(){
+			if(this.canCombo)
+			{
+				this.addCombo(2);
+			}});
 	}
 	
 	stopH()

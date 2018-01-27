@@ -26,8 +26,10 @@ class SceneGame extends Scene
 
     populate()
     {
-        this.player1 = new EntityPlayer("j1");
-		this.player2 = new EntityPlayer("j2");
+        this.player1 = new EntityPlayer(this, "j1");
+        this.player2 = new EntityPlayer(this, "j2");
+        this.player1.sprite1.x = -32;
+        this.player1.sprite2.x = -32
 		
         this.controllers.push(new XboxController(this.player1));
         this.controllers.push(new XboxController(this.player2));
@@ -39,9 +41,9 @@ class SceneGame extends Scene
        // let grid = lavender_gen(LAVENDER_ALGORITHM_BACKTRACKING, Date.now(), Config.MapWith, Config.MapHeight);
         
         let grid = [
-            [0,1,2], 
-            [2,1,0],
-            [1,0,2]
+            [1,0,0,1], 
+            [1,0,1, 1],
+            [1,0,1, 1]
         ];
         this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
         this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
@@ -80,27 +82,27 @@ class SceneGame extends Scene
             HelperPlayer.CheckPlayerTile(this.map, entity);
 
             // Vérification des collisions entre entités
-            // if (entity.solid) {
-                // this.entities.forEach((other) => {
-                    // if (other == entity)
-                        // return;
-                    // normal = HelperEntity.checkCollisionWithEntity(entity, other);
-                    // if (normal != null) {
-                        // other.hit(entity);
-                        // if(other instanceof EntityPlayer && entity instanceof EntityPig)
-                        // {
-                            // this.cancelControllers(other);
-                        // }
-                        // if (other.solid == false) 
-                            // return;
-                        // HelperEntity.resolveCollision(normal, entity);
-                    // }
-                // });
-            // }
+            if (entity.solid) {
+                this.entities.forEach((other) => {
+                    if (other == entity)
+                        return;
+                     normal = HelperEntity.checkCollisionWithEntity(entity, other);
+                     if (normal != null) {
+                         other.hit(entity);
+                         if(other instanceof EntityPlayer)
+                         {
+                             this.cancelControllers(other);
+                         }
+                         if (other.solid == false) 
+                             return;
+                         HelperEntity.resolveCollision(normal, entity);
+                     }
+                 });
+            }
 
             // Vérification des collisions avec la map
             try {
-                normal = HelperEntity.checkCollisionWithMap(this.map, entity);
+                normal = HelperEntity.checkCollisionWithMap(this.map1, entity);
             }
             catch(e)
             {
@@ -112,9 +114,11 @@ class SceneGame extends Scene
                 if(entity instanceof EntityPlayer)
                 {
                     this.cancelControllers(entity);
+                    entity.nextAction = [];
                 }
             }
             entity.update(delta);
+            
 
         });
     }

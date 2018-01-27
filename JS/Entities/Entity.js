@@ -1,12 +1,14 @@
 class Entity
 {
-	constructor()
+	constructor(scene)
 	{
 		/**
 		 * Pixi sprite 
 		 */
 		this.sprite1 = null;;
 		this.sprite2 = null;;
+
+		this.collided = false;
 
 		/**
 		 * Masse (pris en compte dans la gestion des collisions)
@@ -21,7 +23,7 @@ class Entity
 		/**
 		 * Scene dans laquelle apparait cette entité 
 		 */
-		this.scene = null;
+		this.scene = scene;
 
 		/**
 		 * Vélocité x

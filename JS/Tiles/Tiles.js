@@ -4,20 +4,20 @@ let Tiles =
 	0 : {
 		name:"wall",
 		solid : true,
-		sprite:1,
+		sprite:2,
 		
 	}, 
 	
 	1 : {
 		name:"ice",
 		solid : false,
-		sprite:2,
+		sprite:1,
 	}, 
 	
 	2: {
 		name:"trap",
 		solid: false,
-		sprite: 3,
+		sprite: 4,
 		activated:false
 		
 	},
