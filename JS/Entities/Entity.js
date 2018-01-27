@@ -8,6 +8,8 @@ class Entity
 		this.sprite1 = null;;
 		this.sprite2 = null;;
 
+		this.collided = false;
+
 		/**
 		 * Masse (pris en compte dans la gestion des collisions)
 		 */
@@ -79,5 +81,30 @@ class Entity
 		{
 			
 		}
+		
+		
+		getArea(r)
+		{
+			var cx = Math.floor(this.sprite1.x/Config.TileSize);
+			var cy = Math.floor(this.sprite1.y/Config.TileSize);
+			var list = [[0,0]];
+			for(var x = 1; x <= r;x++)
+			{
+				for(var y = 1; y <= x;y++)
+				{
+					list.push([cx+x,cy+y]);
+					list.push([cx-x,cy+y]);
+					list.push([cx-x,cy-y]);
+					list.push([cx+x,cy-y]);
+				}
+			}
+			
+			return list
+			
+			
+		}
+		
+		
+		
 
 }

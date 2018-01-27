@@ -38,8 +38,10 @@ class EntityWalking extends Entity {
 
     update(delta)
     {
+
         this.vx = this.vx > 50 ? 50 : this.vx ;
         this.vy = this.vy > 50 ? 50 : this.vy ;
+        
         this.sprite1.x += Config.AirDensity * this.vx;
         this.sprite1.y += Config.AirDensity * this.vy;
         this.sprite2.x += Config.AirDensity * this.vx;
@@ -80,25 +82,26 @@ class EntityWalking extends Entity {
                 this.sprite2.gotoAndPlay(28);
             }
         }
-        else if (this.vy < 0) {
-            if ((this.sprite1.currentFrame < 23 || this.sprite1.currentFrame > 27))
+         if (this.vy < 0) {
+            if ((this.sprite1.currentFrame < 22 || this.sprite1.currentFrame > 27))
             {
-                this.sprite1.gotoAndPlay(23);
-                this.sprite2.gotoAndPlay(23);
+                this.sprite1.gotoAndPlay(22);
+                this.sprite2.gotoAndPlay(22);
             }
         }
-        else if (this.vx > 0) {
+         if (this.vx > 0) {
             if ((this.sprite1.currentFrame < 7 || this.sprite1.currentFrame > 12))
             {
                 this.sprite1.gotoAndPlay(7);
                 this.sprite2.gotoAndPlay(7);
             }
         }
-        else if (this.vx < 0) {
-            if ((this.sprite1.currentFrame < 7 || this.sprite1.currentFrame > 12))
+        if (this.vx < 0) {
+            if ((this.sprite1.currentFrame < 34 || this.sprite1.currentFrame > 39))
             {
-                this.sprite1.gotoAndPlay(7);
-                this.sprite2.gotoAndPlay(7);
+                
+                this.sprite1.gotoAndPlay(1);
+                this.sprite2.gotoAndPlay(1);
             }
         }
 

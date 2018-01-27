@@ -10,9 +10,21 @@ class HelperPlayer
         let player = entity;
         let x = Math.floor((entity.sprite1.x + entity.sprite1.width / 2) / Config.TileSize);
         let y = Math.floor((entity.sprite1.y + entity.sprite1.height) / Config.TileSize);
+
+        HelperPlayer.CheckTrap(map, entity, x, y);
+
         /*if(map.grid[x][y] == Config.Tiles.Lava)
             player.setOnFire(true);
         else if(map.grid[x][y] == Config.Tiles.Water)
             player.setOnFire(false);*/
+    }
+
+
+    static CheckTrap(map, entity,x,y)
+    {
+       /* if(Tiles[map.grid[x][y]].name != "trap")
+            return;
+        entity.reset();*/
+        
     }
 }

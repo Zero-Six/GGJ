@@ -69,10 +69,30 @@ class HelperEntity {
         let results = [];
         let rectangle1 = new Rectangle(entity.sprite1.x + Config.AirDensity * entity.Vx(), entity.sprite1.y + Config.AirDensity * entity.Vy(), entity.sprite1.width, entity.sprite1.height);
         let points = [];
-        points.push(new Vector2(entity.sprite1.x, entity.sprite1.y));
-        points.push(new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height));
-        points.push(new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y));
-        points.push(new Vector2(entity.sprite1.x, entity.sprite1.y + entity.sprite1.height));
+
+        let topleft = new Vector2(entity.sprite1.x, entity.sprite1.y);
+        let bottomright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height)
+        let topright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y);
+        let bottomleft = new Vector2(entity.sprite1.x, entity.sprite1.y + entity.sprite1.height);
+
+        topleft.x += entity.sprite1.hitarea.x;
+        topleft.y += entity.sprite1.hitarea.y;
+
+        topright.x -= entity.sprite1.hitarea.width;
+        topright.y += entity.sprite1.hitarea.y;
+
+        bottomleft.x += entity.sprite1.hitarea.x;
+        bottomleft.y -= entity.sprite1.hitarea.height;
+
+        bottomright.x -= entity.sprite1.hitarea.width;
+        bottomright.y -= entity.sprite1.hitarea.height;
+
+
+
+        points.push(topleft);
+        points.push(bottomright);
+        points.push(topright);
+        points.push(bottomleft);
         for (let i = 0; i < points.length; i++) {
             let point = points[i];
             if (Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]].solid == false) {
@@ -103,9 +123,54 @@ class HelperEntity {
         }
         return result;
     }
-    static checkCollisionWithEntity(entity1, entity2) {
+
+    static checkOverlap(entity1, entity2) {
         let rectangle1 = new Rectangle(entity1.sprite1.x + Config.AirDensity * entity1.Vx(), entity1.sprite1.y + Config.AirDensity * entity1.Vy(), entity1.sprite1.width, entity1.sprite1.height);
         let rectangle2 = new Rectangle(entity2.sprite1.x + Config.AirDensity * entity2.Vx(), entity2.sprite1.y + Config.AirDensity * entity2.Vy(), entity2.sprite1.width, entity2.sprite1.height);
+        let nm = this.checkCollision(rectangle1, rectangle2);
+        if(nm == null || (nm.x == 0 && nm.y == 0))
+            return;
+        if(entity2.sprite1.y < entity1.sprite1.y)
+        {
+            entity1.scene.viewport1.removeChild(entity1.sprite1);
+            entity1.scene.viewport2.removeChild(entity1.sprite2);
+            entity1.scene.viewport1.addChild(entity1.sprite1);
+            entity1.scene.viewport2.addChild(entity1.sprite2);
+            
+        }
+        else if(entity2.sprite1.y > entity1.sprite1.y)
+        {
+            entity2.scene.viewport1.removeChild(entity2.sprite1);
+            entity2.scene.viewport2.removeChild(entity2.sprite2);
+            entity2.scene.viewport1.addChild(entity2.sprite1);
+            entity2.scene.viewport2.addChild(entity2.sprite2);
+        }
+    }
+
+    static checkCollisionWithEntity(entity1, entity2) {
+
+        let topleft = new Vector2(entity1.sprite1.x, entity1.sprite1.y);
+        let bottomright = new Vector2(entity1.sprite1.x + entity1.sprite1.width, entity1.sprite1.y + entity1.sprite1.height)
+
+        topleft.x += entity1.sprite1.hitarea.x;
+        topleft.y += entity1.sprite1.hitarea.y;
+
+        bottomright.x -= entity1.sprite1.hitarea.width;
+        bottomright.y -= entity1.sprite1.hitarea.height;
+
+        let rectangle1 = new Rectangle(topleft.x + Config.AirDensity * entity1.Vx(), topleft.y + Config.AirDensity * entity1.Vy(), bottomright.x - topleft.x , bottomright.y - topleft.y);
+        
+        topleft = new Vector2(entity2.sprite1.x, entity2.sprite1.y);
+        bottomright = new Vector2(entity2.sprite1.x + entity2.sprite1.width, entity2.sprite1.y + entity2.sprite1.height)
+
+        topleft.x += entity2.sprite1.hitarea.x;
+        topleft.y += entity2.sprite1.hitarea.y;
+
+        bottomright.x -= entity2.sprite1.hitarea.width;
+        bottomright.y -= entity2.sprite1.hitarea.height;
+
+        let rectangle2 = new Rectangle(topleft.x + Config.AirDensity * entity2.Vx(), topleft.y + Config.AirDensity * entity2.Vy(), bottomright.x - topleft.x , bottomright.y - topleft.y);
+        
         return this.checkCollision(rectangle1, rectangle2);
     }
     static checkCollision(rectangle1, rectangle2) {
