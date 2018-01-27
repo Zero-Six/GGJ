@@ -3,7 +3,7 @@
 // Filename: Lavender.js
 // Author: Louise <louise>
 // Created: Sat Jan 27 10:44:23 2018 (+0100)
-// Last-Updated: Sat Jan 27 19:52:50 2018 (+0100)
+// Last-Updated: Sun Jan 28 00:16:50 2018 (+0100)
 //           By: Louise <louise>
 // 
 
@@ -41,19 +41,37 @@ function lavender_new(seed, maps_file) {
  * @return: An array of integers representing the rooms
  */
 function lavender_gen(context, algorithm, width, height) {
+    let cell = [];
+    
     if ((width % 2 == 0) || (height % 2 == 0)) {
 	throw "Bad dimensions";
     }
     
     switch (algorithm) {
     case LAVENDER_ALGORITHM_BACKTRACKING:
-	return lavender_backtracking(context, width, height);
+	cells = lavender_backtracking(context, width, height);
+	break;
     case LAVENDER_ALGORITHM_PRIM:
 	throw "This generation algorithm is not implemented";
-	break;
     default:
 	throw "You passed a bad algorithm constant";
     }
+
+    // Put player spawns
+    rayon = (width - 1) / 2;
+    
+    let player1_x = (Math.abs(context.r.random_value) % width);
+    let player1_y = Math.ceil(-(Math.sqrt((rayon * rayon) - Math.pow(player1_x - rayon, 2)) - rayon));
+
+    let player2_x = width - player1_x - 1;
+    let player2_y = height - player1_y - 1;
+    
+    cells[player1_y * width + player1_x].id = 1;
+    cells[player2_y * width + player2_x].id = 2;
+    
+    console.log(player1_x, player1_y, player2_x);
+
+    return cells;
 }
 
 /**
@@ -65,11 +83,7 @@ function lavender_conv(context, array, width, height) {
 	function(resolve, reject) {
 	    let res = [];
 	    let it = process();
-		
-		
-
-
-		it.next();
+	    it.next();
 
 	    function *process() {
 		for (var y = 0; y < (height * 11); y++) {
@@ -134,7 +148,7 @@ function lavender_conv(context, array, width, height) {
  */
 function lavender_backtracking(context, width, height) {
     function mark_visited(array, cell) {
-	array[cell].id = (Math.abs(context.r.random_value) % (context.maps.length - 1)) + 1;
+	array[cell].id = (Math.abs(context.r.random_value) % (context.maps.length - 3)) + 3;
 	array[cell].visited = true;
 
 	current_cell = cell;
