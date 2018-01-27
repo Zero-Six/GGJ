@@ -57,7 +57,7 @@ class EntityPlayer extends EntityWalking {
 	{
 		if(this.canMove)
 		{
-			this.vy = +Config.PlayerSpeed;
+			this.vx = +Config.PlayerSpeed;
 		}
 	}
 	
