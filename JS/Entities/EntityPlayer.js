@@ -90,7 +90,7 @@ class EntityPlayer extends EntityWalking {
 	moveUp()
 	{
 		this.nextAction.push(function(){
-		if(this.canMove)
+		if(this.canMove && this.vy <= 0 )
 		{
 			this.vy = -Config.PlayerSpeed;
 		}});
@@ -99,7 +99,7 @@ class EntityPlayer extends EntityWalking {
 	moveDown()
 	{
 		this.nextAction.push(function(){
-		if(this.canMove)
+		if(this.canMove && this.vy >= 0)
 		{
 			this.vy = +Config.PlayerSpeed;
 		}});
@@ -108,7 +108,7 @@ class EntityPlayer extends EntityWalking {
 	moveLeft()
 	{
 		this.nextAction.push(function(){
-		if(this.canMove)
+		if(this.canMove && this.vx <= 0)
 		{
 			this.vx = -Config.PlayerSpeed;
 		}});
@@ -117,7 +117,7 @@ class EntityPlayer extends EntityWalking {
 	moveRight()
 	{
 		this.nextAction.push(function(){
-		if(this.canMove)
+		if(this.canMove && this.vx >= 0)
 		{
 			this.vx = +Config.PlayerSpeed;
 		}});

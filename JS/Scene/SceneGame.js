@@ -24,8 +24,8 @@ class SceneGame extends Scene
 
     populate()
     {
-        this.player1 = new EntityPlayer(this, "j1", -32, -32);
-        this.player2 = new EntityPlayer(this, "j2", 32, -32);
+        this.player1 = new EntityPlayer(this, "j1", 64, 32);
+        this.player2 = new EntityPlayer(this, "j2", 32, 32);
 		
         this.controllers.push(new XboxController(this.player1));
         this.controllers.push(new XboxController(this.player2));

@@ -9,7 +9,7 @@ let Config =
     AirDensity  : 0.3,
 	
 	MassGround:0.3,
-	MassIce:0.1,
+	MassIce:0.9,
 	
     PlayerLife  : 3,
     PlayerFireTime  : 500,
@@ -19,7 +19,7 @@ let Config =
 
     TileSize  : 32,
 
-    MapRooms : 1,
+    MapRooms : 3,
 
     MapWith : 0,
     MapHeight : 0,
