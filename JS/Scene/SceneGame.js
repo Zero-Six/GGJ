@@ -23,7 +23,7 @@ class SceneGame extends Scene
         this.controllers.push(new KeyboardController(null, 90, 83, 81, 68, 65, 69));
         this.controllers.push(new KeyboardController(null, 38, 40, 37, 39, 96, 110));
 
-        let grid = null; //TODO: générer la grid
+        let grid = lavender_gen(LAVENDER_ALGORITHM_BACKTRACKING, DateTime.now(), Config.MapWith, Config.MapHeight);
         this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
         this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
 
