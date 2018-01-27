@@ -51,7 +51,7 @@ class EntityWalking extends Entity {
         if (Math.round(this.vy) == 0)
             this.vy = 0;
 
-        this.setFrame();
+        //this.setFrame();
     }
 
     bump()

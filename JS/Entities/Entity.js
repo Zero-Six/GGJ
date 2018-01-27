@@ -5,32 +5,32 @@ class Entity
 		/**
 		 * Pixi sprite 
 		 */
-		this.sprite;
+		this.sprite = null;;
 
 		/**
 		 * Masse (pris en compte dans la gestion des collisions)
 		 */
-		this.mass;
+		this.mass = 0;
 
 		/**
 		 * Géré par le système de collision ?
 		 */
-		this.solid;
+		this.solid = true;
 
 		/**
 		 * Scene dans laquelle apparait cette entité 
 		 */
-		this.scene;
+		this.scene = null;
 
 		/**
 		 * Vélocité x
 		 */
-		this.vx;
+		this.vx = 0;
 
 		/**
 		 * Vélocité y
 		 */
-		this.vy;
+		this.vy = 0;
 	}
 		update(delta)
 		{

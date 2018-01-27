@@ -17,34 +17,43 @@ class SceneGame extends Scene
 
     init() 
     {
-		
-		this.player1 = new EntityPlayer();
+		this.populate();
+
+        Program.GetInstance().App().ticker.add((delta) => {
+            this.update(delta)
+        });
+    }
+
+    populate()
+    {
+        this.player1 = new EntityPlayer();
 		this.player2 = new EntityPlayer();
 		
-        this.controllers.push(new XboxController(null));
-        this.controllers.push(new XboxController(null));
+        this.controllers.push(new XboxController(this.player1));
+        this.controllers.push(new XboxController(this.player2));
 
-        this.controllers.push(new KeyboardController(null, 90, 83, 81, 68, 65, 69));
-        this.controllers.push(new KeyboardController(null, 38, 40, 37, 39, 96, 110));
+        this.controllers.push(new KeyboardController(this.player1, 90, 83, 81, 68, 65, 69));
+        this.controllers.push(new KeyboardController(this.player2, 38, 40, 37, 39, 96, 110));
 
+        /*
         let grid = lavender_gen(LAVENDER_ALGORITHM_BACKTRACKING, Date.now(), Config.MapWith, Config.MapHeight);
         this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
         this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
 
-        //TODO: générer les joueurs 
-
-        //TODO: ajouter les controlleurs
-
         this.viewport1 = new Viewport(this.player1, 0,0, Program.GetInstance().App().width / 2, Program.GetInstance().App().height, this.map1);
         this.viewport2 = new Viewport(this.player2, Program.GetInstance().App().width / 2, 0, Program.GetInstance().App().width / 2, Program.GetInstance().App().height, this.map2);
+    */
+        this.entities = [];
+        this.entities.push(this.player1);
+        this.entities.push(this.player2);
     }
 
     update(delta)
     {
         this.updateEntities(delta);
 
-        this.viewport1.update();
-        this.viewport2.update();
+       // this.viewport1.update();
+        //this.viewport2.update();
     }
 
     /**

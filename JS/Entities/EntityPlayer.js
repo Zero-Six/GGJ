@@ -3,12 +3,12 @@ class EntityPlayer extends EntityWalking {
 	constructor()
 	{
 		super();
+		this.nextAction = [];
 		this.battery = 3;
-		this.nextAction = null;
 		this.canMove = true;
 
 		this.canCombo = true;
-		this.sprite = PIXI.Texture.fromFrame("j1_1.png");
+		this.sprite = new PIXI.extras.AnimatedSprite([PIXI.Texture.fromFrame("j1_1.png")]);
 		this.combo = [];
 		
 		Program.GetInstance().App().stage.addChild(this.sprite);
@@ -17,6 +17,7 @@ class EntityPlayer extends EntityWalking {
 	
 	update(delta)
 	{
+		super.update(delta);
 		while(this.nextAction.length > 0)
 		{
 			this.nextAction.shift().bind(this)();			
@@ -28,33 +29,33 @@ class EntityPlayer extends EntityWalking {
 		Program.GetInstance().App().stage.removeChild(this.sprite);
 	}
 	
-	up()
+	moveUp()
 	{
-		if(this.canWalk)
+		if(this.canMove)
 		{
 			this.vy = -Config.PlayerSpeed;
 		}
 	}
 	
-	down()
+	moveDown()
 	{
-		if(this.canWalk)
+		if(this.canMove)
 		{
 			this.vy = +Config.PlayerSpeed;
 		}
 	}
 	
-	left()
+	moveLeft()
 	{
-		if(this.canWalk)
+		if(this.canMove)
 		{
 			this.vx = -Config.PlayerSpeed;
 		}
 	}
 	
-	right()
+	moveRight()
 	{
-		if(this.canWalk)
+		if(this.canMove)
 		{
 			this.vy = +Config.PlayerSpeed;
 		}
