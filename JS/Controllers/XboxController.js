@@ -58,6 +58,16 @@ class XboxController extends Controller
         }
     }
 
+    button1()
+    {
+        console.log("button1");
+    }
+
+    button2()
+    {
+        console.log("button2");
+    }
+
     left()
     {
         console.log("left");
