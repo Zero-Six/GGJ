@@ -125,7 +125,6 @@ class SceneGame extends Scene
             }
             if (normal != null)
             {
-                entity.reset();
                 HelperEntity.resolveCollision(normal, entity);
                 if(entity instanceof EntityPlayer)
                 {
