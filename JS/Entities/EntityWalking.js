@@ -84,13 +84,15 @@ class EntityWalking extends Entity {
             {
                 this.sprite1.gotoAndPlay(28);
                 this.sprite2.gotoAndPlay(28);
+				// alert(this.sprite1.currentFrame);
             }
         }
          if (this.vy < 0) {
-            if ((this.sprite1.currentFrame < 22 || this.sprite1.currentFrame > 27))
+			 var k = 29;
+            if ((this.sprite1.currentFrame < k || this.sprite1.currentFrame > k+5))
             {
-                this.sprite1.gotoAndPlay(22);
-                this.sprite2.gotoAndPlay(22);
+                this.sprite1.gotoAndPlay(k);
+                this.sprite2.gotoAndPlay(k);
             }
         }
          if (this.vx > 0) {
