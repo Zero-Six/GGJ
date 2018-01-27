@@ -213,7 +213,7 @@
 	"version": "1.0",
 	"image": "J1_spritesheet.png",
 	"format": "RGBA8888",
-	"size": {"w":224,"h":221},
+	"size": {"w":224,"h":224},
 	"scale": "1",
 	"smartupdate": "$TexturePacker:SmartUpdate:af56c542f12fd48d3ddda3ab99a3e2ec:1d20a03c424a217ceac7cd91888a7ea2:dc866b5e2ff0a1360e79139a0bd501b2$"
 }
