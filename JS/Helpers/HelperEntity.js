@@ -67,41 +67,8 @@ class HelperEntity {
      */
     static checkCollisionWithMap(map, entity) {
         let results = [];
-        let rectangle1 = new Rectangle(entity.sprite1.x + Config.AirDensity * entity.Vx(), entity.sprite1.y + Config.AirDensity * entity.Vy(), entity.sprite1.width, entity.sprite1.height);
-      
-        let x = 0;
-        let y = 0;
 
-        if(entity.vx > 0)
-        {
-            x = Math.floor((rectangle1.x + rectangle1.width) / Config.TileSize);
-        }
-        else if(entity.vx < 0)
-        {
-            x = Math.floor((rectangle1.x) / Config.TileSize); 
-        }
-
-        if(entity.vy > 0)
-        {
-            y = Math.floor((rectangle1.y + rectangle1.height) / Config.TileSize);
-        }
-        else if(entity.vy < 0)
-        {
-            y = Math.floor((rectangle1.y) / Config.TileSize);
-        }
-
-
-        if (Tiles[map.grid[x][y]].solid == false) {
-         return null;
-        }
-
-        let rectangle2 = new Rectangle(Math.floor(x / Config.TileSize) * Config.TileSize, Math.floor(y / Config.TileSize) * Config.TileSize, Config.TileSize, Config.TileSize);
-        
-        let result = HelperEntity.checkCollision(rectangle1, rectangle2);
-        //console.log(result);
-        return result;
-
-        /*let points = [];
+        let points = [];
 
         let topleft = new Vector2(entity.sprite1.x, entity.sprite1.y);
         let bottomright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height)
@@ -120,6 +87,8 @@ class HelperEntity {
         bottomright.x -= entity.sprite1.hitarea.width;
         bottomright.y -= entity.sprite1.hitarea.height;
 
+        let rectangle1 = new Rectangle(topleft.x + Config.AirDensity * entity.Vx(), topleft.y + Config.AirDensity * entity.Vy(), bottomright.x - topleft.x , bottomright.y - topleft.y);
+        
 
 
         points.push(topleft);
@@ -160,7 +129,7 @@ class HelperEntity {
         
         //cc;
         //console.log(result);
-        return result;*/
+        return result;
     }
 
     static checkOverlap(entity1, entity2) {
