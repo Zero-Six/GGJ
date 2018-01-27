@@ -4,6 +4,7 @@ class EntityPlayer extends EntityWalking {
 	{
 		this.battery = 3;
 		this.nextAction = null;
+		this.canMove = true;
 	}
 
 	
