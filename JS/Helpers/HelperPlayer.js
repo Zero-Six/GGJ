@@ -23,10 +23,10 @@ class HelperPlayer
     {
         if(map.grid[x] == null || map.grid[x][y] == null)
             return;
-        if(Tiles[map.grid[x][y]].name != "spikes" && Tiles[map.grid[x][y]].activated == false)
+        if(Tiles[map.grid[x][y]].name != "spikes" || Tiles[map.grid[x][y]].activated == false)
             return;
         let spikes = new EntitySpikes(entity.scene, x * Config.TileSize, y * Config.TileSize);
-        entity.reset();
+        //entity.reset();
     }
 	
 	static CheckIce(map, entity,x,y)

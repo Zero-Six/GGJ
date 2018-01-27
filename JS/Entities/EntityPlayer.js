@@ -10,7 +10,7 @@ class EntityPlayer extends EntityWalking {
 		this.initialY = y;
 
 		this.animationSpeed = 0.3;
-		this.hitarea = new Rectangle(7,16,7,0);
+		this.hitarea = new Rectangle(9,18,9,0);
 
 		this.mass = 0.3;
 		this.nextAction = [];
