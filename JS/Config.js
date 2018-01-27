@@ -19,7 +19,7 @@ let Config =
 
     TileSize  : 32,
 
-    MapRooms : 3,
+    MapRooms : 1,
 
     MapWith : 0,
     MapHeight : 0,
