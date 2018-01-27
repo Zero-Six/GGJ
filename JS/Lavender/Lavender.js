@@ -3,7 +3,7 @@
 // Filename: Lavender.js
 // Author: Louise <louise>
 // Created: Sat Jan 27 10:44:23 2018 (+0100)
-// Last-Updated: Sat Jan 27 11:51:21 2018 (+0100)
+// Last-Updated: Sat Jan 27 12:16:39 2018 (+0100)
 //           By: Louise <louise>
 // 
 
@@ -21,19 +21,24 @@ const LAVENDER_ALGORITHM_PRIM = 2;
  * @width: The width (in rooms, i.e. blocks of 11×11) of the map
  * @height: The height of the map
  * 
- * @return: An array of integers representing the map
+ * @return: An array of integers representing the tiles
  */
 function lavender_gen(algorithm, seed, width, height) {
-    rand = new LavenderRandom(seed);
+    let rand = new LavenderRandom(seed);
+    let cells = [];
     
     switch (algorithm) {
     case LAVENDER_ALGORITHM_BACKTRACKING:
-	return lavender_backtracking(rand, width, height);
+	cells = lavender_backtracking(rand, width, height);
+	break;
     case LAVENDER_ALGORITHM_PRIM:
 	throw "This generation algorithm is not implemented";
+	break;
     default:
 	throw "You passed a bad algorithm constant";
     }
+
+    throw "The tile generation is not yet implemented";
 }
 
 /**
@@ -44,10 +49,17 @@ function lavender_gen(algorithm, seed, width, height) {
  * @width: The width of the map
  * @height: The height of the map
  *
- * @return: An array of integers
+ * @return: An array of integers representing the rooms
  */
 function lavender_backtracking(generator, width, height) {
-    throw "This generation algorithm is not implemented";
+    let cells = [];
+    let stack = [];
+    
+    for (var i = 0; i < (width * height); i++) {
+	cells.push({visited: false, id: -1});
+    }
+
+    return cells;
 }
 
 class LavenderRandom {
