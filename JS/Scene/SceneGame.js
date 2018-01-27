@@ -113,7 +113,6 @@ class SceneGame extends Scene
                 {
                     this.cancelControllers(entity);
                 }
-                entity.bump();
             }
             entity.update(delta);
 
