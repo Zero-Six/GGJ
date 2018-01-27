@@ -3,7 +3,7 @@
 // Filename: Lavender.js
 // Author: Louise <louise>
 // Created: Sat Jan 27 10:44:23 2018 (+0100)
-// Last-Updated: Sat Jan 27 17:34:13 2018 (+0100)
+// Last-Updated: Sat Jan 27 18:29:04 2018 (+0100)
 //           By: Louise <louise>
 // 
 
@@ -56,6 +56,59 @@ function lavender_gen(context, algorithm, width, height) {
     default:
 	throw "You passed a bad algorithm constant";
     }
+}
+
+/**
+ * lavender_conv:
+ * Converts an array of rooms to an array of tiles
+ */
+function lavender_conv(context, array, width, height) {
+    let res = [];
+    
+    for (var y = 0; y < (height * 11); y++) {
+	for (var x = 0; x < (width * 11); x++) {
+	    let local_x = x % 11;
+	    let local_y = y % 11;
+	    let cell = array[((y / 11) | 0) * width + ((x / 11) | 0)];
+	    
+	    if (local_y == 0) {
+		// Wall generation (Up)
+		if (!cell.walls[0] && ((local_x == 4) || (local_x == 5) || (local_x == 6))) {
+		    res.push(0);
+		} else {
+		    res.push(1);
+		}
+	    } else if (local_y == 10) {
+		// Wall generation (Down)
+		if (!cell.walls[2] && ((local_x == 4) || (local_x == 5) || (local_x == 6))) {
+		    res.push(0);
+		} else {
+		    res.push(1);
+		}
+	    } else if (local_x == 0) {
+		// Wall generation (Left)
+		if (!cell.walls[3] && ((local_y == 4) || (local_y == 5) || (local_y == 6))) {
+		    res.push(0);
+		} else {
+		    res.push(1);
+		}
+	    } else if (local_x == 10) {
+		// Wall generation (Right)
+		if (!cell.walls[1] && ((local_y == 4) || (local_y == 5) || (local_y == 6))) {
+		    res.push(0);
+		} else {
+		    res.push(1);
+		}
+	    } else {
+		// Room generation
+		let id = cell.id;
+		let map = context.maps[id];
+		res.push(map.content[(local_y - 1) * 9 + (local_x - 1)]);
+	    }
+	}
+    }
+
+    return res;
 }
 
 /**
