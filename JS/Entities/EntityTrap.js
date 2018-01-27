@@ -4,7 +4,7 @@ class EntityTrap extends Entity
     {
         super(scene);
         //TODO: ajouter l'animation
-        this.sprite1 = new PIXI.extras.AnimatedSprite();
+        /*this.sprite1 = new PIXI.extras.AnimatedSprite();
         this.sprite1.x = x;
         this.sprite1.y = y;
         this.sprite1.animationSpeed = 0.3;
@@ -22,6 +22,6 @@ class EntityTrap extends Entity
             this.destroy();
         }
 
-        this.scene.addEntity(this);
+        this.scene.addEntity(this);*/
     }
 }
