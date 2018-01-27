@@ -4,34 +4,34 @@ let Tiles =
 	0 : {
 		name:"ground",
 		solid : false,
-		sprite:0,
+		sprite:"ground_0",
 		
 	}, 
 	
 	1 : {
 		name:"wall",
 		solid : true,
-		sprite:1,
+		sprite:"ground_0",
 		
 	}, 
 	
 	2 : {
 		name:"ice",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	}, 
 	
 	3 : {
 		name:"lava",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	}, 
 	
 	
 	4: {
 		name:"spikes",
 		solid: false,
-		sprite: 3,
+		sprite: "ground_0",
 		activated:false
 		
 	},
@@ -40,56 +40,56 @@ let Tiles =
 	5 : {
 		name:"bumper",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	},
 	
 	
 	6 : {
 		name:"magnet",
 		solid : true,
-		sprite:2,
+		sprite:"ground_0",
 	},
 	
 	
 	7 : {
 		name:"bow",
 		solid : true,
-		sprite:2,
+		sprite:"ground_0",
 	}, 
 	
 	
 	8 : {
 		name:"mine",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	}, 
 	
 	
 	9 : {
 		name:"key",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	},
 
 	
 	10 : {
 		name:"door",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	},
 	
 	
 	11 : {
 		name:"pickup",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	},
 	
 	
 	12 : {
 		name:"spawn",
 		solid : false,
-		sprite:2,
+		sprite:"ground_0",
 	}, 
 	
 	

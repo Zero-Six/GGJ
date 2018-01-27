@@ -52,7 +52,8 @@ class SceneGame extends Scene
                     yield lavender_wait(doer, 5);
                 }
                 //console.log(grid);
-                self.map1 = new GameMap(Config.MapWidth, Config.MapHeight, grid);
+				// var map = new GameMap(Config.MapWidth, Config.MapHeight, grid); // Potentiellement problème de clonage
+                self.map1 = new GameMap(Config.MapWidth, Config.MapHeight, grid);;
                 self.map2 = new GameMap(Config.MapWidth, Config.MapHeight, grid);
         
                 self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
