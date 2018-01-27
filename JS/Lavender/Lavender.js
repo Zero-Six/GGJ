@@ -3,13 +3,30 @@
 // Filename: Lavender.js
 // Author: Louise <louise>
 // Created: Sat Jan 27 10:44:23 2018 (+0100)
-// Last-Updated: Sat Jan 27 15:07:05 2018 (+0100)
+// Last-Updated: Sat Jan 27 17:34:13 2018 (+0100)
 //           By: Louise <louise>
 // 
 
 const LAVENDER_ALGORITHM_NONE = 0;
 const LAVENDER_ALGORITHM_BACKTRACKING = 1;
 const LAVENDER_ALGORITHM_PRIM = 2;
+
+/**
+ * lavender_new:
+ * This function creates a LavenderContext
+ */
+function lavender_new(seed, maps_file) {
+    // Getting the maps.json file
+    var request = new XMLHttpRequest();
+    request.overrideMimeType("text/plain; charset=utf-8");
+    request.open("GET", maps_file, false);
+    request.send();
+
+    return {
+	"maps": JSON.parse(request.responseText),
+	"r": new LavenderRandom(seed)
+    }
+}
 
 /**
  * lavender_gen:
@@ -21,10 +38,9 @@ const LAVENDER_ALGORITHM_PRIM = 2;
  * @width: The width (in rooms, i.e. blocks of 11×11) of the map
  * @height: The height of the map
  * 
- * @return: An array of integers representing the tiles
+ * @return: An array of integers representing the rooms
  */
-function lavender_gen(algorithm, seed, width, height) {
-    let rand = new LavenderRandom(seed);
+function lavender_gen(context, algorithm, width, height) {
     let cells = [];
 
     if ((width % 2 == 0) || (height % 2 == 0)) {
@@ -33,16 +49,13 @@ function lavender_gen(algorithm, seed, width, height) {
     
     switch (algorithm) {
     case LAVENDER_ALGORITHM_BACKTRACKING:
-	cells = lavender_backtracking(rand, width, height);
-	break;
+	return lavender_backtracking(context, width, height);
     case LAVENDER_ALGORITHM_PRIM:
 	throw "This generation algorithm is not implemented";
 	break;
     default:
 	throw "You passed a bad algorithm constant";
     }
-
-    throw "The tile generation is not yet implemented";
 }
 
 /**
@@ -55,7 +68,15 @@ function lavender_gen(algorithm, seed, width, height) {
  *
  * @return: An array of integers representing the rooms
  */
-function lavender_backtracking(generator, width, height) {
+function lavender_backtracking(context, width, height) {
+    function mark_visited(array, cell) {
+	array[cell].id = (Math.abs(context.r.random_value) % (context.maps.length - 1)) + 1;
+	array[cell].visited = true;
+
+	current_cell = cell;
+	visited_cells += 1;
+    }
+    
     function is_unvisited_neighbours(array, cell) {
 	// Up checking
 	if ((cell > width) && (!array[cell - height].visited))
@@ -90,10 +111,7 @@ function lavender_backtracking(generator, width, height) {
 	    } else {
 		array[cell].walls[0] = false;
 		array[neighbour].walls[2] = false;
-		array[neighbour].visited = true;
-
-		current_cell = neighbour;
-		visited_cells += 1;
+		mark_visited(array, neighbour);
 
 		return true;
 	    }
@@ -113,10 +131,7 @@ function lavender_backtracking(generator, width, height) {
 	    } else {
 		array[cell].walls[1] = false;
 		array[neighbour].walls[3] = false;
-		array[neighbour].visited = true;
-
-		current_cell = neighbour;
-		visited_cells += 1;
+		mark_visited(array, neighbour);
 
 		return true;
 	    }
@@ -136,10 +151,7 @@ function lavender_backtracking(generator, width, height) {
 	    } else {
 		array[cell].walls[2] = false;
 		array[neighbour].walls[0] = false;
-		array[neighbour].visited = true;
-
-		current_cell = neighbour;
-		visited_cells += 1;
+		mark_visited(array, neighbour);
 
 		return true;
 	    }
@@ -159,10 +171,7 @@ function lavender_backtracking(generator, width, height) {
 	    } else {
 		array[cell].walls[3] = false;
 		array[neighbour].walls[1] = false;
-		array[neighbour].visited = true;
-
-		current_cell = neighbour;
-		visited_cells += 1;
+		mark_visited(array, neighbour);
 
 		return true;
 	    }
@@ -190,7 +199,7 @@ function lavender_backtracking(generator, width, height) {
 	    stack.push(current_cell);
 	    // Go in a random direction, and if possible remove the wall between the new cell
 	    // and the current one, and make the new cell the current one
-	    while (!directional_functions[generator.random_value & 3](cells, current_cell));
+	    while (!directional_functions[context.r.random_value & 3](cells, current_cell));
 	} else if (stack.length > 0) { // Else if the stack is not empty
 	    // Pop a cell from the stack and make it the current one
 	    current_cell = stack.pop();
