@@ -51,23 +51,23 @@ class SceneGame extends Scene
             HelperPlayer.CheckPlayerTile(this.map, entity);
 
             // Vérification des collisions entre entités
-            if (entity.solid) {
-                this.entities.forEach((other) => {
-                    if (other == entity)
-                        return;
-                    normal = HelperEntity.checkCollisionWithEntity(entity, other);
-                    if (normal != null) {
-                        other.hit(entity);
-                        if(other instanceof EntityPlayer && entity instanceof EntityPig)
-                        {
-                            this.cancelControllers(other);
-                        }
-                        if (other.solid == false) 
-                            return;
-                        HelperEntity.resolveCollision(normal, entity);
-                    }
-                });
-            }
+            // if (entity.solid) {
+                // this.entities.forEach((other) => {
+                    // if (other == entity)
+                        // return;
+                    // normal = HelperEntity.checkCollisionWithEntity(entity, other);
+                    // if (normal != null) {
+                        // other.hit(entity);
+                        // if(other instanceof EntityPlayer && entity instanceof EntityPig)
+                        // {
+                            // this.cancelControllers(other);
+                        // }
+                        // if (other.solid == false) 
+                            // return;
+                        // HelperEntity.resolveCollision(normal, entity);
+                    // }
+                // });
+            // }
 
             // Vérification des collisions avec la map
             try {
