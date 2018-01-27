@@ -74,6 +74,16 @@ class EntityPlayer extends EntityWalking {
 		this.addCombo(2);
 	}
 	
+	stopH()
+	{
+		this.vx = 0;
+	}
+	
+	stopV()
+	{
+		this.vy = 0;
+	}
+	
 	addCombo(c)
 	{
 		if(this.combo.length <3) // <3
