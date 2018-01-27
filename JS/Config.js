@@ -13,7 +13,7 @@ let Config =
 	
     PlayerLife  : 3,
     PlayerFireTime  : 500,
-    PlayerSpeed  : 10,
+    PlayerSpeed  : 20,
 
     FireDamage  : 0.01,
 
