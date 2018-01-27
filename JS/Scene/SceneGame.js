@@ -82,8 +82,11 @@ class SceneGame extends Scene
             HelperPlayer.CheckPlayerTile(this.map, entity);
 
             // Vérification des collisions entre entités
-            if (entity.solid) {
+           
                 this.entities.forEach((other) => {
+                    HelperEntity.checkOverlap(entity, other);
+                    if (entity.solid == false)
+                        return; 
                     if (other == entity)
                         return;
                      normal = HelperEntity.checkCollisionWithEntity(entity, other);
@@ -98,7 +101,7 @@ class SceneGame extends Scene
                          HelperEntity.resolveCollision(normal, entity);
                      }
                  });
-            }
+            
 
             // Vérification des collisions avec la map
             try {
