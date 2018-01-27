@@ -26,8 +26,8 @@ class SceneGame extends Scene
 
     populate()
     {
-        this.player1 = new EntityPlayer(this, "j1");
-        this.player2 = new EntityPlayer(this, "j2");
+        this.player1 = new EntityPlayer(this, "j1", 0, 0);
+        this.player2 = new EntityPlayer(this, "j2", 0, 0);
         this.player1.sprite1.x = -32;
         this.player1.sprite2.x = -32
 		
@@ -71,6 +71,20 @@ class SceneGame extends Scene
         this.viewport2.addChild(entity.sprite2);
     }
 
+    removeEntity(entity)
+    {
+        for(let i = 0; i < this.entities.length; i++)
+        {
+            if(this.entities[i] == entity)
+            {
+                this.entities.splice(i, 1);
+                break;
+            }
+        }
+        this.viewport1.removeChild(entity.sprite1);
+        this.viewport2.removeChild(entity.sprite2);
+    }
+
     /**
      * Met à jour les entités de la scene
      * @param {number} delta 
@@ -79,7 +93,7 @@ class SceneGame extends Scene
     {
         this.entities.forEach((entity) => {
             let normal = null;
-            HelperPlayer.CheckPlayerTile(this.map, entity);
+            HelperPlayer.CheckPlayerTile(this.map1, entity);
 
             // Vérification des collisions entre entités
            

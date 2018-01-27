@@ -42,7 +42,7 @@ class Entity
 		
 		destroy()
 		{
-			
+			this.scene.removeEntity(this);
 		}
 
 		hit(other)

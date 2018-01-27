@@ -19,12 +19,13 @@ class HelperPlayer
             player.setOnFire(false);*/
     }
 
-
     static CheckTrap(map, entity,x,y)
     {
-       /* if(Tiles[map.grid[x][y]].name != "trap")
+        if(map.grid[x] == null || map.grid[x][y] == null)
             return;
-        entity.reset();*/
-        
+        if(Tiles[map.grid[x][y]].name != "trap" && Tiles[map.grid[x][y]].activated == true)
+            return;
+        let trap = new EntityTrap(entity.scene, x * Config.TileSize, y * Config.TileSize);
+        entity.reset();
     }
 }

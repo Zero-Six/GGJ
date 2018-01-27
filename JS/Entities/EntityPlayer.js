@@ -1,8 +1,12 @@
 class EntityPlayer extends EntityWalking {
 
-	constructor(scene, file)
+	constructor(scene, file, x, y)
 	{
 		super(scene);
+
+		this.initialX = x;
+		this.initialY = y;
+
 		this.mass = 0.3;
 		this.nextAction = [];
 		this.battery = 3;
@@ -11,14 +15,14 @@ class EntityPlayer extends EntityWalking {
 		this.combo = [];
 		this.canCombo = true;
 
-		let frames = [];
+		this.frames = [];
 		for(let i = 1; i < 27; i++)
 		{
-			frames.push(PIXI.Texture.fromFrame(file+"_"+i+".png"));
+			this.frames.push(PIXI.Texture.fromFrame(file+"_"+i+".png"));
 		}
-		this.sprite1 = new PIXI.extras.AnimatedSprite(frames);
-		this.sprite1.x = 0;
-		this.sprite1.y = 0;
+		this.sprite1 = new PIXI.extras.AnimatedSprite(this.frames);
+		this.sprite1.x = x;
+		this.sprite1.y = y;
 		this.sprite1.hitarea = new Rectangle(7,16,7,0);
 		//this.sprite1.anchor.set(0.5);
 
@@ -26,9 +30,9 @@ class EntityPlayer extends EntityWalking {
         //this.sprite.scale.set(1.5,1.5);
 		this.sprite1.play();
 
-		this.sprite2 = new PIXI.extras.AnimatedSprite(frames);
-		this.sprite2.x = 0;
-		this.sprite2.y = 0;
+		this.sprite2 = new PIXI.extras.AnimatedSprite(this.frames);
+		this.sprite2.x = x;
+		this.sprite2.y = y;
 		this.sprite2.hitarea = new Rectangle(7,16,7,0);
 
 		this.sprite2.animationSpeed = 0.3;
@@ -44,11 +48,27 @@ class EntityPlayer extends EntityWalking {
 			this.nextAction.shift().bind(this)();			
 		}
 	}
-	
-	destroy()
+
+	reset() 
 	{
-		Program.GetInstance().App().stage.removeChild(this.sprite);
+		let death = [];
+		for(let i = 19; i < 24; i++)
+		{
+			death.push(PIXI.Texture.fromFrame(file+"_"+i+".png"));
+		}
+		this.sprite1 = new PIXI.extras.AnimatedSprite(death);
+		this.sprite2 = new PIXI.extras.AnimatedSprite(death);
+
+		this.sprite1.onComplete = function(){
+			this.sprite1 = new PIXI.extras.AnimatedSprite(this.frames);
+			this.sprite2 = new PIXI.extras.AnimatedSprite(this.frames);
+			this.sprite1.x = this.initialX;
+			this.sprite1.y = this.initialY;
+			this.sprite2.x = this.initialX;
+			this.sprite2.y = this.initialY;
+		}
 	}
+
 	
 	moveUp()
 	{
