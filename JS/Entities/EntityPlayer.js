@@ -6,11 +6,13 @@ class EntityPlayer extends EntityWalking {
 		this.battery = 3;
 		this.nextAction = null;
 		this.canMove = true;
+
 		this.canCombo = true;
 		this.sprite = PIXI.Texture.fromFrame("j1_1.png");
 		this.combo = [];
+
 		
-		Program.App().stage.addChild(this.sprite);
+		Program.GetInstance().App().stage.addChild(this.sprite);
 		
 	}
 

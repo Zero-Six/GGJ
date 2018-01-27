@@ -39,6 +39,11 @@ class Program
 
     load()
     {
+        console.log("Loading...");
+        PIXI.loader.onError.add(function(error)
+        {
+            console.log(error);
+        });
         PIXI.loader.add("Assets/J1.json")
                     .load(() => { this.setup(); });
     }
