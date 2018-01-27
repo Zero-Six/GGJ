@@ -3,7 +3,7 @@
 // Filename: Lavender.js
 // Author: Louise <louise>
 // Created: Sat Jan 27 10:44:23 2018 (+0100)
-// Last-Updated: Sat Jan 27 19:15:37 2018 (+0100)
+// Last-Updated: Sat Jan 27 19:23:27 2018 (+0100)
 //           By: Louise <louise>
 // 
 
@@ -41,8 +41,6 @@ function lavender_new(seed, maps_file) {
  * @return: An array of integers representing the rooms
  */
 function lavender_gen(context, algorithm, width, height) {
-    let cells = [];
-
     if ((width % 2 == 0) || (height % 2 == 0)) {
 	throw "Bad dimensions";
     }
@@ -67,6 +65,7 @@ function lavender_conv(context, array, width, height) {
 	function(resolve, reject) {
 	    let res = [];
 	    let it = process();
+	    it.next();
 	    
 	    function *process() {
 		for (var y = 0; y < (height * 11); y++) {
@@ -109,9 +108,9 @@ function lavender_conv(context, array, width, height) {
 			    let map = context.maps[id];
 			    res.push(map.content[(local_y - 1) * 9 + (local_x - 1)]);
 			}
-
-			yield lavender_wait(it, 5);
 		    }
+		    
+		    yield lavender_wait(it, 5);
 		}
 
 		resolve(res)
