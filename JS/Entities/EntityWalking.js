@@ -2,7 +2,9 @@ class EntityWalking extends Entity {
 
     constructor(scene) {
 
-		super(scene);
+        super(scene);
+        this.canMove = true;
+
 	
     }
 
@@ -65,6 +67,8 @@ class EntityWalking extends Entity {
 
     setFrame()
     {
+        if(this.canMove == false)
+            return;
         if (this.vy == 0 && this.vx == 0) {
             this.sprite1.stop();
             this.sprite2.stop();
