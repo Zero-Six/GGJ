@@ -15,19 +15,18 @@ class EntityPlayer extends EntityWalking {
 		Program.GetInstance().App().stage.addChild(this.sprite);
 		
 	}
-
 	
 	update(delta)
 	{
-		if(this.nextAction != null)
+		while(this.nextAction.length > 0)
 		{
-			this.nextAction.bind(this)();
+			this.nextAction.shift().bind(this)();			
 		}
 	}
 	
 	destroy()
 	{
-		Program.App().stage.removeChild(this.sprite);
+		Program.GetInstance().App().stage.removeChild(this.sprite);
 	}
 	
 	up()

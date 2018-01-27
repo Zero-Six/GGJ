@@ -6,6 +6,7 @@ class GameMap
         this.height = height;
         this.grid = grid;
         this.container = new PIXI.Container();
+        this.generateSprite();
     }
 
     generateSprite()
