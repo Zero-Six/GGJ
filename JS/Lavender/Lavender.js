@@ -113,7 +113,6 @@ function lavender_conv(context, array, width, height) {
 			    res.push(map.content[(local_y - 1) * 9 + (local_x - 1)]);
 			}
 		    }
-		    console.log("ok");
 		    yield lavender_wait(it, 5);
 		}
 
