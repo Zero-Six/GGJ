@@ -34,7 +34,7 @@ class GameMap
 				}
                 sprite.x = i * Config.TileSize;
                 sprite.y = u * Config.TileSize;
-				alert(sprite.x+" "+sprite.y)
+				// alert(sprite.x+" "+sprite.y)
                 this.container.addChild(sprite);
             }
             this.grid.push(row);
