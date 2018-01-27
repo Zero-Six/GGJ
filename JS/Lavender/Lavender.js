@@ -3,7 +3,7 @@
 // Filename: Lavender.js
 // Author: Louise <louise>
 // Created: Sat Jan 27 10:44:23 2018 (+0100)
-// Last-Updated: Sat Jan 27 19:23:27 2018 (+0100)
+// Last-Updated: Sat Jan 27 19:52:50 2018 (+0100)
 //           By: Louise <louise>
 // 
 
@@ -281,7 +281,6 @@ class LavenderRandom {
 
     get random_value() {
 	// Linear congruential generator
-	// Parameters : a = 134775813, c = 1, m = 2^32
 	let new_value = (this.seed * 214013 + 2531011) & 0xFFFFFFFF;
 
 	this.seed = new_value;
