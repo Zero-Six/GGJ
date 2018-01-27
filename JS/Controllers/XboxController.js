@@ -35,30 +35,57 @@ class XboxController extends Controller
         this.gamepad.buttons.forEach(button => {
             if(button.pressed)
             {
-            console.log("caca");
-            console.log("prout");
+
             }
         });
+
+        if(this.gamepad.axes[0] < -0.5 || this.gamepad.axes[2] < -0.5)
+        {
+            this.left();
+        }
+        else if(this.gamepad.axes[0] > 0.5 || this.gamepad.axes[2] > 0.5)
+        {
+            this.right();
+        }
+
+        if(this.gamepad.axes[1] < -0.5 || this.gamepad.axes[3] < -0.5)
+        {
+            this.up();
+        }
+        else if(this.gamepad.axes[1] > 0.5 || this.gamepad.axes[3] > 0.5)
+        {
+            this.down();
+        }
+    }
+
+    button1()
+    {
+        console.log("button1");
+    }
+
+    button2()
+    {
+        console.log("button2");
     }
 
     left()
     {
-
+        console.log("left");
     }
 
     right()
     {
-
+        console.log("right");
     }
 
     up()
     {
-
+        console.log("up");
     }
 
     down()
     {
-
+        console.log("down");
     }
 
     action()
