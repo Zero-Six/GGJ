@@ -1,117 +1,121 @@
 // TODO: ajouter gestion anglais 
 class KeyboardController extends Controller {
 
-    constructor(player, upcode, downcode, leftcode, rightcode, button1code, button2code) {
-        super(player);
-        this.timer = null;
-        let left = this.left.bind(this);
-        let right = this.right.bind(this);
-        let up = this.up.bind(this);
-        let down = this.down.bind(this);
-        let button1 = this.button1.bind(this);
-        let button2 = this.button2.bind(this);
-        KeyboardController.keyboard(leftcode).press = () => {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => {
-                this.left();
-            }, 20);
-        };
-        KeyboardController.keyboard(upcode).press = () => {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => {
-                this.up();
-            }, 20);
-        };
-        KeyboardController.keyboard(rightcode).press = () => {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => {
-                this.right();
-            }, 20);
-        };
-        KeyboardController.keyboard(downcode).press = () => {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => {
-                this.down();
-            }, 20);
-        };
-        KeyboardController.keyboard(button1code).press = () => {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => {
-                this.button1();
-            }, 20);
-        };
-        KeyboardController.keyboard(button2code).press = () => {
-            clearInterval(this.timer);
-            this.timer = setInterval(() => {
-                this.button2();
-            }, 20);
-        };
+    constructor(player, upcode, downcode, leftcode, rightcode, button1code, button2code)
+	{
+		super();
+		this.press = 
+		{
+			right:false,
+			left:false,
+			up:false,
+			down:false,
+			button1:false,
+			button2:false
+		}
+		
+		this.delta = 20;
+		
+		this.code2but = {};
+		
+		this.code2but[upcode] = "up";
+		this.code2but[downcode] = "down";
+		this.code2but[rightcode] = "right";
+		this.code2but[leftcode] = "left";
+		this.code2but[button1code] = "button1";
+		this.code2but[button2code] = "button2";
+		
+		this.stepping = false;
+		
+		window.addEventListener("keydown",this.keypress.bind(this),false);
+		window.addEventListener("keyup",this.keyup.bind(this),false);
+		
+	}
+	
+	keyup(e)
+	{
+		var dir = this.code2but[e.keyCode];
+		if(dir)
+		{
+			this.press[dir] = false;
+			
+			if(dir[0] == "b") // C'est un bouton !
+			{
+				this[dir]();
+			}
+		
+		}
+		// console.log(JSON.stringify(this.press))
 
+	}
+	
+	keypress(e)
+	{
+		var dir = this.code2but[e.keyCode];
+		// alert(dir)
+		if(dir)
+		{
+			this.press[dir] = true;
+			if(dir[0] != "b")
+			{
+				if(!this.stepping)
+				{
+					this.stepping = true;
+					console.log("lancement step");
+					this.step();
+				}
+				
+			}
+		}
+			// console.log(JSON.stringify(this.press))
 
-        KeyboardController.keyboard(leftcode).release = () => {
-            this.cancel();
-        };
-        KeyboardController.keyboard(upcode).release = () => {
-            this.cancel();
+	}
+	
+	step()
+	{
+		console.log("STEP")
+		// alert("step")
+		// alert(JSON.stringify(this))
+					
+			// if(this.press.right == this.press.left )
+			// {
+				// this.press.right = this.press.left = false;
+			// }
+			
+			// if(this.press.down == this.press.up)
+			// {
+				// this.press.down = this.press.up = false;
+			// }
+			
+		
+		// if([this.press.up,this.press.down,this.press.left,this.press.right].indexOf(true) != -1) //au moins un mouvement
+		// {
+			// alert("yep yep");
 
-        };
-        KeyboardController.keyboard(rightcode).release = () => {
-            this.cancel();
-
-        };
-        KeyboardController.keyboard(downcode).release = () => {
-            this.cancel();
-
-        };
-        KeyboardController.keyboard(button1code).release = () => {
-            this.cancel();
-
-        };
-        KeyboardController.keyboard(button2code).release = () => {
-            this.cancel();
-
-        };
-
-    }
-
-    static keyboard(keyCode) {
-        var key = {};
-        key.code = keyCode;
-        key.isDown = false;
-        key.isUp = true;
-        key.press = undefined;
-        key.release = undefined;
-        //The `downHandler`
-        key.downHandler = function (event) {
-            if (event.keyCode === key.code) {
-                if (key.isUp && key.press) key.press();
-                key.isDown = true;
-                key.isUp = false;
-            }
-            event.preventDefault();
-        };
-
-        //The `upHandler`
-        key.upHandler = function (event) {
-            if (event.keyCode === key.code) {
-                if (key.isDown && key.release) key.release();
-                key.isDown = false;
-                key.isUp = true;
-            }
-            event.preventDefault();
-        };
-
-        //Attach event listeners
-        window.addEventListener(
-            "keydown", key.downHandler.bind(key), false
-        );
-        window.addEventListener(
-            "keyup", key.upHandler.bind(key), false
-        );
-        return key;
-    }
-
-    left() {
+			
+			
+			for(var i in this.press)
+			{
+				var dir = this.press[i];
+				if(i[0] != "b" && dir)
+				{
+					this.right();
+				}
+			}
+			
+			console.log(JSON.stringify(this));
+			setTimeout(this.step.bind(this),this.delta);
+				
+		// }
+		// else
+		// {
+			// this.stepping = false;
+			// this.press.left = this.press.right = false;
+			// this.press.down = this.press.up = false;
+		// }
+	}
+	
+	 left() {
         this.player.moveLeft();
     }
 
@@ -136,11 +140,5 @@ class KeyboardController extends Controller {
     {
         this.player.button2();                
     }
-
-    cancel()
-    {
-        clearInterval(this.timer);
-        this.timer = null;
-    }
-
+	
 }
