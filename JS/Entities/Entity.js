@@ -1,6 +1,6 @@
 class Entity
 {
-	constructor()
+	constructor(scene)
 	{
 		/**
 		 * Pixi sprite 
@@ -21,7 +21,7 @@ class Entity
 		/**
 		 * Scene dans laquelle apparait cette entité 
 		 */
-		this.scene = null;
+		this.scene = scene;
 
 		/**
 		 * Vélocité x

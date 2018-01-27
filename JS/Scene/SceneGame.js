@@ -26,8 +26,8 @@ class SceneGame extends Scene
 
     populate()
     {
-        this.player1 = new EntityPlayer("j1");
-		this.player2 = new EntityPlayer("j2");
+        this.player1 = new EntityPlayer(this, "j1");
+		this.player2 = new EntityPlayer(this, "j2");
 		
         this.controllers.push(new XboxController(this.player1));
         this.controllers.push(new XboxController(this.player2));
@@ -39,9 +39,9 @@ class SceneGame extends Scene
        // let grid = lavender_gen(LAVENDER_ALGORITHM_BACKTRACKING, Date.now(), Config.MapWith, Config.MapHeight);
         
         let grid = [
-            [0,1,2], 
-            [2,1,0],
-            [1,0,2]
+            [1,0,1], 
+            [1,0,1],
+            [1,0,1]
         ];
         this.map1 = new GameMap(Config.MapWith, Config.MapHeight, grid);
         this.map2 = new GameMap(Config.MapWith, Config.MapHeight, grid);
@@ -100,7 +100,7 @@ class SceneGame extends Scene
 
             // Vérification des collisions avec la map
             try {
-                normal = HelperEntity.checkCollisionWithMap(this.map, entity);
+                normal = HelperEntity.checkCollisionWithMap(this.map1, entity);
             }
             catch(e)
             {

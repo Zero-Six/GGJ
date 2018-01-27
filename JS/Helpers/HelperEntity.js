@@ -75,7 +75,7 @@ class HelperEntity {
         points.push(new Vector2(entity.sprite1.x, entity.sprite1.y + entity.sprite1.height));
         for (let i = 0; i < points.length; i++) {
             let point = points[i];
-            if (Config.TilesWalkable(map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)])) {
+            if (Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]].solid == false) {
                 continue;
             }
             let rectangle2 = new Rectangle(Math.floor(point.x / Config.TileSize) * Config.TileSize, Math.floor(point.y / Config.TileSize) * Config.TileSize, Config.TileSize, Config.TileSize);

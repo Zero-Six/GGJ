@@ -1,8 +1,8 @@
 class EntityWalking extends Entity {
 
-    constructor() {
+    constructor(scene) {
 
-		super();
+		super(scene);
 	
     }
 
@@ -88,8 +88,6 @@ class EntityWalking extends Entity {
             }
         }
         else if (this.vx > 0) {
-            this.sprite1.scale.x = 1;
-            this.sprite2.scale.x = 1;
             if ((this.sprite1.currentFrame < 7 || this.sprite1.currentFrame > 12))
             {
                 this.sprite1.gotoAndPlay(7);
@@ -97,8 +95,6 @@ class EntityWalking extends Entity {
             }
         }
         else if (this.vx < 0) {
-            this.sprite1.scale.x = -1;
-            this.sprite2.scale.x = -1;
             if ((this.sprite1.currentFrame < 7 || this.sprite1.currentFrame > 12))
             {
                 this.sprite1.gotoAndPlay(7);
