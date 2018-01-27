@@ -8,6 +8,8 @@ class Entity
 		this.sprite1 = null;;
 		this.sprite2 = null;;
 
+		this.collided = false;
+
 		/**
 		 * Masse (pris en compte dans la gestion des collisions)
 		 */

@@ -69,10 +69,30 @@ class HelperEntity {
         let results = [];
         let rectangle1 = new Rectangle(entity.sprite1.x + Config.AirDensity * entity.Vx(), entity.sprite1.y + Config.AirDensity * entity.Vy(), entity.sprite1.width, entity.sprite1.height);
         let points = [];
-        points.push(new Vector2(entity.sprite1.x, entity.sprite1.y));
-        points.push(new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height));
-        points.push(new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y));
-        points.push(new Vector2(entity.sprite1.x, entity.sprite1.y + entity.sprite1.height));
+
+        let topleft = new Vector2(entity.sprite1.x, entity.sprite1.y);
+        let bottomright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height)
+        let topright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y);
+        let bottomleft = new Vector2(entity.sprite1.x, entity.sprite1.y + entity.sprite1.height);
+
+        topleft.x += entity.sprite1.hitarea.x;
+        topleft.y += entity.sprite1.hitarea.y;
+
+        topright.x -= entity.sprite1.hitarea.width;
+        topright.y += entity.sprite1.hitarea.y;
+
+        bottomleft.x += entity.sprite1.hitarea.x;
+        bottomleft.y -= entity.sprite1.hitarea.height;
+
+        bottomright.x -= entity.sprite1.hitarea.width;
+        bottomright.y -= entity.sprite1.hitarea.height;
+
+
+
+        points.push(topleft);
+        points.push(bottomright);
+        points.push(topright);
+        points.push(bottomleft);
         for (let i = 0; i < points.length; i++) {
             let point = points[i];
             if (Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]].solid == false) {
