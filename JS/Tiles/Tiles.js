@@ -13,21 +13,25 @@ let Tiles =
 		solid : true,
 		spriteGen:function(x,y,grid)
 		{
-			var t1x = (x/(Config.MapWidth))%1 == 0;
-			var t1y = (y/(Config.MapHeight))%1 == 0;
-			var t2x = (x/(Config.MapWidth-1))%1 == 0;
-			var t2y = (x/(Config.MapHeight-1))%1 == 0;
+			var d = 0;
+			var t1x = (x/(Config.MapSize-1))%1 == 0;
+			var t1y = (y/(Config.MapSize-1))%1 == 0;
+			var t2x = (x/(Config.MapSize-2))%1 == 0;
+			var t2y = (y/(Config.MapSize-2))%1 == 0;
 			
-			if(t1x && t1y)d=0;
-			else if(t2x && t1y)d=1;
-			else if(t1x && t2y)d=3;
-			else if(t2x && t2y)d=2;
+			if(t1x && t1y)d=1;
+			else if(t2x && t1y)d=2;
+			else if(t2x && t2y)d=3;
+			else if(t1x && t2y)d=4;
 			else
 			{
-				
+				if(t1x)d=4;
+				else if(t2x)d=5;
+				else if(t2y)d=6;
+				else if(t1y)d=7;
 			}
 			
-			return "wall_"+1
+			return "wall_"+(d||20)
 			
 		},
 		
@@ -42,7 +46,21 @@ let Tiles =
 	3 : {
 		name:"lava",
 		solid : false,
-		sprite:"ground_0",
+		spriteAnim:function(x,y)
+		{
+			
+			var anim = new PIXI.extras.AnimatedSprite([
+			PIXI.Texture.fromFrame("lava_1.png"),
+			PIXI.Texture.fromFrame("lava_2.png"),
+			PIXI.Texture.fromFrame("lava_3.png"),
+			PIXI.Texture.fromFrame("lava_4.png")
+			]);
+			anim.animationSpeed = 1;
+			anim.x = x*32;
+			anim.y = y*32;
+			anim.play();
+			return anim
+		}
 	}, 
 	
 	

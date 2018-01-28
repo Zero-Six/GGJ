@@ -15,7 +15,7 @@ class GameMap
 		// alert(this.width+" "+this.height)
         for(let i = 0; i < this.width ; i++)
         {
-            let row = [];
+            // let row = [];
             for(let u = 0; u < this.height; u++)
             {
 				
@@ -24,20 +24,24 @@ class GameMap
                     continue;
 				
 				
-				if(tile.spriteGen)
-				{
-					sprite = PIXI.Sprite.fromFrame(tile.spriteGen(i,u,this.grid)+".png");
-				}
-				else // à revoir un peu pour les anims
+				if(tile.sprite)
 				{
 					sprite = PIXI.Sprite.fromFrame(tile.sprite+".png");
+				}
+				else if(tile.spriteAnim)
+				{
+					sprite = tile.spriteAnim(i,u);
+				}
+				else if(tile.spriteGen)// à revoir un peu pour les anims
+				{
+					sprite = PIXI.Sprite.fromFrame(tile.spriteGen(i,u,this.grid)+".png");
 				}
                 sprite.x = i * Config.TileSize;
                 sprite.y = u * Config.TileSize;
 				// alert(sprite.x+" "+sprite.y)
                 this.container.addChild(sprite);
             }
-            this.grid.push(row);
+            // this.grid.push(row);
         }
     }
 }

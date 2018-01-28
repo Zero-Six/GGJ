@@ -47,14 +47,22 @@ class HelperPlayer
             if(map.grid[Math.floor(point.x / Config.TileSize)] == null || map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)] == null)
                 continue;
             let cell = Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]];
+			if(cell == null)
+			continue;
+		
             if(cell.name == "ice")
             {
                 this.iced = true;
             }
-            if(cell.name=="ground" && this.iced == true )
+            else if(cell.name=="ground" && this.iced == true )
             {
                 continue;
             }
+			else if(cell.onWalk)
+			{
+				cell.onWalk(x,y,map);
+			}
+			
             cell.x = Math.floor(point.x / Config.TileSize);
             cell.y = Math.floor(point.y / Config.TileSize);
             cells.push(cell);
