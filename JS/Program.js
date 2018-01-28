@@ -61,6 +61,7 @@ class Program
                     .add("Assets/bumper.json")
                     .add("Assets/bombe.json")
                     .add("Assets/Tileset.json")
+                    .add("Assets/spikes.json")
                     .load(() => { this.setup(); });
     }
 

@@ -186,6 +186,10 @@ class EntityPlayer extends EntityWalking {
 		if(this.combo.length <3) // <3
 		{
 			this.combo.push(c);
+			this.canCombo = false;
+			setTimeout(() => {
+				this.canCombo = true;
+			}, 150);
 			console.log(c);
 			
 			if(this.combo.length == 3)//combo atteint

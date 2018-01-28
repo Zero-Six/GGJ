@@ -9,39 +9,44 @@ class GameMap
         this.generateSprite();
     }
 
+    updateTile(x, y)
+    {
+        let tile = (Tiles[this.grid[x][y]]);
+        if(tile == null)
+            return;
+        
+        let sprite = null;
+        if(tile.spriteGen)
+        {
+            sprite = PIXI.Sprite.fromFrame(tile.spriteGen(x,y,this.grid)+".png");
+        }
+        else if(tile.spriteAnim)
+        {
+            sprite = tile.spriteAnim(x,y);
+        }
+        else // à revoir un peu pour les anims
+        {
+            sprite = PIXI.Sprite.fromFrame(tile.sprite+".png");
+        }
+        sprite.x = x * Config.TileSize;
+        sprite.y = y * Config.TileSize;
+        // alert(sprite.x+" "+sprite.y)
+        this.container.addChild(sprite);
+    }
+
+
     generateSprite()
     {
-        let sprite;
 		// alert(this.width+" "+this.height)
         for(let i = 0; i < this.width ; i++)
         {
-            // let row = [];
+           // let row = [];
             for(let u = 0; u < this.height; u++)
             {
 				
-                let tile = (Tiles[this.grid[i][u]]);
-                if(tile == null)
-                    continue;
-				
-				
-				if(tile.sprite)
-				{
-					sprite = PIXI.Sprite.fromFrame(tile.sprite+".png");
-				}
-				else if(tile.spriteAnim)
-				{
-					sprite = tile.spriteAnim(i,u);
-				}
-				else if(tile.spriteGen)// à revoir un peu pour les anims
-				{
-					sprite = PIXI.Sprite.fromFrame(tile.spriteGen(i,u,this.grid)+".png");
-				}
-                sprite.x = i * Config.TileSize;
-                sprite.y = u * Config.TileSize;
-				// alert(sprite.x+" "+sprite.y)
-                this.container.addChild(sprite);
+                this.updateTile(i, u);
             }
-            // this.grid.push(row);
+            //this.grid.push(row);
         }
     }
 }

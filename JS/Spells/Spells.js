@@ -19,7 +19,8 @@ class Spells
 			"111" : new SpellReverse(),
 			"112" : new SpellSpeed(),
 			"122" : new SpellKey(),
-			
+			"211" : new SpellIce(), 
+			"121" : new SpellSpike(),
 		}
 	}
 
@@ -34,7 +35,7 @@ class Spells
 	cast(players, player)
 	{
 		console.log("casting");
-		console.log(this);
+		console.log(this.constructor.name);
 		return 0;
 	}
 	
