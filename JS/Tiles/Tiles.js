@@ -118,7 +118,7 @@ let Tiles =
 	9 : {
 		name:"key",
 		solid : false,
-		sprite:"ground_0",
+		sprite:"ground_4",
 	},
 
 	

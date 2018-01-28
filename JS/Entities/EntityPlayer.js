@@ -10,6 +10,7 @@ class EntityPlayer extends EntityWalking {
 		this.initialY = y;
 
 		this.seeKey = true;
+		this.hasKey = false;
 
 		this.dying = false;
 
@@ -53,6 +54,23 @@ class EntityPlayer extends EntityWalking {
 		}
 	}
 
+	dropKey()
+	{
+		if(this.hasKey)
+		{
+			let area = [];
+			let i = 3;
+			do {
+				area = this.getArea(i);
+				i++;
+			}
+			while(area == null || area.length <= 0);
+			i = ~~(Math.random() * area.length);
+			this.scene.changeMapCell(area[i].x, area[i].y, 9);
+			this.hasKey = false;
+		}
+	}
+
 	reset() 
 	{
 		if(this.dying == true)
@@ -60,6 +78,8 @@ class EntityPlayer extends EntityWalking {
 		this.dying = true;
 		this.canMove = false;
 		this.canCombo = false;
+
+		this.dropKey();
 
 		let death = [];
 		for(let i = 19; i < 24; i++)
