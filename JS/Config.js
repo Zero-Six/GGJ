@@ -26,6 +26,7 @@ let Config =
 	
 	MapSize:11,
 	NormMagnet:3,
+	zoneMagnet:5,
 	
 }
 
