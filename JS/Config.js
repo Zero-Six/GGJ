@@ -28,6 +28,9 @@ let Config =
 	NormMagnet:2,
 	zoneMagnet:3,
 	
+	NormBumper:100,
+	
+	
 }
 
 Config.MapWidth = Config.MapRooms*Config.MapSize;
