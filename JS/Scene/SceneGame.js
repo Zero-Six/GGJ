@@ -38,35 +38,30 @@ class SceneGame extends Scene
         let rooms = lavender_gen(lavenderCtx, LAVENDER_ALGORITHM_BACKTRACKING, Config.MapRooms, Config.MapRooms); 
         lavender_conv(lavenderCtx, rooms, Config.MapRooms, Config.MapRooms).then((origingrid) => {
             let grid = [];
-            let doer = process();
-            doer.next();
             let self = this;
-            function *process()
+            for(let i = 0; i < origingrid.length; i++)
             {
-                for(let i = 0; i < origingrid.length; i++)
-                {
-                    let u = ~~(i/Config.MapWidth);
-                    if(grid[u] == null)
-                        grid[u] = [];
-                    grid[u][i%Config.MapWidth] = origingrid[i];
-                    yield lavender_wait(doer, 5);
-                }
-                console.log(grid);
-				// var map = new GameMap(Config.MapWidth, Config.MapHeight, grid); // Potentiellement problème de clonage
-                self.map1 = new GameMap(Config.MapWidth, Config.MapHeight, grid);;
-                self.map2 = new GameMap(Config.MapWidth, Config.MapHeight, grid);
-        
-                self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
-                self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
-        
-                self.entities = [];
-                self.addEntity(self.player1);
-                self.addEntity(self.player2);
-                
-                Program.GetInstance().App().ticker.add((delta) => {
-                    self.update(delta)
-                });
+                let u = ~~(i/Config.MapWidth);
+                if(grid[u] == null)
+                    grid[u] = [];
+                grid[u][i%Config.MapWidth] = origingrid[i];
             }
+            console.log(grid);
+            // var map = new GameMap(Config.MapWidth, Config.MapHeight, grid); // Potentiellement problème de clonage
+            self.map1 = new GameMap(Config.MapWidth, Config.MapHeight, grid);;
+            self.map2 = new GameMap(Config.MapWidth, Config.MapHeight, grid);
+    
+            self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
+            self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
+    
+            self.entities = [];
+            self.addEntity(self.player1);
+            self.addEntity(self.player2);
+            
+            Program.GetInstance().App().ticker.add((delta) => {
+                self.update(delta)
+            });
+            
         });
         
     }
