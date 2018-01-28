@@ -28,6 +28,10 @@ class Entity
 		/**
 		 * Vélocité x
 		 */
+		 
+		// this.fx = 0;
+		// this.fy = 0;
+		
 		this.vx = 0;
 
 		/**
