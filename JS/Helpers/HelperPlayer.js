@@ -20,6 +20,9 @@ class HelperPlayer
             HelperPlayer.CheckIce(map, entity, x, y, cell);
             
             HelperPlayer.CheckGround(map, entity, x, y, cell);
+			
+			HelperPlayer.CheckMagnet(map,entity,x,y,cell);
+			
         
     }
 
@@ -60,5 +63,35 @@ class HelperPlayer
             return;
        entity.mass = Config.MassGround;
     }
+	
+	static CheckMagnet(map, entity, x,y, cell)
+	{
+		var zone = entity.getArea(5,"magnet");
+		for(var i in zone)
+		{
+			if( Math.abs(zone[i].x-x) > 1 && Math.abs(zone[i].y-y))
+			{
+				var v = this.VectNorm(zone[i].x*32+16,zone[i].y*32+16,x*32,y*32,Config.NormMagnet);
+				entity.vx += -v.x;
+				entity.vy += -v.y;
+			}
+			
+		}
+	}
+	
+	static VectNorm(xa,ya,xb,yb,norm)
+	{
+		var v = {x:xb-xa,y:yb-ya};
+		var n = Math.sqrt((v.x * v.x) + (v.y * v.y));
+		v.x *= norm/n;
+		v.y *= norm/n;
+		return v;
+	}
+	
+	
+	
+	
+	
+	
 	
 }
