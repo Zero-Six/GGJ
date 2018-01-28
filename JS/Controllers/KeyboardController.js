@@ -95,7 +95,6 @@ class KeyboardController extends Controller {
 
         //The `upHandler`
         key.upHandler = function (event) {
-	    console.log(event);
             if (event.code === key.code) {
                 if (key.isDown && key.release) key.release();
                 key.isDown = false;

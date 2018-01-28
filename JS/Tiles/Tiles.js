@@ -133,6 +133,21 @@ let Tiles =
 		name:"pickup",
 		solid : false,
 		sprite:"ground_0",
+		spriteAnim:function(x,y)
+		{
+			
+			var anim = new PIXI.extras.AnimatedSprite([
+			PIXI.Texture.fromFrame("level-batterie_1.png"),
+			PIXI.Texture.fromFrame("level-batterie_2.png"),
+			PIXI.Texture.fromFrame("level-batterie_3.png"),
+			PIXI.Texture.fromFrame("level-batterie_4.png")
+			]);
+			anim.animationSpeed = 0.1;
+			anim.x = x*32;
+			anim.y = y*32;
+			anim.play();
+			return anim
+		}
 	},
 	
 	

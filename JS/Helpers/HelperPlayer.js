@@ -51,6 +51,11 @@ class HelperPlayer
             entity.battery = 3;
         createjs.Sound.play("Key");
         entity.scene.changeMapCell(x,y, 0);
+
+        setTimeout(function(){
+            entity.scene.changeMapCell(x,y, 11);
+        }, 30000);
+
     }
 
     static CheckSpawn(map, entity, x, y, cell)
@@ -59,12 +64,12 @@ class HelperPlayer
             return;
         if(entity.hasKey == true)
         {
-            if(map.grid[x][y] == 12 && entity == entity.scene.player1)
+            if(map.grid[x][y] == 13 && entity == entity.scene.player1)
             {
                 alert("Le joueur 1 a gagné ! Yay !");
                 window.href.reload();
             }
-            else if(map.grid[x][y] == 13 && entity == entity.scene.player2)
+            else if(map.grid[x][y] == 12 && entity == entity.scene.player2)
             {
                 alert("Le joueur 2 a gagné ! Yay !");
                 window.href.reload();

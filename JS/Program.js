@@ -90,6 +90,7 @@ class Program
                     .add("Assets/bombe.json")
                     .add("Assets/tourbillon.json")
                     .add("Assets/Tileset.json")
+                    .add("Assets/level-battery.json")
                     .add("Assets/spikes.json")
                     .load(() => { this.setup(); });
     }

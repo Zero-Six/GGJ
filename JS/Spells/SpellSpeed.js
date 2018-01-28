@@ -9,4 +9,9 @@ class SpellSpeed extends Spells
         }, 2000);
         return 2;
     }
+
+    cost()
+    {
+        return 2;
+    }
 }

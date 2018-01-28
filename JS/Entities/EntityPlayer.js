@@ -18,7 +18,7 @@ class EntityPlayer extends EntityWalking {
 
 		this.mass = 0.3;
 		this.nextAction = [];
-		this.battery = 3;
+		this.battery = 1;
 
 		this.speed = Config.PlayerSpeed;
 
