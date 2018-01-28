@@ -11,7 +11,10 @@ class HelperPlayer
             if(map.grid[Math.floor(x)] == null || map.grid[Math.floor(x)][Math.floor(y)] == null)
                 return;
             let cell = Tiles[map.grid[Math.floor(x)][Math.floor(y)]];
+            if(cell == null)
+                return;
             HelperPlayer.CheckSpikes(map, entity, x, y, cell);
+
 		
             HelperPlayer.CheckIce(map, entity, x, y, cell);
             

@@ -23,7 +23,10 @@ let Config =
 
     MapWith : 0,
     MapHeight : 0,
+	
+	MapSize:11,
+	
 }
 
-Config.MapWidth = Config.MapRooms*11;
-Config.MapHeight = Config.MapRooms*11;
+Config.MapWidth = Config.MapRooms*Config.MapSize;
+Config.MapHeight = Config.MapRooms*Config.MapSize;

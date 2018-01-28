@@ -3,7 +3,7 @@
 // Filename: Lavender.js
 // Author: Louise <louise>
 // Created: Sat Jan 27 10:44:23 2018 (+0100)
-// Last-Updated: Sun Jan 28 00:16:50 2018 (+0100)
+// Last-Updated: Sun Jan 28 11:24:51 2018 (+0100)
 //           By: Louise <louise>
 // 
 
@@ -59,17 +59,17 @@ function lavender_gen(context, algorithm, width, height) {
 
     // Put player spawns
     rayon = (width - 1) / 2;
-    
+
+    // Player 1 is on a half-circle around the central room
     let player1_x = (Math.abs(context.r.random_value) % width);
     let player1_y = Math.ceil(-(Math.sqrt((rayon * rayon) - Math.pow(player1_x - rayon, 2)) - rayon));
 
+    // Player 2's location is symmetric to Player 1
     let player2_x = width - player1_x - 1;
     let player2_y = height - player1_y - 1;
     
     cells[player1_y * width + player1_x].id = 1;
     cells[player2_y * width + player2_x].id = 2;
-    
-    console.log(player1_x, player1_y, player2_x);
 
     return cells;
 }
