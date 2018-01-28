@@ -49,7 +49,7 @@ let Tiles =
 	4: {
 		name:"spikes",
 		solid: false,
-		sprite: "ground_0",
+		sprite: "ground_2",
 		activated:false
 		
 	},

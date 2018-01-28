@@ -58,6 +58,7 @@ class Program
                     .add("Assets/J2.json")
                     .add("Assets/wall.json")
                     .add("Assets/Tileset.json")
+                    .add("Assets/spikes.json")
                     .load(() => { this.setup(); });
     }
 

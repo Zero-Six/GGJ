@@ -1,6 +1,6 @@
 {
   "frames": {
-    "ground_0.png": {
+    "spikes_0.png": {
       "frame": {
         "x": 0,
         "y": 0,
@@ -20,7 +20,7 @@
         "h": 32
       }
     },
-    "ground_1.png": {
+    "spikes_1.png": {
       "frame": {
         "x": 32,
         "y": 0,
@@ -40,7 +40,7 @@
         "h": 32
       }
     },
-    "ground_2.png": {
+    "spikes_2.png": {
       "frame": {
         "x": 64,
         "y": 0,
@@ -64,7 +64,7 @@
   "meta": {
     "app": "http://www.codeandweb.com/texturepacker",
     "version": "1.0",
-    "image": "Tileset.png",
+    "image": "spikes.png",
     "format": "RGBA8888",
     "size": {
       "w": 96,
