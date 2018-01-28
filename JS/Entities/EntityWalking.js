@@ -79,6 +79,7 @@ class EntityWalking extends Entity {
         }
         else
         {
+
             this.sprite1.play();
             this.sprite2.play();
         }

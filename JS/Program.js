@@ -32,17 +32,45 @@ class Program
         document.getElementById("touch").appendChild(this.app.view);
         
         this.app.renderer.autoResize = true;
-        this.app.renderer.resize(Math.floor(window.innerWidth/Config.TileSize)*Config.TileSize, Math.floor(window.innerHeight/Config.TileSize)*Config.TileSize);
+        this.app.renderer.resize(Math.floor((window.innerWidth/1.5)/Config.TileSize)*Config.TileSize, Math.floor((window.innerHeight/1.5)/Config.TileSize)*Config.TileSize);
         this.loadSounds();
     }
 
     loadSounds()
     {
         console.log("Loading sounds...")
-        /*createjs.Sound.on("fileload", this.loadSprites.bind(this), this);
-        createjs.Sound.registerSound("sample", "sample");*/
+        createjs.Sound.registerSound( "Assets/Sounds/Trap_Spikes.wav", "Spikes",3);
+        createjs.Sound.registerSound( "Assets/Sounds/Step_01.wav", "Step_01",1);
+        createjs.Sound.registerSound("Assets/Sounds/Step_02.wav", "Step_02",1);
+        createjs.Sound.registerSound("Assets/Sounds/Step_03.wav", "Step_03" ,1);
+        createjs.Sound.registerSound( "Assets/Sounds/Step_04.wav", "Step_04",1);
+        createjs.Sound.registerSound("Assets/Sounds/Step_05.wav", "Step_05",1 );
+        createjs.Sound.registerSound("Assets/Sounds/Step_06.wav", "Step_06",1 );
+        createjs.Sound.registerSound("Assets/Sounds/Step_07.wav", "Step_07",1 );
+        createjs.Sound.registerSound( "Assets/Sounds/Step_08.wav", "Step_08",1);
+
+
+        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_01.wav", "Step_Ice_01",1);
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_02.wav", "Step_Ice_02",1);
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_03.wav", "Step_Ice_03" ,1);
+        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_04.wav", "Step_Ice_04",1);
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_05.wav", "Step_Ice_05",1 );
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_06.wav", "Step_Ice_06",1 );
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_07.wav", "Step_Ice_07",1 );
+        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_08.wav", "Step_Ice_08",1);
+
+        createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_01.wav", "Lava");
+        createjs.Sound.registerSound( "Assets/Sounds/Phone_Bip_01_01.wav", "Bip1");
+        createjs.Sound.registerSound( "Assets/Sounds/Phone_Bip_01_02.wav", "Bip2");
+
+
+        createjs.Sound.registerSound( "Assets/Sounds/Pickup_Key.wav", "Key");
+        createjs.Sound.registerSound( "Assets/Sounds/Music_Loop.wav", "Music");
+        createjs.Sound.registerSound( "Assets/Sounds/Amb_Loop.wav", "Ambiance");
+        createjs.Sound.on("fileload", this.loadSprites.bind(this), this);
+        //createjs.Sound.registerSound("sample", "sample");*/
         //createjs.Sound.play(sample);
-        this.loadSprites();
+        //this.loadSprites();
         
     }
 
@@ -62,6 +90,7 @@ class Program
                     .add("Assets/bombe.json")
                     .add("Assets/tourbillon.json")
                     .add("Assets/Tileset.json")
+                    .add("Assets/level-battery.json")
                     .add("Assets/spikes.json")
                     .load(() => { this.setup(); });
     }

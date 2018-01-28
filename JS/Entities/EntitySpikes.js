@@ -16,6 +16,8 @@ class EntitySpikes extends Entity
         this.sprite1.x = x;
         this.sprite1.y = y;
 
+    
+
         this.sprite1.animationSpeed = 0.1;
         this.sprite2.animationSpeed = 0.1;
 
@@ -28,6 +30,7 @@ class EntitySpikes extends Entity
     {
         if(other instanceof EntityPlayer)
         {
+            createjs.Sound.play("Spikes");
             other.reset();
         }
     }

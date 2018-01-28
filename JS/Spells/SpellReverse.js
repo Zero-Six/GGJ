@@ -5,6 +5,11 @@ class SpellReverse extends Spells
         super();
     }
 
+    cost()
+    {
+        return 2;
+    }
+
     cast(players, player)
     {
         super.cast(players, player);

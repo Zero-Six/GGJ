@@ -30,8 +30,21 @@ class SceneGame extends Scene
         this.controllers.push(new XboxController(this.player1));
         this.controllers.push(new XboxController(this.player2));
 
-        this.controllers.push(new KeyboardController(this.player1, 90, 83, 81, 68, 65, 69));
-        this.controllers.push(new KeyboardController(this.player2, 38, 40, 37, 39, 96, 110));
+        this.controllers.push(
+	    new KeyboardController(
+		this.player1,
+		"KeyW", "KeyS", "KeyA",
+		"KeyD", "KeyQ", "KeyE"
+	    )
+	);
+	
+        this.controllers.push(
+	    new KeyboardController(
+		this.player2,
+		"ArrowUp", "ArrowDown", "ArrowLeft",
+		"ArrowRight", "Numpad0", "NumpadDecimal"
+	    )
+	);
 
 
         let lavenderCtx = lavender_new(Date.now(), "Assets/maps.json");
@@ -81,6 +94,9 @@ class SceneGame extends Scene
 
             self.addEntity(self.player1);
             self.addEntity(self.player2);
+
+            createjs.Sound.play("Music", {loop : -1});
+            createjs.Sound.play("Ambiance", {loop : -1});
             
             Program.GetInstance().App().ticker.add((delta) => {
                 self.update(delta)

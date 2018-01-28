@@ -1,5 +1,10 @@
 class SpellIce extends Spells
 {
+    cost()
+    {
+        return 1;
+    }
+
     cast(players, player)
     {
         player = Spells.getOtherPlayer(players, player);

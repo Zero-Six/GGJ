@@ -15,9 +15,10 @@ class EntityPlayer extends EntityWalking {
 		this.dying = false;
 
 
+
 		this.mass = 0.3;
 		this.nextAction = [];
-		this.battery = 3;
+		this.battery = 1;
 
 		this.speed = Config.PlayerSpeed;
 
@@ -44,6 +45,9 @@ class EntityPlayer extends EntityWalking {
 		this.sprite2.play();
 
 	}
+
+	
+
 	
 	update(delta)
 	{
@@ -192,6 +196,7 @@ class EntityPlayer extends EntityWalking {
 	{
 		if(this.canCombo)
 		{
+			createjs.Sound.play("Bip1");
 			this.addCombo(1);
 		}
 	}
@@ -200,6 +205,7 @@ class EntityPlayer extends EntityWalking {
 	{
 		if(this.canCombo)
 		{
+			createjs.Sound.play("Bip2");
 			this.addCombo(2);
 		};
 	}

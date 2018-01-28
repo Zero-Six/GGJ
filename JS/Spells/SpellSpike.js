@@ -18,4 +18,9 @@ class SpellSpike extends Spells
         });
         return 1;
     }
+
+    cost()
+    {
+        return 1;
+    }
 }
