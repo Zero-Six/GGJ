@@ -36,7 +36,7 @@ let Tiles =
 	2 : {
 		name:"ice",
 		solid : false,
-		sprite:"ground_0",
+		sprite:"ground_1",
 	}, 
 	
 	3 : {

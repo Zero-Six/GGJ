@@ -9,11 +9,11 @@ let Config =
     AirDensity  : 0.3,
 	
 	MassGround:0.3,
-	MassIce:0.1,
+	MassIce:0.9,
 	
     PlayerLife  : 3,
     PlayerFireTime  : 500,
-    PlayerSpeed  : 10,
+    PlayerSpeed  : 20,
 
     FireDamage  : 0.01,
 
