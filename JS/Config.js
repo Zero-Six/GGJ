@@ -13,7 +13,7 @@ let Config =
 	
     PlayerLife  : 3,
     PlayerFireTime  : 500,
-    PlayerSpeed  : 20,
+    PlayerSpeed  : 10,
 
     FireDamage  : 0.01,
 
@@ -25,8 +25,8 @@ let Config =
     MapHeight : 0,
 	
 	MapSize:11,
-	NormMagnet:3,
-	zoneMagnet:5,
+	NormMagnet:2,
+	zoneMagnet:3,
 	
 }
 
