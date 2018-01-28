@@ -26,6 +26,8 @@ class HelperPlayer
         
     }
 
+   
+
     /*static CheckSpikes(map, entity,x,y, cell)
     {
         if(cell.name != "spikes" || cell.activated == false)
@@ -39,6 +41,7 @@ class HelperPlayer
         if(cell.name != "key" || entity.solid == false)
             return;
         entity.hasKey = true;
+        createjs.Sound.play("Key");
         entity.scene.changeMapCell(x,y, 0);
     }    
 
@@ -48,14 +51,17 @@ class HelperPlayer
             return;
         setTimeout(() => {
             let x = Math.floor((entity.sprite1.x + entity.sprite1.width /2) / Config.TileSize);
-			let y = Math.floor((entity.sprite1.y + entity.sprite1.height/1.5) / Config.TileSize);
+			let y = Math.floor((entity.sprite1.y + entity.sprite1.height/1.8) / Config.TileSize);
             if(map.grid[Math.floor(x)] == null || map.grid[Math.floor(x)][Math.floor(y)] == null)
                 return;
             let cell = Tiles[map.grid[Math.floor(x)][Math.floor(y)]];
             if(cell == null)
                 return;
-            if(cell.name == "lava")
+            if(cell.name == "lava" && entity.dying == false)
+            {
+                createjs.Sound.play("Lava");
                 entity.reset();
+            }
         }, 100);
     }    
     
@@ -64,6 +70,11 @@ class HelperPlayer
     {
         if(cell.name != "ice")
             return;
+            if(entity.vx != 0 || entity.vy != 0)
+            {
+            let i = ~~(Math.random() * 8);
+            createjs.Sound.play("Step_Ice_0"+i);
+            }
        entity.mass = Config.MassIce;
     }
 	
@@ -71,6 +82,11 @@ class HelperPlayer
     {
         if(cell.name != "ground")
             return;
+        if(entity.vx != 0 || entity.vy != 0)
+        {
+        let i = ~~(Math.random() * 8);
+        createjs.Sound.play("Step_0"+i);
+        }
        entity.mass = Config.MassGround;
     }
 	
