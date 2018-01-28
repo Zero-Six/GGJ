@@ -76,7 +76,7 @@ class HelperPlayer
 	
 	static CheckMagnet(map, entity, x,y, cell)
 	{
-		var zone = entity.getArea(5,"magnet");
+		var zone = entity.getArea(Config.zoneMagnet,"magnet");
 		for(var i in zone)
 		{
 			if( Math.abs(zone[i].x-x) > 1 && Math.abs(zone[i].y-y))
