@@ -90,6 +90,14 @@ class SceneGame extends Scene
         
     }
 
+    changeMapCell(x, y, value)
+    {
+        this.map1.grid[x][y] = value;
+        this.map1.updateTile(x,y);
+        this.map2.grid[x][y] = value;
+        this.map2.updateTile(x,y);
+    }
+
     update(delta)
     {
         this.updateEntities(delta);

@@ -7,7 +7,7 @@ class HelperPlayer
     {
 
             let x = Math.floor((entity.sprite1.x + entity.sprite1.width /2) / Config.TileSize);
-			let y = Math.floor((entity.sprite1.y + entity.sprite1.height/2) / Config.TileSize);
+			let y = Math.floor((entity.sprite1.y + entity.sprite1.height/1.5) / Config.TileSize);
             if(map.grid[Math.floor(x)] == null || map.grid[Math.floor(x)][Math.floor(y)] == null)
                 return;
             let cell = Tiles[map.grid[Math.floor(x)][Math.floor(y)]];
@@ -15,6 +15,7 @@ class HelperPlayer
                 return;
             
             HelperPlayer.CheckLava(map, entity, x, y, cell);
+            HelperPlayer.CheckKey(map, entity, x, y, cell);
 
             HelperPlayer.CheckIce(map, entity, x, y, cell);
             
@@ -29,6 +30,15 @@ class HelperPlayer
         let spikes = new EntitySpikes(entity.scene, x * Config.TileSize, y * Config.TileSize);
         entity.reset();
     }*/
+
+    static CheckKey(map, entity,x,y, cell)
+    {
+        if(cell.name != "key" || entity.solid == false)
+            return;
+        entity.hasKey = true;
+        entity.scene.changeMapCell(x,y, 0);
+    }    
+
 	static CheckLava(map, entity,x,y, cell)
     {
         if(cell.name != "lava" || entity.solid == false)
