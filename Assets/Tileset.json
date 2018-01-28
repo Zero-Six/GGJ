@@ -99,7 +99,49 @@
         "w": 32,
         "h": 32
       }
+    },
+	  "ground_5.png": {
+      "frame": {
+        "x":160,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      }
+    },
+	
+	"ground_6.png": {
+      "frame": {
+        "x":192,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      }
     }
+	
   },
   "meta": {
     "app": "http://www.codeandweb.com/texturepacker",
@@ -107,7 +149,7 @@
     "image": "Tileset.png",
     "format": "RGBA8888",
     "size": {
-      "w": 160,
+      "w": 224,
       "h": 32
     },
     "scale": "1",

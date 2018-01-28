@@ -23,6 +23,8 @@ class HelperPlayer
 			
 			HelperPlayer.CheckMagnet(map,entity,x,y,cell);
 			
+			HelperPlayer.CheckBumper(map,entity,x,y,cell);
+			
         
     }
 
@@ -88,6 +90,15 @@ class HelperPlayer
 			
 		}
 	}
+	
+	static CheckBumper(map, entity,x,y, cell)
+    {
+        if(cell.name != "bumper")
+            return;
+		var v = this.VectNorm(x*32+16,y*32+16,entity.sprite1.x,entity.sprite1.y,Config.NormBumper);
+				entity.vx += v.x;
+				entity.vy += v.y;
+    }
 	
 	static VectNorm(xa,ya,xb,yb,norm)
 	{
