@@ -94,6 +94,9 @@ class SceneGame extends Scene
 
             self.addEntity(self.player1);
             self.addEntity(self.player2);
+
+            createjs.Sound.play("Music", {loop : -1});
+            createjs.Sound.play("Ambiance", {loop : -1});
             
             Program.GetInstance().App().ticker.add((delta) => {
                 self.update(delta)

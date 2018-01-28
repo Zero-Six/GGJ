@@ -192,6 +192,7 @@ class EntityPlayer extends EntityWalking {
 	{
 		if(this.canCombo)
 		{
+			createjs.Sound.play("Bip1");
 			this.addCombo(1);
 		}
 	}
@@ -200,6 +201,7 @@ class EntityPlayer extends EntityWalking {
 	{
 		if(this.canCombo)
 		{
+			createjs.Sound.play("Bip2");
 			this.addCombo(2);
 		};
 	}
