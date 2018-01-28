@@ -9,10 +9,16 @@ class EntityPlayer extends EntityWalking {
 		this.initialX = x;
 		this.initialY = y;
 
+		this.seeKey = true;
+
 
 		this.mass = 0.3;
 		this.nextAction = [];
 		this.battery = 3;
+
+		this.speed = Config.PlayerSpeed;
+
+		this.reversedControls = false;
 
 		this.combo = [];
 		this.canCombo = true;
@@ -87,39 +93,59 @@ class EntityPlayer extends EntityWalking {
 	}
 
 	
-	moveUp()
+	moveUp(check = true)
 	{
+		if(this.reversedControls && check == true)
+		{
+			this.moveDown(false);
+			return;
+		}
 		this.nextAction.push(function(){
 		if(this.canMove && this.vy <= 0 )
 		{
-			this.vy = -Config.PlayerSpeed;
+				this.vy = -this.speed;
 		}});
 	}
 	
-	moveDown()
+	moveDown(check = true)
 	{
+		if(this.reversedControls && check == true)
+		{
+			this.moveUp(false);
+			return;
+		}
 		this.nextAction.push(function(){
 		if(this.canMove && this.vy >= 0)
 		{
-			this.vy = +Config.PlayerSpeed;
+				this.vy = +this.speed;
 		}});
 	}
 	
-	moveLeft()
+	moveLeft(check = true)
 	{
+		if(this.reversedControls && check == true)
+		{
+			this.moveRight(false);
+			return;
+		}
 		this.nextAction.push(function(){
 		if(this.canMove && this.vx <= 0)
 		{
-			this.vx = -Config.PlayerSpeed;
+				this.vx = -this.speed;
 		}});
 	}
 	
-	moveRight()
+	moveRight(check = true)
 	{
+		if(this.reversedControls && check == true)
+		{
+			this.moveLeft(false);
+			return;
+		}
 		this.nextAction.push(function(){
 		if(this.canMove && this.vx >= 0)
 		{
-			this.vx = +Config.PlayerSpeed;
+				this.vx = +this.speed;
 		}});
 	}
 	
@@ -164,7 +190,7 @@ class EntityPlayer extends EntityWalking {
 			
 			if(this.combo.length == 3)//combo atteint
 			{
-				Spells.checkSpell(this.scene, this.combo);
+				this.battery -= Spells.checkSpell(this.scene, this, this.combo);
 				this.clearCombo();
 			}
 		}

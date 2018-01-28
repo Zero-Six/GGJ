@@ -1,26 +1,41 @@
 class Spells
 {
 
-	static checkSpell(scene, seq)
+	static checkSpell(scene, player,  seq)
 	{
-		let id = combo.join("");
-		if(Spells.List[id] != null)
+		let id = seq.join("");
+		if(Spells.List()[id] != null)
 		{
 			let players = [
 				scene.player1, scene.player2
 			];
-			Spells.List[id].cast(players);
+			return Spells.List()[id].cast(players, player);
+		}
+		return 0;
+	}
+
+	static List(){
+		return {
+			"111" : new SpellReverse(),
+			"112" : new SpellSpeed(),
+			"122" : new SpellKey(),
+			
 		}
 	}
 
-	static List = {
-
+	static getOtherPlayer(players, player)
+	{
+		if(players[0] == player)
+			return players[1];
+		else 
+			return players[0];
 	}
 
-	cast(players)
+	cast(players, player)
 	{
 		console.log("casting");
 		console.log(this);
+		return 0;
 	}
 	
 	
