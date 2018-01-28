@@ -128,7 +128,7 @@ class Entity
 		/**
 		 * Renvoie une liste de cellulles dans un rayon de trois autour du joueur
 		 */
-		getArea(r)
+		getArea(r, only = "ground")
 		{
 			let list = [];
 
@@ -146,7 +146,7 @@ class Entity
 				{
 					if(map.grid[Math.floor(i )] == null || map.grid[Math.floor(i )][Math.floor(u )] == null)
 						continue;
-					if(Tiles[map.grid[Math.floor(i )][Math.floor(u )]] == null || Tiles[map.grid[Math.floor(i )][Math.floor(u )]].name != "ground")
+					if(Tiles[map.grid[Math.floor(i )][Math.floor(u )]] == null || Tiles[map.grid[Math.floor(i )][Math.floor(u )]].name != only)
 						continue;
 					let cell =JSON.parse(JSON.stringify(Tiles[map.grid[Math.floor(i )][Math.floor(u )]]));
 					cell.x = i;
