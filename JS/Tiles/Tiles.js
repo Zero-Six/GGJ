@@ -27,7 +27,7 @@ let Tiles =
 				
 			}
 			
-			return "wall_"+0
+			return "wall_"+1
 			
 		},
 		
