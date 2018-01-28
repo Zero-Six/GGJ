@@ -92,6 +92,8 @@ class Program
                     .add("Assets/Tileset.json")
                     .add("Assets/level-battery.json")
                     .add("Assets/spikes.json")
+                    .add("Assets/Bulle.json")
+                    .add("Assets/symbol.json")
                     .load(() => { this.setup(); });
     }
 

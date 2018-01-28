@@ -14,7 +14,7 @@ class EntityPlayer extends EntityWalking {
 
 		this.dying = false;
 
-
+		this.clearTimer = null;
 
 		this.mass = 0.3;
 		this.nextAction = [];
@@ -224,7 +224,7 @@ class EntityPlayer extends EntityWalking {
 	{
 		if(this.combo.length == 0)
 		{
-			setTimeout(() => {
+			this.clearTimer = setTimeout(() => {
 				this.clearCombo();
 			}, 3000);
 		}
@@ -235,18 +235,21 @@ class EntityPlayer extends EntityWalking {
 			setTimeout(() => {
 				this.canCombo = true;
 			}, 150);
-			console.log(c);
+			//console.log(c);
 			
 			if(this.combo.length == 3)//combo atteint
 			{
+				clearTimeout(this.clearTimer);
+				this.canCombo = false;
 				this.battery -= Spells.checkSpell(this.scene, this, this.combo);
-				this.clearCombo();
+				setTimeout(() =>{this.clearCombo();}, 500);
 			}
 		}
 	}
 
 	clearCombo()
 	{
+		this.canCombo = true;
 		this.combo = [];
 	}
 

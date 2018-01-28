@@ -59,11 +59,8 @@ class Viewport
         this.blur = null;
         this.weird = null;
 
-        this.lastCombo = 0;
-        this.toUpdateIcons = false;
-		this.iconsList = [];
-        this.icons = new PIXI.Container();
-        this.container.addChild(this.icons);
+        this.combo = new PIXI.Container();
+        this.viewport.addChild(this.combo);
 
         let frames = [
 			PIXI.Texture.fromFrame("level-batterie_1.png"),
@@ -75,24 +72,7 @@ class Viewport
         this.viewport.addChild(this.battery);
     }
 
-    updateIcons()
-	{
-        if(this.player.combo.length !=  this.lastCombo)
-        {
-            this.toUpdateIcons = true;
-            this.lastCombo = this.player.combo;
-        }
-
-
-		if(this.toUpdateIcons)
-		{
-            this.container.removeChild(this.icons);
-            
-
-            this.container.addChild(this.icons);
-			this.toUpdateIcons = false;
-		}
-	}
+   
 
     
 
@@ -100,6 +80,35 @@ class Viewport
     {
         this.battery.gotoAndStop(this.player.battery);
 
+        if(this.combo.children.length != this.player.combo.length + 1)
+        {
+            this.viewport.removeChild(this.combo);
+            this.combo = new PIXI.Container();
+            this.combo.y = 10;
+            this.combo.x = 32;
+            this.combo.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame("Bulle.png")));
+
+            let x = 0;
+            let spr = null;
+            this.player.combo.forEach((e) => {
+                if(e == 1)
+                {
+                    spr = new PIXI.Sprite(PIXI.Texture.fromFrame("symbol_1.png"))
+                    spr.y = 1;
+                    spr.x = x;
+                }
+                else 
+                {
+                    spr = new PIXI.Sprite(PIXI.Texture.fromFrame("symbol_2.png"))
+                    spr.y = 1;
+                    spr.x = x;
+                }
+                this.combo.addChild(spr);
+                x+=10;
+            });
+
+            this.viewport.addChild(this.combo);
+        }
 
 
         this.container.x = this.width/2 -(this.player.sprite1.x*2);

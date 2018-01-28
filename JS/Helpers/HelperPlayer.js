@@ -69,12 +69,12 @@ class HelperPlayer
             if(map.grid[x][y] == 13 && entity == entity.scene.player1)
             {
                 alert("Le joueur 1 a gagné ! Yay !");
-                window.href.reload();
+                window.location.href.reload();
             }
             else if(map.grid[x][y] == 12 && entity == entity.scene.player2)
             {
                 alert("Le joueur 2 a gagné ! Yay !");
-                window.href.reload();
+                window.location.href.reload();
             }
         }
     }
