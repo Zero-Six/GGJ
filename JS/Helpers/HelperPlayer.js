@@ -95,7 +95,7 @@ class HelperPlayer
 		var zone = entity.getArea(Config.zoneMagnet,"magnet");
 		for(var i in zone)
 		{
-			if( Math.abs(zone[i].x-x) > 1 && Math.abs(zone[i].y-y))
+			if( Math.abs(zone[i].x*32+16-entity.sprite1.x) > 10 && Math.abs(zone[i].y*32+16-entity.sprite1.y) > 10)
 			{
 				var v = this.VectNorm(zone[i].x*32+16,zone[i].y*32+16,x*32,y*32,Config.NormMagnet);
 				entity.vx += -v.x;
