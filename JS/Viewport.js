@@ -65,7 +65,14 @@ class Viewport
         this.icons = new PIXI.Container();
         this.container.addChild(this.icons);
 
-        
+        let frames = [
+			PIXI.Texture.fromFrame("level-batterie_1.png"),
+			PIXI.Texture.fromFrame("level-batterie_2.png"),
+			PIXI.Texture.fromFrame("level-batterie_3.png"),
+			PIXI.Texture.fromFrame("level-batterie_4.png")
+        ];
+        this.battery = new PIXI.extras.AnimatedSprite(frames);
+        this.viewport.addChild(this.battery);
     }
 
     updateIcons()
@@ -91,6 +98,10 @@ class Viewport
 
     update()
     {
+        this.battery.gotoAndStop(this.player.battery);
+
+
+
         this.container.x = this.width/2 -(this.player.sprite1.x*2);
         this.container.y = this.height/2-(this.player.sprite1.y*2);
         //console.log(this.container.x);
