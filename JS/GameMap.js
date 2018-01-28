@@ -26,7 +26,7 @@ class GameMap
 				
 				if(tile.spriteGen)
 				{
-					sprite = PIXI.Sprite.fromFrame(tile.spriteGen(u,i,this.grid)+".png");
+					sprite = PIXI.Sprite.fromFrame(tile.spriteGen(i,u,this.grid)+".png");
 				}
 				else // à revoir un peu pour les anims
 				{
