@@ -46,7 +46,17 @@ class HelperPlayer
     {
         if(cell.name != "lava" || entity.solid == false)
             return;
-        entity.reset();
+        setTimeout(() => {
+            let x = Math.floor((entity.sprite1.x + entity.sprite1.width /2) / Config.TileSize);
+			let y = Math.floor((entity.sprite1.y + entity.sprite1.height/1.5) / Config.TileSize);
+            if(map.grid[Math.floor(x)] == null || map.grid[Math.floor(x)][Math.floor(y)] == null)
+                return;
+            let cell = Tiles[map.grid[Math.floor(x)][Math.floor(y)]];
+            if(cell == null)
+                return;
+            if(cell.name == "lava")
+                entity.reset();
+        }, 100);
     }    
     
 
