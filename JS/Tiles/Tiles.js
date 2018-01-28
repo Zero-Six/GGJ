@@ -55,7 +55,7 @@ let Tiles =
 			PIXI.Texture.fromFrame("lava_3.png"),
 			PIXI.Texture.fromFrame("lava_4.png")
 			]);
-			anim.animationSpeed = 1;
+			anim.animationSpeed = 0.1;
 			anim.x = x*32;
 			anim.y = y*32;
 			anim.play();
