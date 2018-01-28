@@ -13,23 +13,28 @@ class HelperPlayer
             let cell = Tiles[map.grid[Math.floor(x)][Math.floor(y)]];
             if(cell == null)
                 return;
-            HelperPlayer.CheckSpikes(map, entity, x, y, cell);
+            
+            HelperPlayer.CheckLava(map, entity, x, y, cell);
 
-		
             HelperPlayer.CheckIce(map, entity, x, y, cell);
             
             HelperPlayer.CheckGround(map, entity, x, y, cell);
         
     }
 
-    static CheckSpikes(map, entity,x,y, cell)
+    /*static CheckSpikes(map, entity,x,y, cell)
     {
         if(cell.name != "spikes" || cell.activated == false)
             return;
         let spikes = new EntitySpikes(entity.scene, x * Config.TileSize, y * Config.TileSize);
         entity.reset();
-    }
-	
+    }*/
+	static CheckLava(map, entity,x,y, cell)
+    {
+
+    }    
+    
+
 	static CheckIce(map, entity,x,y, cell)
     {
         if(cell.name != "ice")
