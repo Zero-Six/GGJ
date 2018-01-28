@@ -11,7 +11,25 @@ let Tiles =
 	1 : {
 		name:"wall",
 		solid : true,
-		sprite:"ground_0",
+		spriteGen:function(x,y,grid)
+		{
+			var t1x = (x/(Config.MapWidth))%1 == 0;
+			var t1y = (y/(Config.MapHeight))%1 == 0;
+			var t2x = (x/(Config.MapWidth-1))%1 == 0;
+			var t2y = (x/(Config.MapHeight-1))%1 == 0;
+			
+			if(t1x && t1y)d=0;
+			else if(t2x && t1y)d=1;
+			else if(t1x && t2y)d=3;
+			else if(t2x && t2y)d=2;
+			else
+			{
+				
+			}
+			
+			return "wall_"+0
+			
+		},
 		
 	}, 
 	
