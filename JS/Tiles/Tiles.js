@@ -11,29 +11,30 @@ let Tiles =
 	1 : {
 		name:"wall",
 		solid : true,
-		spriteGen:function(x,y,grid)
-		{
-			var d = 0;
-			var t1x = (x/(Config.MapSize-1))%1 == 0;
-			var t1y = (y/(Config.MapSize-1))%1 == 0;
-			var t2x = (x/(Config.MapSize-2))%1 == 0;
-			var t2y = (y/(Config.MapSize-2))%1 == 0;
+		// spriteGen:function(x,y,grid)
+		// {
+			// var d = 0;
+			// var t1x = (x/(Config.MapSize-1))%1 == 0;
+			// var t1y = (y/(Config.MapSize-1))%1 == 0;
+			// var t2x = (x/(Config.MapSize-2))%1 == 0;
+			// var t2y = (y/(Config.MapSize-2))%1 == 0;
 			
-			if(t1x && t1y)d=1;
-			else if(t2x && t1y)d=2;
-			else if(t2x && t2y)d=3;
-			else if(t1x && t2y)d=4;
-			else
-			{
-				if(t1x)d=4;
-				else if(t2x)d=5;
-				else if(t2y)d=6;
-				else if(t1y)d=7;
-			}
+			// if(t1x && t1y)d=1;
+			// else if(t2x && t1y)d=2;
+			// else if(t2x && t2y)d=3;
+			// else if(t1x && t2y)d=4;
+			// else
+			// {
+				// if(t1x)d=4;
+				// else if(t2x)d=5;
+				// else if(t2y)d=6;
+				// else if(t1y)d=7;
+			// }
 			
-			return "wall_"+(d||20)
+			// return "wall_"+(d||20)
 			
-		},
+		// },
+		sprite:"ground_6"
 		
 	}, 
 	
@@ -75,8 +76,23 @@ let Tiles =
 	
 	5 : {
 		name:"bumper",
-		solid : false,
-		sprite:"ground_0",
+		solid : true,
+		spriteAnim: function(x,y)
+		{
+			
+			var anim = new PIXI.extras.AnimatedSprite([
+			PIXI.Texture.fromFrame("bumper_1.png"),
+			PIXI.Texture.fromFrame("bumper_2.png"),
+			PIXI.Texture.fromFrame("bumper_3.png"),
+			PIXI.Texture.fromFrame("bumper_4.png")
+			]);
+			anim.animationSpeed = 0.1;
+			anim.x = x*32;
+			anim.y = y*32;
+			anim.loop = false;
+			anim.play();
+			return anim
+		}
 	},
 	
 	
@@ -104,7 +120,7 @@ let Tiles =
 	7 : {
 		name:"bow",
 		solid : true,
-		sprite:"ground_0",
+		sprite:"ground_5",
 	}, 
 	
 	
