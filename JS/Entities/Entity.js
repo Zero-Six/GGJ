@@ -53,6 +53,26 @@ class Entity
 			this.scene.removeEntity(this);
 		}
 
+		setVx(vx)
+		{
+			this.vx = vx;
+		}
+	
+		setVy(vy)
+		{
+			this.vy = vy;
+		}
+	
+		Vx() 
+		{
+			return this.vx;
+		}
+	
+		Vy() 
+		{
+			return this.vy;
+		}
+
 		hit(other)
 		{
 			

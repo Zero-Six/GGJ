@@ -31,7 +31,9 @@ class HelperPlayer
     }*/
 	static CheckLava(map, entity,x,y, cell)
     {
-
+        if(cell.name != "lava" || entity.solid == false)
+            return;
+        entity.reset();
     }    
     
 

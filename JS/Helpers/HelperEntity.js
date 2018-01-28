@@ -156,7 +156,7 @@ class HelperEntity {
     }
 
     static checkCollisionWithEntity(entity1, entity2) {
-
+        
         let topleft = new Vector2(entity1.sprite1.x, entity1.sprite1.y);
         let bottomright = new Vector2(entity1.sprite1.x + entity1.sprite1.width, entity1.sprite1.y + entity1.sprite1.height)
 
@@ -166,7 +166,7 @@ class HelperEntity {
         bottomright.x -= entity1.sprite1.hitarea.width;
         bottomright.y -= entity1.sprite1.hitarea.height;
 
-        let rectangle1 = new Rectangle(topleft.x + Config.AirDensity * entity1.Vx(), topleft.y + Config.AirDensity * entity1.Vy(), bottomright.x - topleft.x , bottomright.y - topleft.y);
+        let rectangle1 = new Rectangle(topleft.x + Config.AirDensity * entity1.vx, topleft.y + Config.AirDensity * entity1.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
         
         topleft = new Vector2(entity2.sprite1.x, entity2.sprite1.y);
         bottomright = new Vector2(entity2.sprite1.x + entity2.sprite1.width, entity2.sprite1.y + entity2.sprite1.height)
@@ -177,9 +177,9 @@ class HelperEntity {
         bottomright.x -= entity2.sprite1.hitarea.width;
         bottomright.y -= entity2.sprite1.hitarea.height;
 
-        let rectangle2 = new Rectangle(topleft.x + Config.AirDensity * entity2.Vx(), topleft.y + Config.AirDensity * entity2.Vy(), bottomright.x - topleft.x , bottomright.y - topleft.y);
-        
+        let rectangle2 = new Rectangle(topleft.x + Config.AirDensity * entity2.vx, topleft.y + Config.AirDensity * entity2.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
         let n = this.checkCollision(rectangle1, rectangle2);
+        
         //console.log(n);
         return n;
     }

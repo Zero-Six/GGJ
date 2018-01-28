@@ -46,7 +46,6 @@ class SceneGame extends Scene
                     grid[u] = [];
                 grid[u][i%Config.MapWidth] = origingrid[i];
             }
-            console.log(grid);
             // var map = new GameMap(Config.MapWidth, Config.MapHeight, grid); // Potentiellement problème de clonage
             self.map1 = new GameMap(Config.MapWidth, Config.MapHeight, grid);;
             self.map2 = new GameMap(Config.MapWidth, Config.MapHeight, grid);
@@ -54,7 +53,6 @@ class SceneGame extends Scene
             self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
             self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
     
-            self.entities = [];
             self.addEntity(self.player1);
             self.addEntity(self.player2);
             

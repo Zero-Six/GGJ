@@ -10,7 +10,7 @@ class EntitySpikes extends Entity
 			frames.push(PIXI.Texture.fromFrame("spikes_"+i+".png"));
         }
         frames.push(PIXI.Texture.fromFrame("spikes_1.png"));
-        
+        this.solid = false;
 
         this.switchSprite(frames);
         this.sprite1.x = x;
@@ -22,5 +22,13 @@ class EntitySpikes extends Entity
         /*this.sprite1.onComplete = () => {
             this.destroy();
         }*/
+    }
+
+    hit(other)
+    {
+        if(other instanceof EntityPlayer)
+        {
+            other.reset();
+        }
     }
 }
