@@ -136,21 +136,19 @@ class Entity
 
 			let x = Math.floor((this.sprite1.x + this.sprite1.width /2) / Config.TileSize);
 			let y = Math.floor((this.sprite1.y + this.sprite1.height/2) / Config.TileSize);
-			r = ~~(r/3);
+			r = ~~(r/2);
 			x -= r;
 			y -= r;
 			
-			for(let i = x; i <= x + (r+1); i++)
+			for(let i = x; i <= x + (r*2+1); i++)
 			{
-				for(let u = y; u <= y +(r+1); u++)
+				for(let u = y; u <= y +(r*2+1); u++)
 				{
-					console.log(i+" "+u);
 					if(map.grid[Math.floor(i )] == null || map.grid[Math.floor(i )][Math.floor(u )] == null)
 						continue;
 					if(Tiles[map.grid[Math.floor(i )][Math.floor(u )]] == null || Tiles[map.grid[Math.floor(i )][Math.floor(u )]].name != "ground")
 						continue;
 					let cell =JSON.parse(JSON.stringify(Tiles[map.grid[Math.floor(i )][Math.floor(u )]]));
-					console.log(cell.name);
 					cell.x = i;
 					cell.y = u;
 					list.push(cell);

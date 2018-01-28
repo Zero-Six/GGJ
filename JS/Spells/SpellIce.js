@@ -3,7 +3,7 @@ class SpellIce extends Spells
     cast(players, player)
     {
         player = Spells.getOtherPlayer(players, player);
-        let area = player.getArea(3);
+        let area = player.getArea(11);
         console.log(area);
         area.forEach(cell => {
             player.scene.map1.grid[cell.x][cell.y] = 2;
