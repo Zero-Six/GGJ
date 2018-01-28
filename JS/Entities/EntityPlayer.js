@@ -15,6 +15,7 @@ class EntityPlayer extends EntityWalking {
 		this.dying = false;
 
 
+
 		this.mass = 0.3;
 		this.nextAction = [];
 		this.battery = 3;
@@ -44,6 +45,9 @@ class EntityPlayer extends EntityWalking {
 		this.sprite2.play();
 
 	}
+
+	
+
 	
 	update(delta)
 	{

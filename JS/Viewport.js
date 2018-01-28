@@ -59,10 +59,35 @@ class Viewport
         this.blur = null;
         this.weird = null;
 
-       
+        this.lastCombo = 0;
+        this.toUpdateIcons = false;
+		this.iconsList = [];
+        this.icons = new PIXI.Container();
+        this.container.addChild(this.icons);
 
         
     }
+
+    updateIcons()
+	{
+        if(this.player.combo.length !=  this.lastCombo)
+        {
+            this.toUpdateIcons = true;
+            this.lastCombo = this.player.combo;
+        }
+
+
+		if(this.toUpdateIcons)
+		{
+            this.container.removeChild(this.icons);
+            
+
+            this.container.addChild(this.icons);
+			this.toUpdateIcons = false;
+		}
+	}
+
+    
 
     update()
     {

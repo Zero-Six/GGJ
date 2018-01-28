@@ -18,10 +18,12 @@ class HelperPlayer
             HelperPlayer.CheckKey(map, entity, x, y, cell);
 
             HelperPlayer.CheckIce(map, entity, x, y, cell);
+            HelperPlayer.CheckSpawn(map, entity, x, y, cell);
             
             HelperPlayer.CheckGround(map, entity, x, y, cell);
 			
 			HelperPlayer.CheckMagnet(map,entity,x,y,cell);
+			HelperPlayer.CheckPickup(map,entity,x,y,cell);
 			
         
     }
@@ -35,6 +37,40 @@ class HelperPlayer
         let spikes = new EntitySpikes(entity.scene, x * Config.TileSize, y * Config.TileSize);
         entity.reset();
     }*/
+
+    static CheckPickup(map, entity, x, y, cell)
+    {
+        if(cell.name != "pickup")
+            return;
+        if(entity.battery >= 3)
+        {
+            return;
+        }
+        entity.battery+=2;
+        if(entity.battery > 3)
+            entity.battery = 3;
+        createjs.Sound.play("Key");
+        entity.scene.changeMapCell(x,y, 0);
+    }
+
+    static CheckSpawn(map, entity, x, y, cell)
+    {
+        if(cell.name != "spawn" || entity.solid == false)
+            return;
+        if(entity.hasKey == true)
+        {
+            if(map.grid[x][y] == 12 && entity == entity.scene.player1)
+            {
+                alert("Le joueur 1 a gagné ! Yay !");
+                window.href.reload();
+            }
+            else if(map.grid[x][y] == 13 && entity == entity.scene.player2)
+            {
+                alert("Le joueur 2 a gagné ! Yay !");
+                window.href.reload();
+            }
+        }
+    }
 
     static CheckKey(map, entity,x,y, cell)
     {
