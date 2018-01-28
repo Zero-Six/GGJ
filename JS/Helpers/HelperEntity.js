@@ -203,11 +203,18 @@ class HelperEntity {
             entity1.scene.cancelControllers(entity1);
         if ((normal.y > 0 && entity1.vy < 0) || (normal.y < 0 && entity1.vy > 0) && entity1.scene instanceof SceneGame && entity1 instanceof EntityPlayer)
             entity1.scene.cancelControllers(entity1);
+            
         entity1.setVy(normal.y);
         entity1.setVx(normal.x);
+        entity1.nextAction = [];
         if (entity2 != null) {
             entity2.setVy(-normal.y);
             entity2.setVx(-normal.x);
+            entity2.nextAction = [];
+        }
+        else 
+        {
+            
         }
     }
 }

@@ -125,20 +125,18 @@ class EntityPlayer extends EntityWalking {
 	
 	button1()
 	{
-		this.nextAction.push(function(){
 		if(this.canCombo)
 		{
 			this.addCombo(1);
-		}});
+		}
 	}
 	
 	button2()
 	{
-		this.nextAction.push(function(){
-			if(this.canCombo)
-			{
-				this.addCombo(2);
-			}});
+		if(this.canCombo)
+		{
+			this.addCombo(2);
+		};
 	}
 	
 	stopH()
@@ -153,19 +151,28 @@ class EntityPlayer extends EntityWalking {
 	
 	addCombo(c)
 	{
+		if(this.combo.length == 0)
+		{
+			setTimeout(() => {
+				this.clearCombo();
+			}, 3000);
+		}
 		if(this.combo.length <3) // <3
 		{
 			this.combo.push(c);
+			console.log(c);
 			
 			if(this.combo.length == 3)//combo atteint
 			{
-				
+				Spells.checkSpell(this.scene, this.combo);
+				this.clearCombo();
 			}
 		}
-		else
-		{
-			
-		}
+	}
+
+	clearCombo()
+	{
+		this.combo = [];
 	}
 
 

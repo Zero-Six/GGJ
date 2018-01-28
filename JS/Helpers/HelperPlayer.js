@@ -12,10 +12,13 @@ class HelperPlayer
 
         let points = [];
 
-        let topleft = new Vector2(entity.sprite1.x, entity.sprite1.y);
-        let bottomright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y + entity.sprite1.height)
-        let topright = new Vector2(entity.sprite1.x + entity.sprite1.width, entity.sprite1.y);
-        let bottomleft = new Vector2(entity.sprite1.x, entity.sprite1.y + entity.sprite1.height);
+        let x = entity.sprite1.x + Config.AirDensity * entity.Vx();
+        let y = entity.sprite1.y + Config.AirDensity * entity.Vy();
+
+        let topleft = new Vector2(x, y);
+        let bottomright = new Vector2(x + entity.sprite1.width, y + entity.sprite1.height)
+        let topright = new Vector2(x + entity.sprite1.width, y);
+        let bottomleft = new Vector2(x, y + entity.sprite1.height);
 
         topleft.x += entity.sprite1.hitarea.x;
         topleft.y += entity.sprite1.hitarea.y;
@@ -52,18 +55,17 @@ class HelperPlayer
             {
                 continue;
             }
+            cell.x = Math.floor(point.x / Config.TileSize);
+            cell.y = Math.floor(point.y / Config.TileSize);
             cells.push(cell);
         }
 
-        let x = ~~(entity.x / Config.TileSize);
-        let y = ~~(entity.y / Config.TileSize);
-
         cells.forEach(function(cell){
-            HelperPlayer.CheckSpikes(map, entity, x, y, cell);
+            HelperPlayer.CheckSpikes(map, entity, cell.x, cell.y, cell);
 		
-            HelperPlayer.CheckIce(map, entity, x, y, cell);
+            HelperPlayer.CheckIce(map, entity, cell.x, cell.y, cell);
             
-            HelperPlayer.CheckGround(map, entity, x, y, cell);
+            HelperPlayer.CheckGround(map, entity, cell.x, cell.y, cell);
         });
     }
 
