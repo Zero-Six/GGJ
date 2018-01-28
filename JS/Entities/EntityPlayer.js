@@ -225,7 +225,7 @@ class EntityPlayer extends EntityWalking {
 		if(this.combo.length == 0)
 		{
 			this.clearTimer = setTimeout(() => {
-				this.clearCombo();
+				this.clearCombo(false);
 			}, 3000);
 		}
 		if(this.combo.length <3) // <3
@@ -247,10 +247,13 @@ class EntityPlayer extends EntityWalking {
 		}
 	}
 
-	clearCombo()
+	clearCombo(sound = true)
 	{
 		this.canCombo = true;
 		this.combo = [];
+		if(sound)
+			createjs.Sound.play("Send");
+
 	}
 
 

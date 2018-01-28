@@ -62,6 +62,7 @@ class Program
         createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_01.wav", "Lava");
         createjs.Sound.registerSound( "Assets/Sounds/Phone_Bip_01_01.wav", "Bip1");
         createjs.Sound.registerSound( "Assets/Sounds/Phone_Bip_01_02.wav", "Bip2");
+        createjs.Sound.registerSound( "Assets/Sounds/Phone_Send.wav", "Send");
 
 
         createjs.Sound.registerSound( "Assets/Sounds/Pickup_Key.wav", "Key");

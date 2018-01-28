@@ -69,6 +69,8 @@ class Viewport
 			PIXI.Texture.fromFrame("level-batterie_4.png")
         ];
         this.battery = new PIXI.extras.AnimatedSprite(frames);
+        this.battery.scale.x = 2;
+            this.battery.scale.y = 2;
         this.viewport.addChild(this.battery);
     }
 
@@ -84,8 +86,10 @@ class Viewport
         {
             this.viewport.removeChild(this.combo);
             this.combo = new PIXI.Container();
-            this.combo.y = 10;
-            this.combo.x = 32;
+            this.combo.y = 20;
+            this.combo.x = 64;
+            this.combo.scale.x = 2;
+            this.combo.scale.y = 2;
             this.combo.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame("Bulle.png")));
 
             let x = 0;
