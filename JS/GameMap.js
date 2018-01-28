@@ -22,6 +22,15 @@ class GameMap
         }
         else if(tile.spriteAnim)
         {
+            if(tile.name == "pickup")
+            {
+                sprite = PIXI.Sprite.fromFrame("ground_0.png");
+                sprite.x = x * Config.TileSize;
+                sprite.y = y * Config.TileSize;
+                // alert(sprite.x+" "+sprite.y)
+                this.container.addChild(sprite);
+            }
+            
             sprite = tile.spriteAnim(x,y);
         }
         else // à revoir un peu pour les anims
