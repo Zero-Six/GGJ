@@ -19,6 +19,9 @@ class HelperPlayer
             HelperPlayer.CheckIce(map, entity, x, y, cell);
             
             HelperPlayer.CheckGround(map, entity, x, y, cell);
+			
+			HelperPlayer.CheckMagnet(map,entity,x,y,cell);
+			
         
     }
 
@@ -48,5 +51,16 @@ class HelperPlayer
             return;
        entity.mass = Config.MassGround;
     }
+	
+	static CheckMagnet(map, entity, x,y, cell)
+	{
+		var zone = entity.getArea(3);
+		for(var i in zone)
+		{
+			
+			
+		}
+	}
+	
 	
 }
