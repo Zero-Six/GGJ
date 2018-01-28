@@ -19,24 +19,26 @@ class EntityWalking extends Entity {
     }
 
     setVx(vx)
-    {
-        this.vx = vx;
-    }
+		{
+			this.vx = vx;
+		}
+	
+		setVy(vy)
+		{
+			this.vy = vy;
+		}
+	
+		Vx() 
+		{
+			return this.vx;
+		}
+	
+		Vy() 
+		{
+			return this.vy;
+		}
 
-    setVy(vy)
-    {
-        this.vy = vy;
-    }
 
-    Vx() 
-    {
-        return this.vx;
-    }
-
-    Vy() 
-    {
-        return this.vy;
-    }
 
     update(delta)
     {

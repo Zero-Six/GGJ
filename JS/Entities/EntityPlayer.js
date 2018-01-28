@@ -11,6 +11,8 @@ class EntityPlayer extends EntityWalking {
 
 		this.seeKey = true;
 
+		this.dying = false;
+
 
 		this.mass = 0.3;
 		this.nextAction = [];
@@ -53,8 +55,11 @@ class EntityPlayer extends EntityWalking {
 
 	reset() 
 	{
-		console.log("ok");
+		if(this.dying == true)
+			return;
+		this.dying = true;
 		this.canMove = false;
+		this.canCombo = false;
 
 		let death = [];
 		for(let i = 19; i < 24; i++)
@@ -64,6 +69,8 @@ class EntityPlayer extends EntityWalking {
 
 		this.switchSprite(death);
 
+		this.sprite1.animationSpeed = 0.1;
+		this.sprite2.animationSpeed = 0.1;
 		this.sprite1.play();
 		this.sprite2.play();
 		this.sprite1.loop = false;
@@ -73,13 +80,18 @@ class EntityPlayer extends EntityWalking {
 
 		this.sprite1.onComplete = () => {
 
+			this.dying = false;
 			this.canMove = true;
 			this.solid = true;
+			this.canCombo = true;
 
 			this.switchSprite(this.frames);
 
 			this.sprite1.play();
 			this.sprite2.play();
+
+			this.sprite1.animationSpeed = 0.3;
+			this.sprite2.animationSpeed = 0.3;
 
 			this.sprite1.loop = true;
 			this.sprite2.loop = true;
@@ -92,6 +104,13 @@ class EntityPlayer extends EntityWalking {
 		}
 	}
 
+	hit(other)
+    {
+        if(other instanceof EntitySpikes)
+        {
+            other.reset();
+        }
+    }
 	
 	moveUp(check = true)
 	{
