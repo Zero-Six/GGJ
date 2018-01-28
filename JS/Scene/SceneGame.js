@@ -39,12 +39,27 @@ class SceneGame extends Scene
         lavender_conv(lavenderCtx, rooms, Config.MapRooms, Config.MapRooms).then((origingrid) => {
             let grid = [];
             let self = this;
+            let x1 = 0;
+            let x2 = 0;
+            let y1 = 0;
+            let y2 = 0;
             for(let i = 0; i < origingrid.length; i++)
             {
                 let u = ~~(i/Config.MapWidth);
                 if(grid[u] == null)
                     grid[u] = [];
                 grid[u][i%Config.MapWidth] = origingrid[i];
+                if(origingrid[i] == 12)
+                {
+                    x1 = u * Config.TileSize;
+                    y1 = i%Config.MapWidth* Config.TileSize;
+                }
+                else if(origingrid[i] == 13)
+                {
+                    x2 = u* Config.TileSize;
+                    y2 = i%Config.MapWidth* Config.TileSize;
+                }
+
             }
             // var map = new GameMap(Config.MapWidth, Config.MapHeight, grid); // Potentiellement problème de clonage
             self.map1 = new GameMap(Config.MapWidth, Config.MapHeight, grid);;
@@ -53,6 +68,17 @@ class SceneGame extends Scene
             self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
             self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
     
+
+            self.player1.sprite1.x = x1;
+            self.player1.sprite1.y = y1;
+            self.player1.initialX = x1;
+            self.player1.initialY = y1;
+
+            self.player2.sprite1.x = x2;
+            self.player2.sprite1.y = y2;
+            self.player2.initialX = x2;
+            self.player2.initialY = y2;
+
             self.addEntity(self.player1);
             self.addEntity(self.player2);
             

@@ -125,7 +125,13 @@ let Tiles =
 	12 : {
 		name:"spawn",
 		solid : false,
-		sprite:"ground_0",
+		sprite:"ground_3",
+	}, 
+
+	13 : {
+		name:"spawn",
+		solid : false,
+		sprite:"ground_3",
 	}, 
 	
 	
