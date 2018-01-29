@@ -3,19 +3,13 @@
  */
 let Config = 
 {
-    Width : 384,
-    Height : 608,
-
     AirDensity  : 0.3,
 	
 	MassGround:0.3,
 	MassIce:0.9,
 	
-    PlayerLife  : 3,
-    PlayerFireTime  : 500,
     PlayerSpeed  : 10,
-
-    FireDamage  : 0.01,
+    PlayerMaxSpeed : 25,
 
     TileSize  : 32,
 
@@ -29,8 +23,6 @@ let Config =
 	zoneMagnet:3,
 	
 	NormBumper:100,
-	
-	
 }
 
 Config.MapWidth = Config.MapRooms*Config.MapSize;

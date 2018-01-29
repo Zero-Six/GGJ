@@ -43,8 +43,9 @@ class EntityWalking extends Entity {
     update(delta)
     {
         super.update(delta);
-        this.vx = this.vx > 50 ? 50 : this.vx ;
-        this.vy = this.vy > 50 ? 50 : this.vy ;
+
+        this.vx = Math.abs(this.vx) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vx / Math.abs(this.vx) : this.vx ;
+        this.vy = Math.abs(this.vy) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vy / Math.abs(this.vy) : this.vy ;
         
         this.sprite1.x += Config.AirDensity * this.vx;
         this.sprite1.y += Config.AirDensity * this.vy;

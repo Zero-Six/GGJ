@@ -144,9 +144,9 @@ class EntityPlayer extends EntityWalking {
 			return;
 		}
 		this.nextAction.push(function(){
-		if(this.canMove && this.vy <= 0 )
+		if(this.canMove)
 		{
-				this.vy = -this.speed;
+				this.vy -= this.speed;
 		}});
 	}
 	
@@ -158,9 +158,9 @@ class EntityPlayer extends EntityWalking {
 			return;
 		}
 		this.nextAction.push(function(){
-		if(this.canMove && this.vy >= 0)
+		if(this.canMove)
 		{
-				this.vy = +this.speed;
+				this.vy += this.speed;
 		}});
 	}
 	
@@ -172,9 +172,9 @@ class EntityPlayer extends EntityWalking {
 			return;
 		}
 		this.nextAction.push(function(){
-		if(this.canMove && this.vx <= 0)
+		if(this.canMove)
 		{
-				this.vx = -this.speed;
+				this.vx -= this.speed;
 		}});
 	}
 	
@@ -186,9 +186,9 @@ class EntityPlayer extends EntityWalking {
 			return;
 		}
 		this.nextAction.push(function(){
-		if(this.canMove && this.vx >= 0)
+		if(this.canMove)
 		{
-				this.vx = +this.speed;
+				this.vx += this.speed;
 		}});
 	}
 	

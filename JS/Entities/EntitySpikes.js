@@ -21,8 +21,8 @@ class EntitySpikes extends Entity
         this.sprite1.loop = false;
         this.sprite2.loop = false;
 
-        this.sprite1.animationSpeed = 0.5;
-        this.sprite2.animationSpeed = 0.5;
+        this.sprite1.animationSpeed = 0.3;
+        this.sprite2.animationSpeed = 0.3;
 
         this.setFriendly();
 
