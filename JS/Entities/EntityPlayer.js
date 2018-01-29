@@ -144,6 +144,8 @@ class EntityPlayer extends EntityWalking {
 		this.nextAction.push(function(){
 		if(this.canMove)
 		{
+			if(this.vy < Config.PlayerMaxSpeed*-1)
+				return;
 				this.vy -= this.speed;
 		}});
 	}
@@ -158,6 +160,8 @@ class EntityPlayer extends EntityWalking {
 		this.nextAction.push(function(){
 		if(this.canMove)
 		{
+			if(this.vy > Config.PlayerMaxSpeed)
+				return;
 				this.vy += this.speed;
 		}});
 	}
@@ -172,6 +176,8 @@ class EntityPlayer extends EntityWalking {
 		this.nextAction.push(function(){
 		if(this.canMove)
 		{
+				if(this.vx < Config.PlayerMaxSpeed*-1)
+					return;
 				this.vx -= this.speed;
 		}});
 	}
@@ -186,6 +192,8 @@ class EntityPlayer extends EntityWalking {
 		this.nextAction.push(function(){
 		if(this.canMove)
 		{
+			if(this.vx > Config.PlayerMaxSpeed)
+				return;
 				this.vx += this.speed;
 		}});
 	}

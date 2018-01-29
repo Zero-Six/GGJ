@@ -205,23 +205,31 @@ class HelperEntity {
         if ((normal.y > 0 && entity1.vy < 0) || (normal.y < 0 && entity1.vy > 0) && entity1.scene instanceof SceneGame && entity1 instanceof EntityPlayer)
             entity1.scene.cancelControllers(entity1);
         
+        //if(entity2 == null)
+        //{
             if(normal.x != 0)
                 entity1.vx = normal.x;///Math.abs(normal.x)/delta/10;  
             if(normal.y != 0)
                     entity1.vy = normal.y;///Math.abs(normal.y)/delta/10;  
             entity1.collided = true;
     
-        entity1.nextAction = [];
-
-        if(entity2 != null)
+            entity1.nextAction = [];
+        //}
+        /*else 
         {
-                
-            entity2.vx = 0;
-            entity2.vy = 0;
-            entity2.x += normal.x;
-            entity2.y += normal.y;  
-            entity2.nextAction = []; 
-        }
+            if(normal.x != 0)
+                entity2.vx = entity1.vx * 2;
+            if(normal.y != 0)
+                entity2.vy = entity1.vx * 2; 
+            if(normal.x != 0)
+                entity1.vx *= -2;
+            if(normal.y != 0)
+                entity1.vy *= -2;     
+             
+            entity1.nextAction = [];
+        }*/
+
+        
         /*entity1.setVy(normal.y);
         entity1.setVx(normal.x);
         entity1.nextAction = [];

@@ -20,9 +20,9 @@ class EntityWalking extends Entity {
     update(delta)
     {
         
-        this.vx = Math.abs(this.vx) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vx / Math.abs(this.vx) : this.vx ;
+       /* this.vx = Math.abs(this.vx) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vx / Math.abs(this.vx) : this.vx ;
         this.vy = Math.abs(this.vy) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vy / Math.abs(this.vy) : this.vy ;
-        
+        */
         this.x += delta/10 * this.vx;
         this.y += delta/10 * this.vy;
 

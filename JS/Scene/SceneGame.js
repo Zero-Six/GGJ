@@ -174,7 +174,7 @@ class SceneGame extends Scene
                          }
                          if (other.solid == false) 
                              return;
-                         HelperEntity.resolveCollision(delta, normal, entity);
+                         HelperEntity.resolveCollision(delta, normal, entity, other);
                      }
                  });
             
