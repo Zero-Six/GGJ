@@ -50,14 +50,14 @@ class Program
         createjs.Sound.registerSound( "Assets/Sounds/Step_08.wav", "Step_08");
 
 
-        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_01.wav", "Step_Ice_01",1);
-        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_02.wav", "Step_Ice_02",1);
-        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_03.wav", "Step_Ice_03" ,1);
-        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_04.wav", "Step_Ice_04",1);
-        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_05.wav", "Step_Ice_05",1 );
-        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_06.wav", "Step_Ice_06",1 );
-        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_07.wav", "Step_Ice_07",1 );
-        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_08.wav", "Step_Ice_08",1);
+        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_01.wav", "Step_Ice_01");
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_02.wav", "Step_Ice_02");
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_03.wav", "Step_Ice_03" );
+        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_04.wav", "Step_Ice_04");
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_05.wav", "Step_Ice_05");
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_06.wav", "Step_Ice_06" );
+        createjs.Sound.registerSound("Assets/Sounds/Step_Ice_07.wav", "Step_Ice_07");
+        createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_08.wav", "Step_Ice_08");
 
         createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_01.wav", "Lava");
         createjs.Sound.registerSound( "Assets/Sounds/Phone_Bip_01_01.wav", "Bip1");
