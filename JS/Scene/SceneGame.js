@@ -82,13 +82,13 @@ class SceneGame extends Scene
             self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
     
 
-            self.player1.sprite1.x = x1;
-            self.player1.sprite1.y = y1;
+            self.player1.x = x1;
+            self.player1.y = y1;
             self.player1.initialX = x1;
             self.player1.initialY = y1;
 
-            self.player2.sprite1.x = x2;
-            self.player2.sprite1.y = y2;
+            self.player2.x = x2;
+            self.player2.y = y2;
             self.player2.initialX = x2;
             self.player2.initialY = y2;
 
@@ -150,8 +150,10 @@ class SceneGame extends Scene
     updateEntities(delta)
     {
         this.entities.forEach((entity) => {
+            
             let normal = null;
             entity.preupdate(delta);
+            
 
             HelperPlayer.CheckPlayerTile(this.map1, entity);
 
@@ -172,27 +174,17 @@ class SceneGame extends Scene
                          }
                          if (other.solid == false) 
                              return;
-                         HelperEntity.resolveCollision(normal, entity);
+                         HelperEntity.resolveCollision(delta, normal, entity);
                      }
                  });
             
 
             // Vérification des collisions avec la map
-            try {
-                normal = HelperEntity.checkCollisionWithMap(delta, this.map1, entity);
-            }
-            catch(e)
-            {
-                
-            }
+
+            normal = HelperEntity.checkCollisionWithMap(delta, this.map1, entity);
             if (normal != null)
             {
-                HelperEntity.resolveCollision(normal, entity);
-                if(entity instanceof EntityPlayer)
-                {
-                    this.cancelControllers(entity);
-                    //entity.nextAction = [];
-                }
+                HelperEntity.resolveCollision(delta, normal, entity);
             }
             entity.update(delta);
             

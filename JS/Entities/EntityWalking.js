@@ -1,11 +1,9 @@
 class EntityWalking extends Entity {
 
-    constructor(scene) {
-
+    constructor(scene) 
+    {
         super(scene);
         this.canMove = true;
-
-	
     }
 
     reset() 
@@ -18,51 +16,34 @@ class EntityWalking extends Entity {
 
     }
 
-    setVx(vx)
-		{
-			this.vx = vx;
-		}
-	
-		setVy(vy)
-		{
-			this.vy = vy;
-		}
-	
-		Vx() 
-		{
-			return this.vx;
-		}
-	
-		Vy() 
-		{
-			return this.vy;
-		}
-
-
 
     update(delta)
     {
-        super.update(delta);
-
+        
         this.vx = Math.abs(this.vx) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vx / Math.abs(this.vx) : this.vx ;
         this.vy = Math.abs(this.vy) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vy / Math.abs(this.vy) : this.vy ;
         
-        alert(delta);
-        this.sprite1.x += delta/10 * this.vx;
-        this.sprite1.y += delta/10 * this.vy;
-        this.sprite2.x += delta/10 * this.vx;
-        this.sprite2.y += delta/10 * this.vy;
+        this.x += delta/10 * this.vx;
+        this.y += delta/10 * this.vy;
 
-        this.vx = (this.mass) * this.vx;
-        this.vy = (this.mass) * this.vy;
-        this.setFrame();
+        if(this.collided == false)
+        {
+            this.vx = (this.mass) * this.vx;
+            this.vy = (this.mass) * this.vy;
+        }
+        else{
+            this.vx = 0;
+            this.vy = 0;            
+        } 
+
 
 
         if (Math.round(this.vx) == 0)
             this.vx = 0;
         if (Math.round(this.vy) == 0)
             this.vy = 0;
-
+        super.update(delta);
+        this.setFrame();
     }
 
     bump()

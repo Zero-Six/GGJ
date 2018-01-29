@@ -15,8 +15,8 @@ class EntitySpikes extends Entity
         this.solid = false;
 
         this.switchSprite(frames);
-        this.sprite1.x = x;
-        this.sprite1.y = y;
+        this.x = x;
+        this.y = y;
 
         this.sprite1.loop = false;
         this.sprite2.loop = false;

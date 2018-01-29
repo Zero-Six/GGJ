@@ -6,8 +6,8 @@ let Config =
 	MassGround:0.3,
 	MassIce:0.9,
 	
-    PlayerSpeed  : 10,
-    PlayerMaxSpeed : 25,
+    PlayerSpeed  : 20,
+    PlayerMaxSpeed : 30,
 
     TileSize  : 32,
 

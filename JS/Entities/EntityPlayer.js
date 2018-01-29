@@ -38,8 +38,8 @@ class EntityPlayer extends EntityWalking {
 		this.sprite1.hitarea = new Rectangle(7,18,7,0);
 		this.sprite2.hitarea = new Rectangle(7,18,7,0);
 
-		this.sprite1.x = x;
-		this.sprite2.y = y;
+		this.x = x;
+		this.y = y;
 
 		this.sprite1.play();
 		this.sprite2.play();
@@ -118,8 +118,8 @@ class EntityPlayer extends EntityWalking {
 			this.sprite1.loop = true;
 			this.sprite2.loop = true;
 
-			this.sprite1.x = this.initialX;
-			this.sprite1.y = this.initialY;
+			this.x = this.initialX;
+			this.y = this.initialY;
 
 			this.scene.viewport1.addChild(this.sprite1);
 			this.scene.viewport2.addChild(this.sprite2);

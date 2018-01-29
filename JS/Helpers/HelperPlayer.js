@@ -6,8 +6,8 @@ class HelperPlayer
     static CheckPlayerTile(map, entity)
     {
 
-            let x = Math.floor((entity.sprite1.x + entity.sprite1.width /2) / Config.TileSize);
-			let y = Math.floor((entity.sprite1.y + entity.sprite1.height/1.5) / Config.TileSize);
+            let x = Math.floor((entity.x + entity.sprite1.width /2) / Config.TileSize);
+			let y = Math.floor((entity.y + entity.sprite1.height/1.5) / Config.TileSize);
             if(map.grid[Math.floor(x)] == null || map.grid[Math.floor(x)][Math.floor(y)] == null)
                 return;
             let cell = Tiles[map.grid[Math.floor(x)][Math.floor(y)]];
@@ -93,8 +93,8 @@ class HelperPlayer
         if(cell.name != "lava" || entity.solid == false)
             return;
         setTimeout(() => {
-            let x = Math.floor((entity.sprite1.x + entity.sprite1.width /2) / Config.TileSize);
-			let y = Math.floor((entity.sprite1.y + entity.sprite1.height/1.8) / Config.TileSize);
+            let x = Math.floor((entity.x + entity.sprite1.width /2) / Config.TileSize);
+			let y = Math.floor((entity.y + entity.sprite1.height/1.8) / Config.TileSize);
             if(map.grid[Math.floor(x)] == null || map.grid[Math.floor(x)][Math.floor(y)] == null)
                 return;
             let cell = Tiles[map.grid[Math.floor(x)][Math.floor(y)]];
@@ -143,7 +143,7 @@ class HelperPlayer
 		var zone = entity.getArea(Config.zoneMagnet,"magnet");
 		for(var i in zone)
 		{
-			if( Math.abs(zone[i].x*32+16-entity.sprite1.x) > 10 && Math.abs(zone[i].y*32+16-entity.sprite1.y) > 10)
+			if( Math.abs(zone[i].x*32+16-entity.x) > 10 && Math.abs(zone[i].y*32+16-entity.y) > 10)
 			{
 				var v = this.VectNorm(zone[i].x*32+16,zone[i].y*32+16,x*32,y*32,Config.NormMagnet);
 				entity.vx += -v.x;
@@ -157,7 +157,7 @@ class HelperPlayer
     {
         if(cell.name != "bumper")
             return;
-		var v = this.VectNorm(x*32+16,y*32+16,entity.sprite1.x,entity.sprite1.y,Config.NormBumper);
+		var v = this.VectNorm(x*32+16,y*32+16,entity.x,entity.y,Config.NormBumper);
 				entity.vx += v.x;
 				entity.vy += v.y;
     }

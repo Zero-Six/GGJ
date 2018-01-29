@@ -38,6 +38,9 @@ class Entity
 		 * Vélocité y
 		 */
 		this.vy = 0;
+
+		this.x = 0;
+		this.y = 0;
 	}
 
 		preupdate(delta)
@@ -47,8 +50,11 @@ class Entity
 
 		update(delta)
 		{
+			this.collided = false;
 			if(this.sprite1 != null && this.sprite2 != null)
 			{
+				this.sprite1.x = this.x;
+				this.sprite1.y = this.y;
 				this.sprite2.x = this.sprite1.x;
 				this.sprite2.y = this.sprite1.y;
 			}
@@ -57,26 +63,6 @@ class Entity
 		destroy()
 		{
 			this.scene.removeEntity(this);
-		}
-
-		setVx(vx)
-		{
-			this.vx = vx;
-		}
-	
-		setVy(vy)
-		{
-			this.vy = vy;
-		}
-	
-		Vx() 
-		{
-			return this.vx;
-		}
-	
-		Vy() 
-		{
-			return this.vy;
 		}
 
 		hit(other)
@@ -131,26 +117,6 @@ class Entity
 		
 		
 		bump()
-		{
-			
-		}
-
-		Vx()
-		{
-			
-		}
-		
-		Vy()
-		{
-			
-		}
-		
-		setVx(vx )
-		{
-			
-		}
-		
-		setVy(vy )
 		{
 			
 		}
