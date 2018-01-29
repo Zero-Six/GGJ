@@ -152,8 +152,8 @@ class HelperEntity {
         }
     }
 
-    static checkCollisionWithEntity(entity1, entity2) {
-        
+    static checkCollisionWithEntity(delta, entity1, entity2) {
+        delta = delta / 10;
         let topleft = new Vector2(entity1.sprite1.x, entity1.sprite1.y);
         let bottomright = new Vector2(entity1.sprite1.x + entity1.sprite1.width, entity1.sprite1.y + entity1.sprite1.height)
 
@@ -163,7 +163,7 @@ class HelperEntity {
         bottomright.x -= entity1.sprite1.hitarea.width;
         bottomright.y -= entity1.sprite1.hitarea.height;
 
-        let rectangle1 = new Rectangle(topleft.x + Config.AirDensity * entity1.vx, topleft.y + Config.AirDensity * entity1.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
+        let rectangle1 = new Rectangle(topleft.x + delta * entity1.vx, topleft.y + delta * entity1.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
         
         topleft = new Vector2(entity2.sprite1.x, entity2.sprite1.y);
         bottomright = new Vector2(entity2.sprite1.x + entity2.sprite1.width, entity2.sprite1.y + entity2.sprite1.height)
@@ -174,7 +174,7 @@ class HelperEntity {
         bottomright.x -= entity2.sprite1.hitarea.width;
         bottomright.y -= entity2.sprite1.hitarea.height;
 
-        let rectangle2 = new Rectangle(topleft.x + Config.AirDensity * entity2.vx, topleft.y + Config.AirDensity * entity2.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
+        let rectangle2 = new Rectangle(topleft.x + delta * entity2.vx, topleft.y + delta * entity2.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
         let n = this.checkCollision(rectangle1, rectangle2);
         
         //console.log(n);
@@ -195,23 +195,38 @@ class HelperEntity {
             normal.y = -normal.y;
         return normal;
     }
+
+
     static resolveCollision(normal, entity1, entity2) {
         if ((normal.x > 0 && entity1.vx < 0) || (normal.x < 0 && entity1.vx > 0) && entity1.scene instanceof SceneGame && entity1 instanceof EntityPlayer)
             entity1.scene.cancelControllers(entity1);
         if ((normal.y > 0 && entity1.vy < 0) || (normal.y < 0 && entity1.vy > 0) && entity1.scene instanceof SceneGame && entity1 instanceof EntityPlayer)
             entity1.scene.cancelControllers(entity1);
-            
-        entity1.setVy(normal.y);
+        
+
+                entity1.vx = 0;
+                entity1.vy = 0;
+                entity1.sprite1.x += normal.x;
+                entity1.sprite1.y += normal.y;  
+    
+        entity1.nextAction = [];
+
+        if(entity2 != null)
+        {
+                
+            entity2.vx = 0;
+            entity2.vy = 0;
+            entity2.sprite1.x += normal.x;
+            entity2.sprite1.y += normal.y;  
+            entity2.nextAction = []; 
+        }
+        /*entity1.setVy(normal.y);
         entity1.setVx(normal.x);
         entity1.nextAction = [];
-        if (entity2 != null) {
+        /*if (entity2 != null) {
             entity2.setVy(-normal.y);
             entity2.setVx(-normal.x);
             entity2.nextAction = [];
-        }
-        else 
-        {
-            
-        }
+        }*/
     }
 }

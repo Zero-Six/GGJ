@@ -163,7 +163,7 @@ class SceneGame extends Scene
                         return; 
                     if (other == entity)
                         return;
-                     normal = HelperEntity.checkCollisionWithEntity(entity, other);
+                     normal = HelperEntity.checkCollisionWithEntity(delta, entity, other);
                      if (normal != null) {
                          other.hit(entity);
                          if(other instanceof EntityPlayer)
