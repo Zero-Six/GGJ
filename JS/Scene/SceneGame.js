@@ -151,12 +151,14 @@ class SceneGame extends Scene
     {
         this.entities.forEach((entity) => {
             let normal = null;
+            entity.preupdate(delta);
+
             HelperPlayer.CheckPlayerTile(this.map1, entity);
 
             // Vérification des collisions entre entités
            
                 this.entities.forEach((other) => {
-                    HelperEntity.checkOverlap(entity, other);
+                    HelperEntity.checkOverlap(delta, entity, other);
                     if (entity.solid == false)
                         return; 
                     if (other == entity)
@@ -177,7 +179,7 @@ class SceneGame extends Scene
 
             // Vérification des collisions avec la map
             try {
-                normal = HelperEntity.checkCollisionWithMap(this.map1, entity);
+                normal = HelperEntity.checkCollisionWithMap(delta, this.map1, entity);
             }
             catch(e)
             {

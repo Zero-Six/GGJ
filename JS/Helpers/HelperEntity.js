@@ -1,3 +1,5 @@
+"use strict";
+
 class Vector2 {
     static min(v1, v2) {
         if (v1.scalar() < v2.scalar())
@@ -65,7 +67,8 @@ class HelperEntity {
     /*
         Vérifie la collision entre deux entitées
      */
-    static checkCollisionWithMap(map, entity) {
+    static checkCollisionWithMap(delta, map, entity) {
+        delta = delta / 10;
         let results = [];
 
         let points = [];
@@ -87,7 +90,7 @@ class HelperEntity {
         bottomright.x -= entity.sprite1.hitarea.width;
         bottomright.y -= entity.sprite1.hitarea.height;
 
-        let rectangle1 = new Rectangle(topleft.x + Config.AirDensity * entity.Vx(), topleft.y + Config.AirDensity * entity.Vy(), bottomright.x - topleft.x , bottomright.y - topleft.y);
+        let rectangle1 = new Rectangle(topleft.x + delta * entity.vx, topleft.y + delta * entity.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
         
 
 
@@ -123,9 +126,12 @@ class HelperEntity {
         return result;
     }
 
-    static checkOverlap(entity1, entity2) {
-        let rectangle1 = new Rectangle(entity1.sprite1.x + Config.AirDensity * entity1.Vx(), entity1.sprite1.y + Config.AirDensity * entity1.Vy(), entity1.sprite1.width, entity1.sprite1.height);
-        let rectangle2 = new Rectangle(entity2.sprite1.x + Config.AirDensity * entity2.Vx(), entity2.sprite1.y + Config.AirDensity * entity2.Vy(), entity2.sprite1.width, entity2.sprite1.height);
+    static checkOverlap(delta, entity1, entity2) {
+        if(!(entity1 instanceof EntityPlayer) || !(entity2 instanceof EntityPlayer))
+            return;
+        delta = delta/10;
+        let rectangle1 = new Rectangle(entity1.sprite1.x + delta * entity1.vx, entity1.sprite1.y + delta * entity1.vy, entity1.sprite1.width, entity1.sprite1.height);
+        let rectangle2 = new Rectangle(entity2.sprite1.x + delta * entity2.vx, entity2.sprite1.y + delta * entity2.vy, entity2.sprite1.width, entity2.sprite1.height);
         let nm = this.checkCollision(rectangle1, rectangle2);
         if(nm == null || (nm.x == 0 && nm.y == 0))
             return;

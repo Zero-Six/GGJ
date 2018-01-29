@@ -39,6 +39,12 @@ class Entity
 		 */
 		this.vy = 0;
 	}
+
+		preupdate(delta)
+		{
+			
+		}
+
 		update(delta)
 		{
 			if(this.sprite1 != null && this.sprite2 != null)

@@ -46,17 +46,15 @@ class EntityPlayer extends EntityWalking {
 
 	}
 
-	
-
-	
-	update(delta)
+	preupdate(delta)
 	{
-		super.update(delta);
+		super.preupdate(delta);
 		while(this.nextAction.length > 0)
 		{
 			this.nextAction.shift().bind(this)();			
 		}
 	}
+
 
 	dropKey()
 	{

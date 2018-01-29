@@ -3,8 +3,6 @@
  */
 let Config = 
 {
-    AirDensity  : 0.3,
-	
 	MassGround:0.3,
 	MassIce:0.9,
 	

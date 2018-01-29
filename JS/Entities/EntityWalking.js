@@ -47,10 +47,11 @@ class EntityWalking extends Entity {
         this.vx = Math.abs(this.vx) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vx / Math.abs(this.vx) : this.vx ;
         this.vy = Math.abs(this.vy) > Config.PlayerMaxSpeed ? Config.PlayerMaxSpeed * this.vy / Math.abs(this.vy) : this.vy ;
         
-        this.sprite1.x += Config.AirDensity * this.vx;
-        this.sprite1.y += Config.AirDensity * this.vy;
-        this.sprite2.x += Config.AirDensity * this.vx;
-        this.sprite2.y += Config.AirDensity * this.vy;
+        alert(delta);
+        this.sprite1.x += delta/10 * this.vx;
+        this.sprite1.y += delta/10 * this.vy;
+        this.sprite2.x += delta/10 * this.vx;
+        this.sprite2.y += delta/10 * this.vy;
 
         this.vx = (this.mass) * this.vx;
         this.vy = (this.mass) * this.vy;
