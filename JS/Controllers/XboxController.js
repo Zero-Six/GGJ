@@ -4,10 +4,14 @@ class XboxController extends Controller
     {
         super(player);
         this.gamepad = null;
+        this.updateHandler = null;
 
         Program.GetInstance().App().ticker.add((delta) => {
-            this.update();
+            if(this.updateHandler != null)
+                this.updateHandler();
         });
+
+        this.cancel();
 
         let self = this;
         window.addEventListener("gamepadconnected", function(e) {
@@ -25,6 +29,14 @@ class XboxController extends Controller
             e.stopImmediatePropagation();
             self.gamepad = null;
         });
+    }
+
+    cancel()
+    {
+        this.updateHandler = null;
+        setTimeout(() => {
+            this.updateHandler = this.update;
+        }, 200);
     }
 
     update()

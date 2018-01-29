@@ -1,5 +1,11 @@
 class SpellKey extends Spells
 {
+
+    cost()
+    {
+        return 2;
+    }
+
     cast(players, player)
     {
         player = Spells.getOtherPlayer(players, player);
@@ -7,6 +13,6 @@ class SpellKey extends Spells
         setTimeout(() => {
             player.seeKey = true;
         }, 10000)  
-        return 1;
+        return 2;
     }
 }

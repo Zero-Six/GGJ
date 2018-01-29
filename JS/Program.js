@@ -40,14 +40,14 @@ class Program
     {
         console.log("Loading sounds...")
         createjs.Sound.registerSound( "Assets/Sounds/Trap_Spikes.wav", "Spikes",3);
-        createjs.Sound.registerSound( "Assets/Sounds/Step_01.wav", "Step_01",1);
-        createjs.Sound.registerSound("Assets/Sounds/Step_02.wav", "Step_02",1);
-        createjs.Sound.registerSound("Assets/Sounds/Step_03.wav", "Step_03" ,1);
-        createjs.Sound.registerSound( "Assets/Sounds/Step_04.wav", "Step_04",1);
-        createjs.Sound.registerSound("Assets/Sounds/Step_05.wav", "Step_05",1 );
-        createjs.Sound.registerSound("Assets/Sounds/Step_06.wav", "Step_06",1 );
-        createjs.Sound.registerSound("Assets/Sounds/Step_07.wav", "Step_07",1 );
-        createjs.Sound.registerSound( "Assets/Sounds/Step_08.wav", "Step_08",1);
+        createjs.Sound.registerSound( "Assets/Sounds/Step_01.wav", "Step_01");
+        createjs.Sound.registerSound("Assets/Sounds/Step_02.wav", "Step_02");
+        createjs.Sound.registerSound("Assets/Sounds/Step_03.wav", "Step_03" );
+        createjs.Sound.registerSound( "Assets/Sounds/Step_04.wav", "Step_04");
+        createjs.Sound.registerSound("Assets/Sounds/Step_05.wav", "Step_05");
+        createjs.Sound.registerSound("Assets/Sounds/Step_06.wav", "Step_06");
+        createjs.Sound.registerSound("Assets/Sounds/Step_07.wav", "Step_07");
+        createjs.Sound.registerSound( "Assets/Sounds/Step_08.wav", "Step_08");
 
 
         createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_01.wav", "Step_Ice_01",1);

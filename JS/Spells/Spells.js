@@ -9,6 +9,7 @@ class Spells
 			let players = [
 				scene.player1, scene.player2
 			];
+			console.log(id);
 			if(Spells.List()[id].cost() > player.battery)
 				return 0;
 			return Spells.List()[id].cast(players, player);

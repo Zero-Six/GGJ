@@ -4,13 +4,19 @@ class KeyboardController extends Controller {
     constructor(player, upcode, downcode, leftcode, rightcode, button1code, button2code) {
         super(player);
 
-        this.arrowHandler = null;
+        this.arrowHHandler = null;
+        this.arrowVHandler = null;
         this.buttonHandler = null;
 
         Program.GetInstance().App().ticker.add((delta) => {
-            if(this.arrowHandler != null)
+            if(this.arrowVHandler != null)
             {
-                this.arrowHandler();
+                this.arrowVHandler();
+                //this.arrowHandler = null;
+            }
+            if(this.arrowHHandler != null)
+            {
+                this.arrowHHandler();
                 //this.arrowHandler = null;
             }
             if(this.buttonHandler != null)
@@ -19,16 +25,16 @@ class KeyboardController extends Controller {
 		
 		
         KeyboardController.keyboard(leftcode).press = () => {
-            this.arrowHandler = this.left;
+            this.arrowHHandler = this.left;
         };
         KeyboardController.keyboard(upcode).press = () => {
-            this.arrowHandler = this.up;
+            this.arrowVHandler = this.up;
         };
         KeyboardController.keyboard(rightcode).press = () => {
-            this.arrowHandler = this.right;
+            this.arrowHHandler = this.right;
         };
         KeyboardController.keyboard(downcode).press = () => {
-            this.arrowHandler = this.down;
+            this.arrowVHandler = this.down;
         };
         KeyboardController.keyboard(button1code).press = () => {
             this.buttonHandler = this.button1;
@@ -39,16 +45,16 @@ class KeyboardController extends Controller {
 
 
         KeyboardController.keyboard(leftcode).release = () => {
-            this.arrowHandler = null;
+            this.arrowHHandler = null;
         };
         KeyboardController.keyboard(upcode).release = () => {
-            this.arrowHandler = null;
+            this.arrowVHandler = null;
         };
         KeyboardController.keyboard(rightcode).release = () => {
-            this.arrowHandler = null;
+            this.arrowHHandler = null;
         };
         KeyboardController.keyboard(downcode).release = () => {
-            this.arrowHandler = null;
+            this.arrowVHandler = null;
         };
         KeyboardController.keyboard(button1code).release = () => {
             this.buttonHandler = null;
@@ -120,5 +126,11 @@ class KeyboardController extends Controller {
     button2()
     {
         this.player.button2();                
+    }
+
+    cancel()
+    {
+        this.arrowHHandler = null;
+        this.arrowVHandler = null;
     }
 }

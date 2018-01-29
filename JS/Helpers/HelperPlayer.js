@@ -118,11 +118,7 @@ class HelperPlayer
             return;
         }
 
-            if(entity.vx != 0 || entity.vy != 0)
-            {
-                let i = ~~(Math.random() * 8);
-                createjs.Sound.play("Step_Ice_0"+i);
-            }
+            
             entity.mass = Config.MassIce;
     }
 	
@@ -130,11 +126,6 @@ class HelperPlayer
     {
         if(cell.name != "ground")
             return;
-        if(entity.vx != 0 || entity.vy != 0)
-        {
-            let i = ~~(Math.random() * 8);
-            createjs.Sound.play("Step_0"+i);
-        }
        entity.mass = Config.MassGround;
     }
 	

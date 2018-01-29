@@ -91,8 +91,6 @@ class HelperEntity {
         bottomright.y -= entity.sprite1.hitarea.height;
 
         let rectangle1 = new Rectangle(topleft.x + delta * entity.vx, topleft.y + delta * entity.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
-        
-
 
         points.push(topleft);
         points.push(bottomright);
