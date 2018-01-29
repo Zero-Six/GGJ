@@ -114,19 +114,10 @@ class HelperEntity {
             //console.log(r);
             result = result.add(r);
         });
-        if (result.x != 0 && Math.abs(result.x) < 1) {
-            if (result.x < 0)
-                result.x = -1;
-            if (result.x > 0)
-                result.x = 1;
-        }
-        if (result.y != 0 && Math.abs(result.y) < 1) {
-            if (result.y < 0)
-                result.y = -1;
-            if (result.y > 0)
-                result.y = 1;
-        }
-        
+
+        result.x = result.x != 0 && Math.abs(result.x) < 1 ? result.x / Math.abs(result.x) : result.x;
+        result.y = result.y != 0 && Math.abs(result.y) < 1 ? result.y / Math.abs(result.y) : result.y;
+         
         //cc;
         //console.log(result);
         return result;

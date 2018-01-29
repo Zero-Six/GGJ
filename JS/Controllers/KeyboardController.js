@@ -3,75 +3,58 @@ class KeyboardController extends Controller {
 
     constructor(player, upcode, downcode, leftcode, rightcode, button1code, button2code) {
         super(player);
-        this.timer = null;
-        let left = this.left.bind(this);
-        let right = this.right.bind(this);
-        let up = this.up.bind(this);
-        let down = this.down.bind(this);
-        let button1 = this.button1.bind(this);
-        let button2 = this.button2.bind(this);
+
+        this.arrowHandler = null;
+        this.buttonHandler = null;
+
+        Program.GetInstance().App().ticker.add((delta) => {
+            if(this.arrowHandler != null)
+            {
+                this.arrowHandler();
+                //this.arrowHandler = null;
+            }
+            if(this.buttonHandler != null)
+                this.buttonHandler();
+        });
 		
 		
         KeyboardController.keyboard(leftcode).press = () => {
-            clearInterval(this.timerH);
-            this.timerH = setInterval(() => {
-                this.left();
-            }, 20);
+            this.arrowHandler = this.left;
         };
         KeyboardController.keyboard(upcode).press = () => {
-            clearInterval(this.timerV);
-            this.timerV = setInterval(() => {
-                this.up();
-            }, 20);
+            this.arrowHandler = this.up;
         };
         KeyboardController.keyboard(rightcode).press = () => {
-            clearInterval(this.timerH);
-            this.timerH = setInterval(() => {
-                this.right();
-            }, 20);
+            this.arrowHandler = this.right;
         };
         KeyboardController.keyboard(downcode).press = () => {
-            clearInterval(this.timerV);
-            this.timerV = setInterval(() => {
-                this.down();
-            }, 20);
+            this.arrowHandler = this.down;
         };
         KeyboardController.keyboard(button1code).press = () => {
-            clearInterval(this.timerB);
-            this.timerB = setInterval(() => {
-                this.button1();
-            }, 20);
+            this.buttonHandler = this.button1;
         };
         KeyboardController.keyboard(button2code).press = () => {
-            clearInterval(this.timerB);
-            this.timerB = setInterval(() => {
-                this.button2();
-            }, 20);
+            this.buttonHandler = this.button2;
         };
 
 
         KeyboardController.keyboard(leftcode).release = () => {
-            this.cancelH();
+            this.arrowHandler = null;
         };
         KeyboardController.keyboard(upcode).release = () => {
-            this.cancelV();
-
+            this.arrowHandler = null;
         };
         KeyboardController.keyboard(rightcode).release = () => {
-            this.cancelH();
-
+            this.arrowHandler = null;
         };
         KeyboardController.keyboard(downcode).release = () => {
-            this.cancelV();
-
+            this.arrowHandler = null;
         };
         KeyboardController.keyboard(button1code).release = () => {
-            this.cancelB();
-
+            this.buttonHandler = null;
         };
         KeyboardController.keyboard(button2code).release = () => {
-            this.cancelB();
-
+            this.buttonHandler = null;
         };
 
     }
@@ -138,30 +121,4 @@ class KeyboardController extends Controller {
     {
         this.player.button2();                
     }
-
-    cancelH()
-    {
-        clearInterval(this.timerH);
-        this.timerH = null;
-		
-		this.player.stopH();
-		
-    }
-	
-	 cancelV()
-    {
-        clearInterval(this.timerV);
-        this.timerV = null;
-		
-		this.player.stopV();
-		
-    }
-	
-	 cancelB()
-    {
-        clearInterval(this.timerB);
-        this.timerB = null;
-		
-    }
-
 }
