@@ -4,7 +4,11 @@ class XboxController extends Controller
     {
         super(player);
         this.gamepad = null;
-        this.timer = null;
+
+        Program.GetInstance().App().ticker.add((delta) => {
+            this.update();
+        });
+
         let self = this;
         window.addEventListener("gamepadconnected", function(e) {
             console.log("Xbox connected");
@@ -12,10 +16,6 @@ class XboxController extends Controller
                 return;
             e.stopImmediatePropagation();
             self.gamepad = navigator.getGamepads()[e.gamepad.index];
-            self.timer = setInterval(function(){
-                self.update();
-            }, 20);
-
         });
 
         window.addEventListener("gamepaddisconnected", function(e) {
@@ -24,7 +24,6 @@ class XboxController extends Controller
                 return;
             e.stopImmediatePropagation();
             self.gamepad = null;
-            self.cancel();
         });
     }
 
@@ -99,11 +98,5 @@ class XboxController extends Controller
     button2()
     {
         this.player.button2();                
-    }
-
-    cancel()
-    {
-        //clearInterval(this.timer);
-        //this.timer = null;
     }
 }
