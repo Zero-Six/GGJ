@@ -76,23 +76,8 @@ let Tiles =
 	
 	5 : {
 		name:"bumper",
-		solid : true,
-		spriteAnim: function(x,y)
-		{
-			
-			var anim = new PIXI.extras.AnimatedSprite([
-			PIXI.Texture.fromFrame("bumper_1.png"),
-			PIXI.Texture.fromFrame("bumper_2.png"),
-			PIXI.Texture.fromFrame("bumper_3.png"),
-			PIXI.Texture.fromFrame("bumper_4.png")
-			]);
-			anim.animationSpeed = 0.1;
-			anim.x = x*32;
-			anim.y = y*32;
-			anim.loop = false;
-			anim.play();
-			return anim
-		}
+		solid : false,
+		sprite : "ground_0"
 	},
 	
 	

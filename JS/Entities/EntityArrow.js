@@ -9,6 +9,7 @@ class EntityArrow extends EntityWalking
         this.vy = vy;
         this.initialVx = vx;
         this.initialVy = vy;
+        this.overlaping = false;
 
         let frames = [
             PIXI.Texture.fromFrame("arrow_1.png"),

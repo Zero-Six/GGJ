@@ -104,6 +104,13 @@ class SceneGame extends Scene
             let bow = new EntityBow(this, cell.x * Config.TileSize, cell.y * Config.TileSize);
             this.addEntity(bow);
         });
+
+        // Ajout des bumpers
+        let bumpercells = this.player1.getArea(Config.MapWidth*2, "bumper");
+        bumpercells.forEach((cell) => {
+            let bumper = new EntityBumper(this, cell.x * Config.TileSize, cell.y * Config.TileSize);
+            this.addEntity(bumper);
+        });
         this.start();
     }
 

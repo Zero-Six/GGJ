@@ -132,6 +132,8 @@ class HelperEntity {
     static checkOverlap(delta, entity1, entity2) {
         if(!(entity1 instanceof EntityPlayer) || !(entity2 instanceof EntityPlayer))
             return;
+        if(entity1.overlaping == false || entity2.overlaping == false)
+            return;
         delta = delta/10;
         let rectangle1 = new Rectangle(entity1.x + delta * entity1.vx, entity1.y + delta * entity1.vy, entity1.sprite1.width, entity1.sprite1.height);
         let rectangle2 = new Rectangle(entity2.x + delta * entity2.vx, entity2.y + delta * entity2.vy, entity2.sprite1.width, entity2.sprite1.height);

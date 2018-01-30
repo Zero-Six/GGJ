@@ -10,6 +10,8 @@ class Entity
 
 		this.collided = false;
 
+		this.overlaping = true;
+
 		/**
 		 * Masse (pris en compte dans la gestion des collisions)
 		 */
