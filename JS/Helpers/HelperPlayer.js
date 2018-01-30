@@ -5,6 +5,8 @@ class HelperPlayer
 {
     static CheckPlayerTile(map, entity)
     {
+        if(!(entity instanceof EntityPlayer))
+            return;
 
             let x = Math.floor((entity.x + entity.sprite1.width /2) / Config.TileSize);
 			let y = Math.floor((entity.y + entity.sprite1.height/1.5) / Config.TileSize);
@@ -19,12 +21,10 @@ class HelperPlayer
 
             HelperPlayer.CheckSpawn(map, entity, x, y, cell);
             
-            HelperPlayer.CheckGround(map, entity, x, y, cell);
 			
 			HelperPlayer.CheckMagnet(map,entity,x,y,cell);
 			HelperPlayer.CheckPickup(map,entity,x,y,cell);
 			
-			HelperPlayer.CheckBumper(map,entity,x,y,cell);
             HelperPlayer.CheckIce(map, entity, x, y, cell);
 			
         
@@ -117,16 +117,7 @@ class HelperPlayer
                 entity.mass = Config.MassGround;
             return;
         }
-
-            
-            entity.mass = Config.MassIce;
-    }
-	
-	static CheckGround(map, entity,x,y, cell)
-    {
-        if(cell.name != "ground")
-            return;
-       entity.mass = Config.MassGround;
+        entity.mass = Config.MassIce;
     }
 	
 	static CheckMagnet(map, entity, x,y, cell)
@@ -143,15 +134,7 @@ class HelperPlayer
 			
 		}
 	}
-	
-	static CheckBumper(map, entity,x,y, cell)
-    {
-        if(cell.name != "bumper")
-            return;
-		var v = this.VectNorm(x*32+16,y*32+16,entity.x,entity.y,Config.NormBumper);
-				entity.vx += v.x;
-				entity.vy += v.y;
-    }
+
 	
 	static VectNorm(xa,ya,xb,yb,norm)
 	{

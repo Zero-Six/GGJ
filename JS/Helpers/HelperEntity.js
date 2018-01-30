@@ -102,7 +102,7 @@ class HelperEntity {
         for (let i = 0; i < points.length; i++) {
             //console.log(points);
             let point = points[i];
-            if (Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]].solid == false) {
+            if (map.grid[Math.floor(point.x / Config.TileSize)] == null || Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]] == null ||Tiles[map.grid[Math.floor(point.x / Config.TileSize)][Math.floor(point.y / Config.TileSize)]].solid == false) {
                 continue;
             }
             let rectangle2 = new Rectangle(Math.floor(point.x / Config.TileSize) * Config.TileSize, Math.floor(point.y / Config.TileSize) * Config.TileSize, Config.TileSize, Config.TileSize);

@@ -42,7 +42,7 @@ class Program
     {
         console.log("Loading sounds...")
 
-        this.sounds = 21;
+        this.sounds = 22;
 
         createjs.Sound.registerSound( "Assets/Sounds/Trap_Spikes.wav", "Spikes",3);
         createjs.Sound.registerSound( "Assets/Sounds/Step_01.wav", "Step_01");

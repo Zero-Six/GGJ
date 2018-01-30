@@ -88,9 +88,6 @@ class SceneGame extends Scene
             self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
             self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
 
-            self.addEntity(self.player1);
-            self.addEntity(self.player2);
-
             self.populate();
         });
         
@@ -111,6 +108,10 @@ class SceneGame extends Scene
             let bumper = new EntityBumper(this, cell.x * Config.TileSize, cell.y * Config.TileSize);
             this.addEntity(bumper);
         });
+
+        this.addEntity(this.player1);
+        this.addEntity(this.player2);
+
         this.start();
     }
 
@@ -180,24 +181,21 @@ class SceneGame extends Scene
             // Vérification des collisions entre entités
            
                 this.entities.forEach((other) => {
+                    if (other == entity)
+                        return;
                     HelperEntity.checkOverlap(delta, entity, other);
                     if (entity.solid == false)
                         return; 
-                    if (other == entity)
-                        return;
+
                      normal = HelperEntity.checkCollisionWithEntity(delta, entity, other);
                      if (normal != null) {
-                         if(other.hit(entity) === false)
+                        if(other.hit(entity) === false)
                         {
                             return;
                         }
-                         if(other instanceof EntityPlayer)
-                         {
-                             this.cancelControllers(other);
-                         }
-                         if (other.solid == false) 
-                             return;
-                         HelperEntity.resolveCollision(delta, normal, entity, other);
+                        if (other.solid == false) 
+                            return;
+                        HelperEntity.resolveCollision(delta, normal, entity, other);
                      }
                  });
             

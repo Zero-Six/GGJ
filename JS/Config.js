@@ -21,6 +21,8 @@ let Config =
 	zoneMagnet:3,
 	
     NormBumper:100,
+    BumperBuff : 500,
+    MassBumper: 0.7,
     
     SpikeFriendly: 2000,
     SpikeDeadly : 500,

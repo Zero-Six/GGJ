@@ -15,7 +15,7 @@ class Entity
 		/**
 		 * Masse (pris en compte dans la gestion des collisions)
 		 */
-		this.mass = 0;
+		this.mass = 1;
 
 		/**
 		 * Géré par le système de collision ?
