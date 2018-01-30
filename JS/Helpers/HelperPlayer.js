@@ -21,7 +21,6 @@ class HelperPlayer
 
             HelperPlayer.CheckSpawn(map, entity, x, y, cell);
             
-			
 			HelperPlayer.CheckMagnet(map,entity,x,y,cell);
 			HelperPlayer.CheckPickup(map,entity,x,y,cell);
 			
@@ -105,7 +104,7 @@ class HelperPlayer
                 createjs.Sound.play("Lava");
                 entity.reset();
             }
-        }, 100);
+        }, Config.LavaBurnBuff);
     }    
     
 
@@ -125,7 +124,7 @@ class HelperPlayer
 		var zone = entity.getArea(Config.zoneMagnet,"magnet");
 		for(var i in zone)
 		{
-			if( Math.abs(zone[i].x*32+16-entity.x) > 10 && Math.abs(zone[i].y*32+16-entity.y) > 10)
+			if( Math.abs(zone[i].x*32+16-(entity.x + entity.sprite1.width/2)) > 10 && Math.abs(zone[i].y*32+16-(entity.y+entity.sprite1.height/2)) > 10)
 			{
 				var v = this.VectNorm(zone[i].x*32+16,zone[i].y*32+16,x*32,y*32,Config.NormMagnet);
 				entity.vx += -v.x;

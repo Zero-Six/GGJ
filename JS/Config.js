@@ -18,7 +18,9 @@ let Config =
 	
 	MapSize:11,
 	NormMagnet:2,
-	zoneMagnet:3,
+    zoneMagnet:4,
+    
+    LavaBurnBuff : 100, 
 	
     NormBumper:100,
     BumperBuff : 500,
