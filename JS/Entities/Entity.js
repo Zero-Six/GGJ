@@ -138,8 +138,12 @@ class Entity
 			
 			for(let i = x; i <= x + (r*2+1); i++)
 			{
+				if(i < 0)
+					continue;
 				for(let u = y; u <= y +(r*2+1); u++)
 				{
+					if(u < 0)
+						continue;
 					if(map.grid[Math.floor(i )] == null || map.grid[Math.floor(i )][Math.floor(u )] == null)
 						continue;
 					if(Tiles[map.grid[Math.floor(i )][Math.floor(u )]] == null || Tiles[map.grid[Math.floor(i )][Math.floor(u )]].name != only)

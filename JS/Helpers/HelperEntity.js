@@ -78,17 +78,20 @@ class HelperEntity {
         let topright = new Vector2(entity.x + entity.sprite1.width, entity.y);
         let bottomleft = new Vector2(entity.x, entity.y + entity.sprite1.height);
 
-        topleft.x += entity.sprite1.hitarea.x;
-        topleft.y += entity.sprite1.hitarea.y;
+        if(entity.sprite1.hitarea != null)
+        {
+            topleft.x += entity.sprite1.hitarea.x;
+            topleft.y += entity.sprite1.hitarea.y;
 
-        topright.x -= entity.sprite1.hitarea.width;
-        topright.y += entity.sprite1.hitarea.y;
+            topright.x -= entity.sprite1.hitarea.width;
+            topright.y += entity.sprite1.hitarea.y;
 
-        bottomleft.x += entity.sprite1.hitarea.x;
-        bottomleft.y -= entity.sprite1.hitarea.height;
+            bottomleft.x += entity.sprite1.hitarea.x;
+            bottomleft.y -= entity.sprite1.hitarea.height;
 
-        bottomright.x -= entity.sprite1.hitarea.width;
-        bottomright.y -= entity.sprite1.hitarea.height;
+            bottomright.x -= entity.sprite1.hitarea.width;
+            bottomright.y -= entity.sprite1.hitarea.height;
+        }
 
         let rectangle1 = new Rectangle(topleft.x + delta * entity.vx, topleft.y + delta * entity.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
 
@@ -157,22 +160,28 @@ class HelperEntity {
         let topleft = new Vector2(entity1.x, entity1.y);
         let bottomright = new Vector2(entity1.x + entity1.sprite1.width, entity1.y + entity1.sprite1.height)
 
-        topleft.x += entity1.sprite1.hitarea.x;
-        topleft.y += entity1.sprite1.hitarea.y;
+        if(entity1.sprite1.hitarea != null)
+        {
+            topleft.x += entity1.sprite1.hitarea.x;
+            topleft.y += entity1.sprite1.hitarea.y;
 
-        bottomright.x -= entity1.sprite1.hitarea.width;
-        bottomright.y -= entity1.sprite1.hitarea.height;
+            bottomright.x -= entity1.sprite1.hitarea.width;
+            bottomright.y -= entity1.sprite1.hitarea.height;
+        }
 
         let rectangle1 = new Rectangle(topleft.x + delta * entity1.vx, topleft.y + delta * entity1.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
         
         topleft = new Vector2(entity2.x, entity2.y);
         bottomright = new Vector2(entity2.x + entity2.sprite1.width, entity2.y + entity2.sprite1.height)
 
-        topleft.x += entity2.sprite1.hitarea.x;
-        topleft.y += entity2.sprite1.hitarea.y;
+        if(entity2.sprite2.hitarea != null)
+        {
+            topleft.x += entity2.sprite1.hitarea.x;
+            topleft.y += entity2.sprite1.hitarea.y;
 
-        bottomright.x -= entity2.sprite1.hitarea.width;
-        bottomright.y -= entity2.sprite1.hitarea.height;
+            bottomright.x -= entity2.sprite1.hitarea.width;
+            bottomright.y -= entity2.sprite1.hitarea.height;
+        }
 
         let rectangle2 = new Rectangle(topleft.x + delta * entity2.vx, topleft.y + delta * entity2.vy, bottomright.x - topleft.x , bottomright.y - topleft.y);
         let n = this.checkCollision(rectangle1, rectangle2);
@@ -210,8 +219,8 @@ class HelperEntity {
             if(normal.y != 0)
                     entity1.vy = normal.y;///Math.abs(normal.y)/delta/10;  
             entity1.collided = true;
-    
-            entity1.nextAction = [];
+            if(entity1 instanceof EntityPlayer)
+                entity1.nextAction = [];
         //}
         /*else 
         {

@@ -20,7 +20,13 @@ let Config =
 	NormMagnet:2,
 	zoneMagnet:3,
 	
-	NormBumper:100,
+    NormBumper:100,
+    
+    SpikeFriendly: 2000,
+    SpikeDeadly : 500,
+
+    BowDeadly : 3000,
+    ArrowSpeed : 50,
 }
 
 Config.MapWidth = Config.MapRooms*Config.MapSize;

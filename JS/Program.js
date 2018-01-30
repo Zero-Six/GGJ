@@ -27,6 +27,8 @@ class Program
         this.scene = null;
         this.ready = false;
 
+        this.sounds = 0;
+
         this.app = new PIXI.Application(608, 608, {backgroundColor : 0x282d44});
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         document.getElementById("touch").appendChild(this.app.view);
@@ -39,6 +41,9 @@ class Program
     loadSounds()
     {
         console.log("Loading sounds...")
+
+        this.sounds = 21;
+
         createjs.Sound.registerSound( "Assets/Sounds/Trap_Spikes.wav", "Spikes",3);
         createjs.Sound.registerSound( "Assets/Sounds/Step_01.wav", "Step_01");
         createjs.Sound.registerSound("Assets/Sounds/Step_02.wav", "Step_02");
@@ -78,6 +83,9 @@ class Program
 
     loadSprites()
     {
+        this.sounds--;
+        if(this.sounds > 0)
+            return;
         console.log("Loading Sprites...");
         PIXI.loader.onError.add(function(error)
         {
@@ -85,6 +93,7 @@ class Program
         });
         PIXI.loader.add("Assets/J1.json")
                     .add("Assets/J2.json")
+                    .add("Assets/Arrow.json")
                     .add("Assets/wall.json")
                     .add("Assets/lava.json")
                     .add("Assets/bumper.json")

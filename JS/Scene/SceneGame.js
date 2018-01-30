@@ -17,36 +17,11 @@ class SceneGame extends Scene
 
     init() 
     {
-		this.populate();
-
-        
+        this.generate();
     }
 
-    populate()
+    generate()
     {
-        this.player1 = new EntityPlayer(this, "j1", 64, 64);
-        this.player2 = new EntityPlayer(this, "j2", 32, 64);
-		
-        this.controllers.push(new XboxController(this.player1));
-        this.controllers.push(new XboxController(this.player2));
-
-        this.controllers.push(
-	    new KeyboardController(
-		this.player1,
-		"KeyW", "KeyS", "KeyA",
-		"KeyD", "KeyQ", "KeyE"
-	    )
-	);
-	
-        this.controllers.push(
-	    new KeyboardController(
-		this.player2,
-		"ArrowUp", "ArrowDown", "ArrowLeft",
-		"ArrowRight", "Numpad0", "NumpadDecimal"
-	    )
-	);
-
-
         let lavenderCtx = lavender_new(Date.now(), "Assets/maps.json");
         let rooms = lavender_gen(lavenderCtx, LAVENDER_ALGORITHM_BACKTRACKING, Config.MapRooms, Config.MapRooms); 
         lavender_conv(lavenderCtx, rooms, Config.MapRooms, Config.MapRooms).then((origingrid) => {
@@ -78,9 +53,27 @@ class SceneGame extends Scene
             self.map1 = new GameMap(Config.MapWidth, Config.MapHeight, grid);;
             self.map2 = new GameMap(Config.MapWidth, Config.MapHeight, grid);
     
-            self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
-            self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
+            self.player1 = new EntityPlayer(self, "j1", 64, 64);
+            self.player2 = new EntityPlayer(self, "j2", 32, 64);
+            
+            self.controllers.push(new XboxController(self.player1));
+            self.controllers.push(new XboxController(self.player2));
     
+            self.controllers.push(
+                new KeyboardController(
+                self.player1,
+                "KeyW", "KeyS", "KeyA",
+                "KeyD", "KeyQ", "KeyE"
+                )
+            );
+        
+            self.controllers.push(
+                new KeyboardController(
+                self.player2,
+                "ArrowUp", "ArrowDown", "ArrowLeft",
+                "ArrowRight", "Numpad0", "NumpadDecimal"
+                )
+            );
 
             self.player1.x = x1;
             self.player1.y = y1;
@@ -92,16 +85,36 @@ class SceneGame extends Scene
             self.player2.initialX = x2;
             self.player2.initialY = y2;
 
+            self.viewport1 = new Viewport(self.player1, 0,0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map1);
+            self.viewport2 = new Viewport(self.player2, Program.GetInstance().App().renderer.width / 2, 0, Program.GetInstance().App().renderer.width / 2, Program.GetInstance().App().renderer.height, self.map2);
+
             self.addEntity(self.player1);
             self.addEntity(self.player2);
 
-            createjs.Sound.play("Music", {loop : -1});
-            createjs.Sound.play("Ambiance", {loop : -1});
-            
-            Program.GetInstance().App().ticker.add((delta) => {
-                self.update(delta)
-            });
-            
+            self.populate();
+        });
+        
+    }
+
+    populate()
+    {
+        // Ajout des lanceurs de flêches 
+        let bowcells = this.player1.getArea(Config.MapWidth*2, "bow");
+        bowcells.forEach((cell) => {
+            let bow = new EntityBow(this, cell.x * Config.TileSize, cell.y * Config.TileSize);
+            this.addEntity(bow);
+        });
+        this.start();
+    }
+
+
+    start()
+    {
+        createjs.Sound.play("Music", {loop : -1});
+        createjs.Sound.play("Ambiance", {loop : -1});
+        
+        Program.GetInstance().App().ticker.add((delta) => {
+            this.update(delta)
         });
         
     }
@@ -167,7 +180,10 @@ class SceneGame extends Scene
                         return;
                      normal = HelperEntity.checkCollisionWithEntity(delta, entity, other);
                      if (normal != null) {
-                         other.hit(entity);
+                         if(other.hit(entity) === false)
+                        {
+                            return;
+                        }
                          if(other instanceof EntityPlayer)
                          {
                              this.cancelControllers(other);
@@ -184,6 +200,7 @@ class SceneGame extends Scene
             normal = HelperEntity.checkCollisionWithMap(delta, this.map1, entity);
             if (normal != null)
             {
+                entity.bump();
                 HelperEntity.resolveCollision(delta, normal, entity);
             }
             entity.update(delta);

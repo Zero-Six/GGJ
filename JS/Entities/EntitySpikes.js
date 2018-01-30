@@ -6,6 +6,8 @@ class EntitySpikes extends Entity
 
         this.deadly = false;
 
+        this.timer = null;
+
         let frames = [];
 		for(let i = 0; i < 3; i++)
 		{
@@ -36,9 +38,9 @@ class EntitySpikes extends Entity
         this.sprite1.gotoAndPlay(0);
         this.sprite2.gotoAndPlay(0);
         this.deadly = true;
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
             this.setFriendly();   
-        }, 500);
+        }, Config.SpikeDeadly);
     }
 
     setFriendly()
@@ -46,9 +48,9 @@ class EntitySpikes extends Entity
         this.sprite1.gotoAndStop(0);
         this.sprite2.gotoAndStop(0);
         this.deadly = false;
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
             this.setDeadly();
-        }, 2000);
+        }, Config.SpikeFriendly);
     }
 
     hit(other)
@@ -58,5 +60,12 @@ class EntitySpikes extends Entity
             createjs.Sound.play("Spikes");
             other.reset();
         }
+    }
+
+    destroy()
+    {
+        if(this.timer != null)
+            clearTimeout(this.timer);
+        this.timer = null;
     }
 }
