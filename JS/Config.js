@@ -31,6 +31,8 @@ let Config =
 
     BowDeadly : 3000,
     ArrowSpeed : 50,
+
+    MineBuff : 1000,
 }
 
 Config.MapWidth = Config.MapRooms*Config.MapSize;
