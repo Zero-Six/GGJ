@@ -35,8 +35,8 @@ class Viewport
         this.container.width = width;
         this.container.height = height;
 
-        this.container.scale.x = 2;
-        this.container.scale.y = 2;
+        this.container.scale.x = 2 * this.player.sightMalus;
+        this.container.scale.y = 2 * this.player.sightMalus;
 
 
        // if(DEBUG)
@@ -114,9 +114,10 @@ class Viewport
             this.viewport.addChild(this.combo);
         }
 
-
-        this.container.x = this.width/2 -(this.player.sprite1.x*2);
-        this.container.y = this.height/2-(this.player.sprite1.y*2);
+        this.container.scale.x = 2 * this.player.sightMalus;
+        this.container.scale.y = 2 * this.player.sightMalus;
+        this.container.x = this.width/2 -(this.player.sprite1.x * 2 * this.player.sightMalus);
+        this.container.y = this.height/2-(this.player.sprite1.y * 2 * this.player.sightMalus);
         //console.log(this.container.x);
         
     }

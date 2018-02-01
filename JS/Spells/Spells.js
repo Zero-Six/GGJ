@@ -23,6 +23,7 @@ class Spells
 			"112" : new SpellSpeed(),
 			"122" : new SpellKey(),
 			"211" : new SpellIce(), 
+			"221" : new SpellSight(),
 			"121" : new SpellSpike(),
 		}
 	}

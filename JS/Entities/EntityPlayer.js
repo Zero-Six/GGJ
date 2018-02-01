@@ -14,6 +14,8 @@ class EntityPlayer extends EntityWalking {
 
 		this.dying = false;
 
+		this.sightMalus = 1;
+
 		this.clearTimer = null;
 
 		this.mass = 0.3;
