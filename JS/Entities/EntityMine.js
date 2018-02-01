@@ -10,6 +10,8 @@ class EntityMine extends Entity
 
         this.overlaping = false;
 
+        this.enabled = true;
+
 
         let frames = [
 			PIXI.Texture.fromFrame("mine_1.png"),
@@ -27,10 +29,11 @@ class EntityMine extends Entity
 
     hit(other)
     {
-        if(!(other instanceof EntityPlayer))
-            return;
+        if(!(other instanceof EntityPlayer) || this.enabled == false)
+            return false;
         this.sprite1.play();
         this.sprite2.play();
+        this.enabled = false;
         setTimeout(() => {
             other.shake(500);
             let explosion = new EntityExplosion(this.scene, (this.x-Config.TileSize), (this.y-Config.TileSize));

@@ -12,6 +12,10 @@ class EntityExplosion extends Entity
 
         this.solid = true;
 
+        let u = Math.floor(Math.random() * 2) + 1;
+        createjs.Sound.play("Explo_0"+u);
+
+
         let frames = [];
         for(let i = 1; i < 6; i++)
         {

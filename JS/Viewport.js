@@ -38,6 +38,8 @@ class Viewport
         this.container.scale.x = 2 * this.player.sightMalus;
         this.container.scale.y = 2 * this.player.sightMalus;
 
+        this.container.filters = [];
+
 
        // if(DEBUG)
 
@@ -72,6 +74,8 @@ class Viewport
         this.battery.scale.x = 2;
             this.battery.scale.y = 2;
         this.viewport.addChild(this.battery);
+
+        
     }
 
    
@@ -123,6 +127,12 @@ class Viewport
             this.viewport.addChild(this.combo);
         }
 
+
+        if(this.player.bluring == true && this.blur == null)
+            this.onblur();
+        else if(this.player.bluring == false && this.blur != null)
+            this.unblur();
+
         this.container.scale.x = 2 * this.player.sightMalus;
         this.container.scale.y = 2 * this.player.sightMalus;
         this.container.x = this.width/2 -(this.player.sprite1.x * 2 * this.player.sightMalus);
@@ -158,11 +168,12 @@ class Viewport
             this.weird = null;
     }
 
-    blur()
+    onblur()
     {
         if(this.blur != null)
             return;
         this.blur = new PIXI.filters.BlurFilter();
+        this.blur.blur = 20000;
         this.container.filters.push(this.blur);
     }
 

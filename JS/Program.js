@@ -42,7 +42,7 @@ class Program
     {
         console.log("Loading sounds...")
 
-        this.sounds = 22;
+        this.sounds = 26;
 
         createjs.Sound.registerSound( "Assets/Sounds/Trap_Spikes.wav", "Spikes",3);
         createjs.Sound.registerSound( "Assets/Sounds/Step_01.wav", "Step_01");
@@ -54,6 +54,14 @@ class Program
         createjs.Sound.registerSound("Assets/Sounds/Step_07.wav", "Step_07");
         createjs.Sound.registerSound( "Assets/Sounds/Step_08.wav", "Step_08");
 
+        createjs.Sound.registerSound( "Assets/Sounds/Fall_01.wav", "Fall_01");
+        createjs.Sound.registerSound("Assets/Sounds/Fall_02.wav", "Fall_02");
+        createjs.Sound.registerSound("Assets/Sounds/Fall_03.wav", "Fall_03" );
+        createjs.Sound.registerSound( "Assets/Sounds/Fall_04.wav", "Fall_04");
+
+        createjs.Sound.registerSound( "Assets/Sounds/Bomb_Explo_01.wav", "Explo_01");
+        createjs.Sound.registerSound( "Assets/Sounds/Bomb_Explo_02.wav", "Explo_02");
+        
 
         createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_01.wav", "Step_Ice_01");
         createjs.Sound.registerSound("Assets/Sounds/Step_Ice_02.wav", "Step_Ice_02");

@@ -16,6 +16,7 @@ class EntityPlayer extends EntityWalking {
 
 		this.sightMalus = 1;
 		this.shaking = false;
+		this.bluring = true;
 
 		this.clearTimer = null;
 
@@ -47,6 +48,14 @@ class EntityPlayer extends EntityWalking {
 		this.sprite1.play();
 		this.sprite2.play();
 
+	}
+
+	blur(duration)
+	{
+		this.bluring = true;
+		setTimeout(() => {
+			this.bluring = false;
+		}, duration);	
 	}
 
 	shake(duration)
@@ -83,11 +92,17 @@ class EntityPlayer extends EntityWalking {
 			this.hasKey = false;
 		}
 	}
+	
 
 	reset() 
 	{
 		if(this.dying == true)
 			return;
+
+		let u = Math.floor(Math.random() * 5) + 1;
+		createjs.Sound.play("Fall_0"+u);
+
+
 		this.dying = true;
 		this.canMove = false;
 		this.canCombo = false;
@@ -242,7 +257,7 @@ class EntityPlayer extends EntityWalking {
 		if(this.combo.length == 0)
 		{
 			this.clearTimer = setTimeout(() => {
-				this.clearCombo(false);
+				this.clearCombo();
 			}, 3000);
 		}
 		if(this.combo.length <3) // <3
@@ -264,13 +279,10 @@ class EntityPlayer extends EntityWalking {
 		}
 	}
 
-	clearCombo(sound = true)
+	clearCombo()
 	{
 		this.canCombo = true;
 		this.combo = [];
-		if(sound)
-			createjs.Sound.play("Send");
-
 	}
 
 
