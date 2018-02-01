@@ -102,6 +102,16 @@ class EntityPlayer extends EntityWalking {
 		let u = Math.floor(Math.random() * 5) + 1;
 		createjs.Sound.play("Fall_0"+u);
 
+		ParticleEmitter.create(this.scene, PIXI.Texture.fromFrame(this.file+"_1.png"), {
+			x: this.x,
+            y: this.y,
+            life: 10,
+            particleLife: 10,
+            particleSpeed: 5,
+            angleMax: 360,
+            sizeRandom: true,
+			sizeMax: 1
+		});
 
 		this.dying = true;
 		this.canMove = false;

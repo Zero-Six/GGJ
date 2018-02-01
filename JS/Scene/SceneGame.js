@@ -13,6 +13,7 @@ class SceneGame extends Scene
 
         this.entities = [];
         this.controllers = [];
+        this.emitterPool = [];
     }
 
     init() 
@@ -142,8 +143,42 @@ class SceneGame extends Scene
         this.map2.updateTile(x,y);
     }
 
+    updateParticleEmitters(delta) {
+        this.emitterPool.forEach((emitter) => {
+            if (emitter == null)
+                return;
+            emitter.update(delta);
+        })
+    }
+
+    registerParticleEmitter(em){
+        let id = this.emitterPool.length;
+        for (let i = 0; i < this.emitterPool.length; i++) {
+            if (this.emitterPool[i] == null) {
+                id = i;
+                break;
+            }
+        }
+        if (id == this.emitterPool.length)
+            this.emitterPool.push(em);
+        else
+            this.emitterPool[id] = em;
+        this.viewport1.addChild(em.container1);
+        this.viewport2.addChild(em.container2);
+        return id;
+    }
+
+    unregisterParticleEmitter(id) {
+        if (this.emitterPool[id] == null)
+            return;
+        this.viewport1.removeChild(this.emitterPool[id].container1);
+        this.viewport2.removeChild(this.emitterPool[id].container2);
+        this.emitterPool[id] = null;
+}
+
     update(delta)
     {
+        this.updateParticleEmitters(delta);
         this.updateEntities(delta);
 
         this.viewport1.update();
