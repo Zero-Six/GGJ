@@ -109,6 +109,13 @@ class SceneGame extends Scene
             this.addEntity(bumper);
         });
 
+        // Ajout des mines
+        let minecells = this.player1.getArea(Config.MapWidth*2, "mine");
+        minecells.forEach((cell) => {
+            let mine = new EntityMine(this, cell.x * Config.TileSize, cell.y * Config.TileSize);
+            this.addEntity(mine);
+        });
+
         this.addEntity(this.player1);
         this.addEntity(this.player2);
 

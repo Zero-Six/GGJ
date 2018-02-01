@@ -13,7 +13,11 @@ class EntityExplosion extends Entity
         this.solid = true;
 
         let frames = [];
-        for(let i = 1; i < 11; i++)
+        for(let i = 1; i < 6; i++)
+        {
+            frames.push(PIXI.Texture.fromFrame("explosion_"+i+".png"));
+        }
+        for(let i = 5; i > 0; i--)
         {
             frames.push(PIXI.Texture.fromFrame("explosion_"+i+".png"));
         }
@@ -22,6 +26,9 @@ class EntityExplosion extends Entity
 
         this.sprite1.loop = false;
         this.sprite2.loop = false;
+
+        this.sprite1.animationSpeed = 0.8;
+        this.sprite2.animationSpeed = 0.8;
 
         this.sprite1.onComplete = this.destroy.bind(this);
     }

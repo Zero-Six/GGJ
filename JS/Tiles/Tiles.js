@@ -112,21 +112,7 @@ let Tiles =
 	8 : {
 		name:"mine",
 		solid : false,
-		spriteAnim:function(x,y)
-		{
-			
-			var anim = new PIXI.extras.AnimatedSprite([
-			PIXI.Texture.fromFrame("mine_1.png"),
-			PIXI.Texture.fromFrame("mine_2.png"),
-			PIXI.Texture.fromFrame("mine_3.png"),
-			PIXI.Texture.fromFrame("mine_4.png")
-			]);
-			anim.animationSpeed = 0.1;
-			anim.x = x*32;
-			anim.y = y*32;
-			anim.play();
-			return anim
-		}
+		sprite : 'ground_0',
 	}, 
 	
 	

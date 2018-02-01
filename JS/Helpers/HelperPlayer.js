@@ -21,7 +21,7 @@ class HelperPlayer
 
             HelperPlayer.CheckSpawn(map, entity, x, y, cell);
             
-			HelperPlayer.CheckMine(map,entity,x,y,cell);
+
 			HelperPlayer.CheckMagnet(map,entity,x,y,cell);
 			HelperPlayer.CheckPickup(map,entity,x,y,cell);
 			
@@ -79,15 +79,6 @@ class HelperPlayer
         }
     }
 
-    static CheckMine(map, entity, x, y, cell)
-    {
-        if(cell.name != "mine" || entity.solid == false)
-            return;
-        setTimeout(() => {
-            let explosion = new EntityExplosion(entity.scene, (x-1) * Config.TileSize, (y-1) * Config.TileSize);
-            entity.scene.addEntity(explosion);
-        }, Config.MineBuff);
-    }
 
     static CheckKey(map, entity,x,y, cell)
     {
