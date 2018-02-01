@@ -77,11 +77,20 @@ class Viewport
    
 
     
+    updateShaking()
+    {
+        if(this.player.shaking == false)
+            return;
+        let modifierx = Math.floor(Math.random() * 10) * (Math.floor(Math.random()*2) == 1 ? -1 : 1);
+        let modifiery = Math.floor(Math.random() * 10) * (Math.floor(Math.random()*2) == 1 ? -1 : 1);
+        this.container.x += modifierx;
+        this.container.y += modifiery;
+    }
+
 
     update()
     {
         this.battery.gotoAndStop(this.player.battery);
-
         if(this.combo.children.length != this.player.combo.length + 1)
         {
             this.viewport.removeChild(this.combo);
@@ -118,6 +127,7 @@ class Viewport
         this.container.scale.y = 2 * this.player.sightMalus;
         this.container.x = this.width/2 -(this.player.sprite1.x * 2 * this.player.sightMalus);
         this.container.y = this.height/2-(this.player.sprite1.y * 2 * this.player.sightMalus);
+        this.updateShaking();
         //console.log(this.container.x);
         
     }

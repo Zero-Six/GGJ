@@ -8,6 +8,7 @@ class SpellIce extends Spells
     cast(players, player)
     {
         player = Spells.getOtherPlayer(players, player);
+        player.shake(500);
         let area = player.getArea(11);
         console.log(area);
         area.forEach(cell => {

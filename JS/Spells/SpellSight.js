@@ -9,6 +9,7 @@ class SpellSight extends Spells
     {
         player = Spells.getOtherPlayer(players, player);
         player.sightMalus = 2;
+        player.shake(500);
         setTimeout(() => {
             player.sightMalus = 1;
         }, 5000);

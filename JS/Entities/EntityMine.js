@@ -27,9 +27,12 @@ class EntityMine extends Entity
 
     hit(other)
     {
+        if(!(other instanceof EntityPlayer))
+            return;
         this.sprite1.play();
         this.sprite2.play();
         setTimeout(() => {
+            other.shake(500);
             let explosion = new EntityExplosion(this.scene, (this.x-Config.TileSize), (this.y-Config.TileSize));
             this.scene.addEntity(explosion);
             this.destroy();

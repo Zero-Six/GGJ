@@ -15,6 +15,7 @@ class EntityPlayer extends EntityWalking {
 		this.dying = false;
 
 		this.sightMalus = 1;
+		this.shaking = false;
 
 		this.clearTimer = null;
 
@@ -46,6 +47,14 @@ class EntityPlayer extends EntityWalking {
 		this.sprite1.play();
 		this.sprite2.play();
 
+	}
+
+	shake(duration)
+	{
+		this.shaking = true;
+		setTimeout(() => {
+			this.shaking = false;
+		}, duration);
 	}
 
 	preupdate(delta)
