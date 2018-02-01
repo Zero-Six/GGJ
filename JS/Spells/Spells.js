@@ -14,6 +14,8 @@ class Spells
 				return 0;
 			return Spells.List()[id].cast(players, player);
 		}
+		else 
+			createjs.Sound.play("Ghost_Despawn");
 		return 0;
 	}
 

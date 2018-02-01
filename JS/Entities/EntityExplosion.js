@@ -11,6 +11,7 @@ class EntityExplosion extends Entity
         this.vy = 0;
 
         this.solid = true;
+        this.overlaping = false;
 
         let u = Math.floor(Math.random() * 2) + 1;
         createjs.Sound.play("Explo_0"+u);

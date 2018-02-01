@@ -32,6 +32,7 @@ class EntityBumper extends Entity
         if(other instanceof EntityPlayer)
         {
             this.scene.cancelControllers(other);
+            other.shake(50);
         }
         let oldmass = other.mass;
         other.mass = Config.MassBumper;

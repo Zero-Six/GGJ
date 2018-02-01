@@ -42,7 +42,7 @@ class Program
     {
         console.log("Loading sounds...")
 
-        this.sounds = 26;
+        this.sounds = 37;
 
         createjs.Sound.registerSound( "Assets/Sounds/Trap_Spikes.wav", "Spikes",3);
         createjs.Sound.registerSound( "Assets/Sounds/Step_01.wav", "Step_01");
@@ -54,6 +54,12 @@ class Program
         createjs.Sound.registerSound("Assets/Sounds/Step_07.wav", "Step_07");
         createjs.Sound.registerSound( "Assets/Sounds/Step_08.wav", "Step_08");
 
+        createjs.Sound.registerSound( "Assets/Sounds/Arrow_Hit_01.wav", "Arrow_01",3);
+        createjs.Sound.registerSound( "Assets/Sounds/Arrow_Hit_02.wav", "Arrow_02",3);
+        createjs.Sound.registerSound( "Assets/Sounds/Arrow_Hit_03.wav", "Arrow_03",3);
+        createjs.Sound.registerSound( "Assets/Sounds/Arrow_Hit_04.wav", "Arrow_04",3);
+        createjs.Sound.registerSound( "Assets/Sounds/Arrow_Hit_05.wav", "Arrow_05",3);
+
         createjs.Sound.registerSound( "Assets/Sounds/Fall_01.wav", "Fall_01");
         createjs.Sound.registerSound("Assets/Sounds/Fall_02.wav", "Fall_02");
         createjs.Sound.registerSound("Assets/Sounds/Fall_03.wav", "Fall_03" );
@@ -62,6 +68,10 @@ class Program
         createjs.Sound.registerSound( "Assets/Sounds/Bomb_Explo_01.wav", "Explo_01");
         createjs.Sound.registerSound( "Assets/Sounds/Bomb_Explo_02.wav", "Explo_02");
         
+        createjs.Sound.registerSound( "Assets/Sounds/Mine_Beep.wav", "Mine_Beep");
+        createjs.Sound.registerSound( "Assets/Sounds/Ghost_Despawn.wav", "Ghost_Despawn");
+
+
 
         createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_01.wav", "Step_Ice_01");
         createjs.Sound.registerSound("Assets/Sounds/Step_Ice_02.wav", "Step_Ice_02");
@@ -72,7 +82,11 @@ class Program
         createjs.Sound.registerSound("Assets/Sounds/Step_Ice_07.wav", "Step_Ice_07");
         createjs.Sound.registerSound( "Assets/Sounds/Step_Ice_08.wav", "Step_Ice_08");
 
-        createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_01.wav", "Lava");
+        createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_01.wav", "Lava_01",1);
+        createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_02.wav", "Lava_02",1);
+        createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_03.wav", "Lava_03",1);
+        createjs.Sound.registerSound( "Assets/Sounds/Lava_Death_04.wav", "Lava_04",1);
+
         createjs.Sound.registerSound( "Assets/Sounds/Phone_Bip_01_01.wav", "Bip1");
         createjs.Sound.registerSound( "Assets/Sounds/Phone_Bip_01_02.wav", "Bip2");
         createjs.Sound.registerSound( "Assets/Sounds/Phone_Send.wav", "Send");

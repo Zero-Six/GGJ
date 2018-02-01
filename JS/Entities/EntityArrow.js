@@ -72,7 +72,11 @@ class EntityArrow extends EntityWalking
         if(other instanceof EntityArrow)
             return false;
         if(other instanceof EntityPlayer)
+        {
+            let u = Math.floor(Math.random() * 6) + 1;
+            createjs.Sound.play("Arrow_0"+u);
             other.reset();
+        }
         this.destroy();
     }
 

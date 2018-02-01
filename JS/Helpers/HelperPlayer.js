@@ -93,6 +93,10 @@ class HelperPlayer
     {
         if(cell.name != "lava" || entity.solid == false)
             return;
+
+        let u = Math.floor(Math.random() * 5) + 1;
+        createjs.Sound.play("Lava_0"+u);        
+
         setTimeout(() => {
             let x = Math.floor((entity.x + entity.sprite1.width /2) / Config.TileSize);
 			let y = Math.floor((entity.y + entity.sprite1.height/1.8) / Config.TileSize);
@@ -103,7 +107,6 @@ class HelperPlayer
                 return;
             if(cell.name == "lava" && entity.dying == false)
             {
-                createjs.Sound.play("Lava");
                 entity.reset();
             }
         }, Config.LavaBurnBuff);

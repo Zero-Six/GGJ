@@ -31,6 +31,7 @@ class EntityMine extends Entity
     {
         if(!(other instanceof EntityPlayer) || this.enabled == false)
             return false;
+        createjs.Sound.play("Mine_Beep");
         this.sprite1.play();
         this.sprite2.play();
         this.enabled = false;
