@@ -11,30 +11,50 @@ let Tiles =
 	1 : {
 		name:"wall",
 		solid : true,
-		// spriteGen:function(x,y,grid)
-		// {
-			// var d = 0;
-			// var t1x = (x/(Config.MapSize-1))%1 == 0;
-			// var t1y = (y/(Config.MapSize-1))%1 == 0;
-			// var t2x = (x/(Config.MapSize-2))%1 == 0;
-			// var t2y = (y/(Config.MapSize-2))%1 == 0;
+		spriteGen:function(x,y,grid)
+		{
+			var d = 0;
 			
-			// if(t1x && t1y)d=1;
-			// else if(t2x && t1y)d=2;
-			// else if(t2x && t2y)d=3;
-			// else if(t1x && t2y)d=4;
-			// else
-			// {
-				// if(t1x)d=4;
-				// else if(t2x)d=5;
-				// else if(t2y)d=6;
-				// else if(t1y)d=7;
-			// }
+			var tx1 = (x%Config.MapSize) == 0;
+			var tx2 = ((x+1)%(Config.MapSize)) == 0;
 			
-			// return "wall_"+(d||20)
+			var ty1 = (y%Config.MapSize) == 0;
+			var ty2 = ((y+1)%(Config.MapSize)) == 0;
 			
-		// },
-		sprite:"ground_6"
+			
+			if(tx1 && ty1)
+			{
+				d = 1;
+			}
+			else if(tx2 && ty1)
+			{
+				d = 2;
+			}
+			else if(tx2 && ty2)
+			{
+				d = 3;
+			}
+			else if(tx1 && ty2)
+			{
+				d = 4;
+			}
+			else
+			{
+				var r = motif(x,y); //Texture pseudo-random
+				if(tx1) d = 5+r*4;
+				else if(tx2) d = 6+r*4;
+				else if(ty1) d = 8+r*4;
+				else if(ty2) d = 7+r*4;
+			
+			}
+			
+		
+			
+			if(d != 0)return "wall_"+d;
+			return "ground_6";
+			
+		}
+		// sprite:"ground_6"
 		
 	}, 
 	
@@ -167,3 +187,12 @@ let Tiles =
 	
 	
 }
+
+function motif(x,y) // Entre 0 et 3
+{
+	var s = (x+y*y+x)%8;
+	if(s > 3)return 0;
+	return s;
+	
+}
+
